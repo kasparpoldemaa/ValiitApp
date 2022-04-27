@@ -20,10 +20,10 @@ public interface WorkExperienceMapper {
     @Mapping(source = "studentIsAvailable", target = "student.isAvailable")
     WorkExperience toEntity(WorkExperienceDto workExperienceDto);
 
-    @InheritInverseConfiguration(name = "workExperienceDtoToWorkExperience")
+    @InheritInverseConfiguration(name = "toEntity")
     WorkExperienceDto toDto(WorkExperience workExperience);
 
-    @InheritConfiguration(name = "workExperienceDtoToWorkExperience")
+    @InheritConfiguration(name = "toEntity")
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
     void updateWorkExperienceFromWorkExperienceDto(WorkExperienceDto workExperienceDto, @MappingTarget WorkExperience workExperience);
 }

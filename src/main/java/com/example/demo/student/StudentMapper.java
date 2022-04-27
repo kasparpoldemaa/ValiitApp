@@ -18,10 +18,10 @@ public interface StudentMapper {
     @Mapping(source = "studentProfileGithubLink", target = "studentProfile.githubLink")
     Student toEntity(StudentDto studentDto);
 
-    @InheritInverseConfiguration(name = "studentDtoToStudent")
+    @InheritInverseConfiguration(name = "toEntity")
     StudentDto toDto(Student student);
 
-    @InheritConfiguration(name = "studentDtoToStudent")
+    @InheritConfiguration(name = "toEntity")
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
     void updateStudentFromStudentDto(StudentDto studentDto, @MappingTarget Student student);
 }

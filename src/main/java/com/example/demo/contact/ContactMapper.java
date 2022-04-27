@@ -9,10 +9,10 @@ public interface ContactMapper {
     @Mapping(source = "userPassword", target = "user.password")
     Contact toEntity(ContactDto contactDto);
 
-    @InheritInverseConfiguration(name = "contactDtoToContact")
+    @InheritInverseConfiguration(name = "toEntity")
     ContactDto toDto(Contact contact);
 
-    @InheritConfiguration(name = "contactDtoToContact")
+    @InheritConfiguration(name = "toEntity")
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
     void updateContactFromContactDto(ContactDto contactDto, @MappingTarget Contact contact);
 }

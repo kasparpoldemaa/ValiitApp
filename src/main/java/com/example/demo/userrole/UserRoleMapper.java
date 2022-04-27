@@ -11,10 +11,10 @@ public interface UserRoleMapper {
     @Mapping(source = "roleName", target = "role.name")
     UserRole toEntity(UserRoleDto userRoleDto);
 
-    @InheritInverseConfiguration(name = "userRoleDtoToUserRole")
+    @InheritInverseConfiguration(name = "toEntity")
     UserRoleDto toDto(UserRole userRole);
 
-    @InheritConfiguration(name = "userRoleDtoToUserRole")
+    @InheritConfiguration(name = "toEntity")
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
     void updateUserRoleFromUserRoleDto(UserRoleDto userRoleDto, @MappingTarget UserRole userRole);
 }

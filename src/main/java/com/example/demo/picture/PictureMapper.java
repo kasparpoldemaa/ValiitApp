@@ -20,10 +20,10 @@ public interface PictureMapper {
     @Mapping(source = "studentIsAvailable", target = "student.isAvailable")
     Picture toEntity(PictureDto pictureDto);
 
-    @InheritInverseConfiguration(name = "pictureDtoToPicture")
+    @InheritInverseConfiguration(name = "toEntity")
     PictureDto toDto(Picture picture);
 
-    @InheritConfiguration(name = "pictureDtoToPicture")
+    @InheritConfiguration(name = "toEntity")
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
     void updatePictureFromPictureDto(PictureDto pictureDto, @MappingTarget Picture picture);
 }

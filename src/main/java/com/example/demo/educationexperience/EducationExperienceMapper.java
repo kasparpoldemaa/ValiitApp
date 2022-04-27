@@ -20,10 +20,10 @@ public interface EducationExperienceMapper {
     @Mapping(source = "studentIsAvailable", target = "student.isAvailable")
     EducationExperience toEntity(EducationExperienceDto educationExperienceDto);
 
-    @InheritInverseConfiguration(name = "educationExperienceDtoToEducationExperience")
+    @InheritInverseConfiguration(name = "toEntity")
     EducationExperienceDto toDto(EducationExperience educationExperience);
 
-    @InheritConfiguration(name = "educationExperienceDtoToEducationExperience")
+    @InheritConfiguration(name = "toEntity")
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
     void updateEducationExperienceFromEducationExperienceDto(EducationExperienceDto educationExperienceDto, @MappingTarget EducationExperience educationExperience);
 }
