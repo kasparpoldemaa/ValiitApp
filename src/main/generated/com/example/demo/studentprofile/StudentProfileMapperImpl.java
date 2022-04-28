@@ -1,12 +1,11 @@
 package com.example.demo.studentprofile;
 
-import java.time.LocalDate;
 import javax.annotation.processing.Generated;
 import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2022-04-28T09:23:32+0300",
+    date = "2022-04-28T14:47:53+0300",
     comments = "version: 1.4.2.Final, compiler: javac, environment: Java 17.0.2 (Oracle Corporation)"
 )
 @Component
@@ -39,27 +38,17 @@ public class StudentProfileMapperImpl implements StudentProfileMapper {
             return null;
         }
 
-        Integer id = null;
-        String availableFrom = null;
-        String location = null;
-        LocalDate dateOfBirth = null;
-        String competence = null;
-        String strength = null;
-        String aboutMe = null;
-        String linkedin = null;
-        String githubLink = null;
+        StudentProfileDto studentProfileDto = new StudentProfileDto();
 
-        id = studentProfile.getId();
-        availableFrom = studentProfile.getAvailableFrom();
-        location = studentProfile.getLocation();
-        dateOfBirth = studentProfile.getDateOfBirth();
-        competence = studentProfile.getCompetence();
-        strength = studentProfile.getStrength();
-        aboutMe = studentProfile.getAboutMe();
-        linkedin = studentProfile.getLinkedin();
-        githubLink = studentProfile.getGithubLink();
-
-        StudentProfileDto studentProfileDto = new StudentProfileDto( id, availableFrom, location, dateOfBirth, competence, strength, aboutMe, linkedin, githubLink );
+        studentProfileDto.setId( studentProfile.getId() );
+        studentProfileDto.setAvailableFrom( studentProfile.getAvailableFrom() );
+        studentProfileDto.setLocation( studentProfile.getLocation() );
+        studentProfileDto.setDateOfBirth( studentProfile.getDateOfBirth() );
+        studentProfileDto.setCompetence( studentProfile.getCompetence() );
+        studentProfileDto.setStrength( studentProfile.getStrength() );
+        studentProfileDto.setAboutMe( studentProfile.getAboutMe() );
+        studentProfileDto.setLinkedin( studentProfile.getLinkedin() );
+        studentProfileDto.setGithubLink( studentProfile.getGithubLink() );
 
         return studentProfileDto;
     }

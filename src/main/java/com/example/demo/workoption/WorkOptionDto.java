@@ -1,12 +1,16 @@
 package com.example.demo.workoption;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class WorkOptionDto implements Serializable {
-    private final Integer id;
-    private final String option;
-    private final String description;
+    private Integer id;
+    private String option;
+    private String description;
 }

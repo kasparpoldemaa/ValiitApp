@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2022-04-28T09:55:28+0300",
+    date = "2022-04-28T14:47:53+0300",
     comments = "version: 1.4.2.Final, compiler: javac, environment: Java 17.0.2 (Oracle Corporation)"
 )
 @Component
@@ -34,21 +34,14 @@ public class UserRoleMapperImpl implements UserRoleMapper {
             return null;
         }
 
-        Integer userId = null;
-        String userUserName = null;
-        String userPassword = null;
-        Integer roleId = null;
-        String roleName = null;
-        Integer id = null;
+        UserRoleDto userRoleDto = new UserRoleDto();
 
-        userId = userRoleUserId( userRole );
-        userUserName = userRoleUserUserName( userRole );
-        userPassword = userRoleUserPassword( userRole );
-        roleId = userRoleRoleId( userRole );
-        roleName = userRoleRoleName( userRole );
-        id = userRole.getId();
-
-        UserRoleDto userRoleDto = new UserRoleDto( id, userId, userUserName, userPassword, roleId, roleName );
+        userRoleDto.setUserId( userRoleUserId( userRole ) );
+        userRoleDto.setUserUserName( userRoleUserUserName( userRole ) );
+        userRoleDto.setUserPassword( userRoleUserPassword( userRole ) );
+        userRoleDto.setRoleId( userRoleRoleId( userRole ) );
+        userRoleDto.setRoleName( userRoleRoleName( userRole ) );
+        userRoleDto.setId( userRole.getId() );
 
         return userRoleDto;
     }
