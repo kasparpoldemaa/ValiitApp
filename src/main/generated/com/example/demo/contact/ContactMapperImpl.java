@@ -6,8 +6,8 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2022-04-28T14:47:54+0300",
-    comments = "version: 1.4.2.Final, compiler: javac, environment: Java 17.0.2 (Oracle Corporation)"
+    date = "2022-04-28T10:29:46+0300",
+    comments = "version: 1.4.2.Final, compiler: javac, environment: Java 11.0.14.1 (Amazon.com Inc.)"
 )
 @Component
 public class ContactMapperImpl implements ContactMapper {
@@ -36,16 +36,25 @@ public class ContactMapperImpl implements ContactMapper {
             return null;
         }
 
-        ContactDto contactDto = new ContactDto();
+        Integer userId = null;
+        String userUserName = null;
+        String userPassword = null;
+        Integer id = null;
+        String firstName = null;
+        String lastName = null;
+        String companyName = null;
+        String address = null;
 
-        contactDto.setUserId( contactUserId( contact ) );
-        contactDto.setUserUserName( contactUserUserName( contact ) );
-        contactDto.setUserPassword( contactUserPassword( contact ) );
-        contactDto.setId( contact.getId() );
-        contactDto.setFirstName( contact.getFirstName() );
-        contactDto.setLastName( contact.getLastName() );
-        contactDto.setCompanyName( contact.getCompanyName() );
-        contactDto.setAddress( contact.getAddress() );
+        userId = contactUserId( contact );
+        userUserName = contactUserUserName( contact );
+        userPassword = contactUserPassword( contact );
+        id = contact.getId();
+        firstName = contact.getFirstName();
+        lastName = contact.getLastName();
+        companyName = contact.getCompanyName();
+        address = contact.getAddress();
+
+        ContactDto contactDto = new ContactDto( id, firstName, lastName, companyName, address, userId, userUserName, userPassword );
 
         return contactDto;
     }
