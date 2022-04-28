@@ -20,7 +20,7 @@ public class Event {
     @Column(name = "date", nullable = false)
     private LocalDate date;
 
-    @Column(name = "\"time\"", nullable = false)
+    @Column(name = "\"time\"", nullable = true)
     private LocalTime time;
 
     @Column(name = "event_name", nullable = false)

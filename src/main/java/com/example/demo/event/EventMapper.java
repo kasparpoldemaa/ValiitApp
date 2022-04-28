@@ -8,8 +8,7 @@ import java.util.List;
 public interface EventMapper {
 
     @Mapping(target = "time", ignore = true)
-//    @Mapping(target = "date", ignore = true)
-//    @Mapping(target = "id", ignore = true)
+    @Mapping(target = "id", ignore = true)
     Event toEntity(EventDto eventDto);
 
     EventDto toDto(Event event);
