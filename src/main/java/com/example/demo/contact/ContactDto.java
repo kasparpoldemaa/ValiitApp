@@ -1,17 +1,21 @@
 package com.example.demo.contact;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class ContactDto implements Serializable {
-    private final Integer id;
-    private final String firstName;
-    private final String lastName;
-    private final String companyName;
-    private final String address;
-    private final Integer userId;
-    private final String userUserName;
-    private final String userPassword;
+    private Integer id;
+    private String firstName;
+    private String lastName;
+    private String companyName;
+    private String address;
+    private Integer userId;
+    private String userUserName;
+    private String userPassword;
 }
