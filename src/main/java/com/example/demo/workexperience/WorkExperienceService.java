@@ -7,8 +7,7 @@ import javax.annotation.Resource;
 @Service
 public class WorkExperienceService {
 
-    @Resource
-    private WorkExperienceMapper workExperienceMapper;
+
 
     @Resource
     private WorkExperienceRepository workExperienceRepository;
