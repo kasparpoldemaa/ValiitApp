@@ -1,10 +1,8 @@
 package com.example.demo.userrole;
 
 import com.example.demo.role.Role;
-import com.example.demo.role.RoleDto;
 import com.example.demo.role.RoleService;
 import com.example.demo.user.User;
-import com.example.demo.user.UserDto;
 import com.example.demo.user.UserService;
 import org.springframework.stereotype.Service;
 
@@ -31,10 +29,10 @@ public class UserRoleService {
         return userRoleMapper.toDtos(userRoles);
     }
 
-    public UserRoleDto addNewUserAndRole(UserRoleDto userRoleDto) {
+    public UserRoleDto addNewUserAndSetRole(UserRoleDto userRoleDto, String roleName) {
 
         User user = userService.getAndSaveNewUser(userRoleDto);
-        Role role = roleService.getAndSaveNewRole(userRoleDto);
+        Role role = roleService.setRole(roleName);
 
         UserRole userRoleSave = new UserRole();
         userRoleSave.setRole(role);
@@ -43,7 +41,6 @@ public class UserRoleService {
 
         return userRoleMapper.toDto(userRoleSave);
     }
-
 
 
 }

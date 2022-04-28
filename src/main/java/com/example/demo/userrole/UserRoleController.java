@@ -30,9 +30,11 @@ public class UserRoleController {
     }
 
     @PostMapping("/new")
-    @Operation(summary = "Lisab uue role-i ja useri-i")
-    public UserRoleDto addNewUserAndRole(@Valid @RequestBody UserRoleDto userRoleDto) {
-        return userRoleService.addNewUserAndRole(userRoleDto);
+    @Operation(summary = "Lisab uue kasutaja ja lisab uuele kasutajale rolli")
+    public UserRoleDto addNewUserAndSetRole(@Valid @RequestBody UserRoleDto userRoleDto, @RequestParam String roleName) {
+        return userRoleService.addNewUserAndSetRole(userRoleDto, roleName);
     }
+
+
 
 }

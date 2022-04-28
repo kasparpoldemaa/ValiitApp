@@ -16,13 +16,11 @@ public class RoleService {
     @Resource
     private RoleRepository roleRepository;
 
-    public Role getAndSaveNewRole(UserRoleDto userRoleDto) {
-        RoleDto roleDto = new RoleDto();
-        roleDto.setName(userRoleDto.getRoleName());
-        Role role = roleMapper.toEntity(roleDto);
-        roleRepository.save(role);
-        return role;
+    public Role setRole(String roleName) {
+        return roleRepository.findByName(roleName);
     }
 
-
+//    public void deleteById(Integer roleId) {
+//        roleRepository.deleteById(roleId);
+//    }
 }

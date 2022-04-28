@@ -14,14 +14,6 @@ public class UserService {
     @Resource
     private UserRepository userRepository;
 
-//    public UserDto getAndSaveNewUser(UserRoleDto userRoleDto) {
-//        UserDto userDto = new UserDto();
-//        userDto.setUserName(userRoleDto.getUserUserName());
-//        userDto.setPassword(userRoleDto.getUserPassword());
-//        User user = userMapper.toEntity(userDto);
-//        userRepository.save(user);
-//        return userDto;
-//    }
 
     public User getAndSaveNewUser(UserRoleDto userRoleDto) {
         UserDto userDto = new UserDto();
