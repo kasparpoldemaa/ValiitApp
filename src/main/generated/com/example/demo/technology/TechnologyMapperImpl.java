@@ -5,8 +5,8 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2022-04-28T10:29:46+0300",
-    comments = "version: 1.4.2.Final, compiler: javac, environment: Java 11.0.14.1 (Amazon.com Inc.)"
+    date = "2022-04-29T09:42:39+0300",
+    comments = "version: 1.4.2.Final, compiler: javac, environment: Java 11.0.14.1 (JetBrains s.r.o.)"
 )
 @Component
 public class TechnologyMapperImpl implements TechnologyMapper {
@@ -31,13 +31,10 @@ public class TechnologyMapperImpl implements TechnologyMapper {
             return null;
         }
 
-        Integer id = null;
-        String name = null;
+        TechnologyDto technologyDto = new TechnologyDto();
 
-        id = technology.getId();
-        name = technology.getName();
-
-        TechnologyDto technologyDto = new TechnologyDto( id, name );
+        technologyDto.setId( technology.getId() );
+        technologyDto.setName( technology.getName() );
 
         return technologyDto;
     }
