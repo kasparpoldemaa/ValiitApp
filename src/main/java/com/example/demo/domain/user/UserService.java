@@ -5,6 +5,7 @@ import com.example.demo.validation.ValidationService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.Optional;
 
 @Service
 public class UserService {
@@ -31,7 +32,8 @@ public class UserService {
     }
 
     public User findUserByNameAndPassword(String name, String password) {
-        User user = userRepository.findByUserNameAndPassword(name, password);
-        return user;
+        Optional<User> user = userRepository.findByUserNameAndPassword(name, password);
+        validationService.userExists(name,password,user);
+        return user.get();
     }
 }
