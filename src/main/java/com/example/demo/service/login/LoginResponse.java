@@ -8,8 +8,8 @@ import java.util.List;
 @Data
 public class LoginResponse {
     private Integer userId;
-    private String userName;
-    private String password;
-    private List<NewUserRequest> roles;
+//    private String userName;
+//    private String password;
+    private String roleName;
 
 }

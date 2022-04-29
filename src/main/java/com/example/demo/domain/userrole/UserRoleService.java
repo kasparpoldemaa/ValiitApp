@@ -30,6 +30,10 @@ public class UserRoleService {
         return userRoleMapper.toDtos(userRoles);
     }
 
+    public UserRole getUserRoleByUserName(String name) {
+        return userRoleRepository.findByUser_UserNameIgnoreCase(name);
+    }
+
 
     public UserRole saveUserRole(NewUserRequest request) {
 

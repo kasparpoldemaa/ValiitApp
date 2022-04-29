@@ -19,7 +19,6 @@ public class RegisterService {
     private UserRoleService userRoleService;
 
 
-
     public NewUserResponse addNewUser(NewUserRequest request) {
 
 
