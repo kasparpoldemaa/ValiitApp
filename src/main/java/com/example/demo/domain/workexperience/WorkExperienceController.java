@@ -14,25 +14,25 @@ public class WorkExperienceController {
     private WorkExperienceService workExperienceService;
 
 
-    @PostMapping
+    @PostMapping("/add")
     @Operation(summary= "Lisab uue töökogemuse.")
     public WorkExperienceDto addNewWorkExperience(@RequestParam Integer studentId, @Valid @RequestBody WorkExperienceDto workExperienceDto){
         return workExperienceService.addNewWorkExperience(studentId, workExperienceDto);
     }
 
-    @GetMapping
+    @GetMapping("/all")
     @Operation(summary = "Tagastab õpilase id järgi töökogemused")
     public WorkExperienceDto getWorkExperienceById(@RequestParam Integer studentId){
         return workExperienceService.getWorkExperienceById(studentId);
     }
 
-    @PutMapping
+    @PutMapping("/update")
     @Operation(summary = "Uuendab töökogemuse id järgi" )
     public void updateWorkExperienceById(@RequestParam Integer workExperienceId, @Valid @RequestBody WorkExperienceDto workExperienceDto) {
         workExperienceService.updateWorkExperienceById(workExperienceId, workExperienceDto);
     }
 
-    @DeleteMapping
+    @DeleteMapping("/delete")
     @Operation(summary = "Kustuta töökogemus id järgi")
     public void removeWorkExperienceById(@RequestParam Integer workExperienceId) {
         workExperienceService.removeWorkExperienceById(workExperienceId);

@@ -1,17 +1,21 @@
 package com.example.demo.domain.event;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 import java.time.LocalDate;
 
+@AllArgsConstructor
+@NoArgsConstructor
 @Data
 public class EventDto implements Serializable {
-    private final Integer id;
-    private final LocalDate date;
-    private final String time;
-    private final String eventName;
-    private final String company;
-    private final String zoom;
-    private final String presenterName;
+//    private final Integer id;
+    private LocalDate date;
+    private String time;
+    private String eventName;
+    private String company;
+    private String zoom;
+    private String presenterName;
 }
