@@ -1,5 +1,6 @@
 package com.example.demo.domain.role;
 
+import com.example.demo.service.register.NewUserRequest;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -13,8 +14,8 @@ public class RoleService {
     @Resource
     private RoleRepository roleRepository;
 
-    public Role setRole(String roleName) {
-        return roleRepository.findByName(roleName);
+    public Role getRole(NewUserRequest request) {
+        return roleRepository.getById(request.getRoleId());
     }
 
 //    public void deleteById(Integer roleId) {

@@ -1,4 +1,4 @@
-package com.example.demo.domain.userrole;
+package com.example.demo.service.register;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -10,7 +10,7 @@ import java.io.Serializable;
 @NoArgsConstructor
 @AllArgsConstructor
 public class NewUserRequest implements Serializable {
-    private String username;
+    private String userName;
     private String password;
     private Integer roleId;
 }

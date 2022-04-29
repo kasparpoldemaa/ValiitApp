@@ -2,6 +2,7 @@ package com.example.demo.domain.userrole;
 
 import com.example.demo.domain.role.RoleService;
 import com.example.demo.domain.user.UserService;
+import com.example.demo.service.register.NewUserRequest;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.web.bind.annotation.*;
 

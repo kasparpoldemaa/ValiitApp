@@ -1,6 +1,6 @@
 package com.example.demo.service.login;
 
-import com.example.demo.domain.userrole.NewUserRequest;
+import com.example.demo.service.register.NewUserRequest;
 import lombok.Data;
 
 import java.util.List;

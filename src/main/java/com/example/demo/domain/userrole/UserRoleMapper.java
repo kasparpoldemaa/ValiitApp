@@ -1,5 +1,6 @@
 package com.example.demo.domain.userrole;
 
+import com.example.demo.service.register.NewUserRequest;
 import org.mapstruct.*;
 
 import java.util.List;

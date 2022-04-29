@@ -4,6 +4,7 @@ import com.example.demo.domain.role.Role;
 import com.example.demo.domain.role.RoleService;
 import com.example.demo.domain.user.User;
 import com.example.demo.domain.user.UserService;
+import com.example.demo.service.register.NewUserRequest;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -30,6 +31,16 @@ public class UserRoleService {
     }
 
 
+    public UserRole saveUserRole(NewUserRequest request) {
 
+        Role role = roleService.getRole(request);
+        User user = userService.getUser(request);
 
+        UserRole userRole = new UserRole();
+        userRole.setRole(role);
+        userRole.setUser(user);
+        userRoleRepository.save(userRole);
+
+        return userRole;
+    }
 }
