@@ -5,6 +5,7 @@ import com.example.demo.service.register.NewUserRequest;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 @Service
 public class RoleService {
@@ -19,6 +20,9 @@ public class RoleService {
         return roleRepository.getById(request.getRoleId());
     }
 
+    public List<RoleDto> getAllRoles() {
+       return roleMapper.toDtos(roleRepository.findAll());
+    }
 
 
 //    public void deleteById(Integer roleId) {
