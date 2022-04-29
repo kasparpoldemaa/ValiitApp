@@ -24,23 +24,12 @@ public class UserRoleService {
     @Resource
     private RoleService roleService;
 
-    public List<UserRoleDto> getAllUserRoles() {
+    public List<NewUserRequest> getAllUserRoles() {
         List<UserRole> userRoles = userRoleRepository.findAll();
         return userRoleMapper.toDtos(userRoles);
     }
 
-    public UserRoleDto addNewUserAndSetRole(UserRoleDto userRoleDto, String roleName) {
 
-        User user = userService.getAndSaveNewUser(userRoleDto);
-        Role role = roleService.setRole(roleName);
-
-        UserRole userRoleSave = new UserRole();
-        userRoleSave.setRole(role);
-        userRoleSave.setUser(user);
-        userRoleRepository.save(userRoleSave);
-
-        return userRoleMapper.toDto(userRoleSave);
-    }
 
 
 }

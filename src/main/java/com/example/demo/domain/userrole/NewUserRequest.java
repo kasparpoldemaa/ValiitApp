@@ -9,11 +9,8 @@ import java.io.Serializable;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class UserRoleDto implements Serializable {
-    private Integer id;
-    private Integer userId;
-    private String userUserName;
-    private String userPassword;
+public class NewUserRequest implements Serializable {
+    private String username;
+    private String password;
     private Integer roleId;
-    private String roleName;
 }

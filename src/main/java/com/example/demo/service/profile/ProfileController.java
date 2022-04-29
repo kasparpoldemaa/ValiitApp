@@ -1,10 +1,7 @@
 package com.example.demo.service.profile;
 
 import com.example.demo.domain.studentprofile.StudentProfileDto;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 
@@ -15,6 +12,7 @@ public class ProfileController {
     @Resource
     private ProfileService profileService;
 
+    @GetMapping
     public StudentProfileDto getProfileByUserId(@RequestParam Integer userId) {
 
         return null;
