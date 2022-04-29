@@ -4,6 +4,7 @@ import com.example.demo.domain.user.User;
 import com.example.demo.domain.user.UserService;
 import com.example.demo.domain.userrole.UserRole;
 import com.example.demo.domain.userrole.UserRoleService;
+import com.example.demo.validation.ValidationService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -16,6 +17,8 @@ public class RegisterService {
 
     @Resource
     private UserRoleService userRoleService;
+
+
 
     public NewUserResponse addNewUser(NewUserRequest request) {
 
