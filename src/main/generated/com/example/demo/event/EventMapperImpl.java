@@ -1,5 +1,6 @@
 package com.example.demo.event;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.processing.Generated;
@@ -7,8 +8,8 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2022-04-28T10:29:46+0300",
-    comments = "version: 1.4.2.Final, compiler: javac, environment: Java 11.0.14.1 (Amazon.com Inc.)"
+    date = "2022-04-29T09:42:39+0300",
+    comments = "version: 1.4.2.Final, compiler: javac, environment: Java 11.0.14.1 (JetBrains s.r.o.)"
 )
 @Component
 public class EventMapperImpl implements EventMapper {
@@ -21,7 +22,9 @@ public class EventMapperImpl implements EventMapper {
 
         Event event = new Event();
 
+        event.setId( eventDto.getId() );
         event.setDate( eventDto.getDate() );
+        event.setTime( eventDto.getTime() );
         event.setEventName( eventDto.getEventName() );
         event.setCompany( eventDto.getCompany() );
         event.setZoom( eventDto.getZoom() );
@@ -36,15 +39,23 @@ public class EventMapperImpl implements EventMapper {
             return null;
         }
 
-        EventDto eventDto = new EventDto();
+        Integer id = null;
+        LocalDate date = null;
+        String time = null;
+        String eventName = null;
+        String company = null;
+        String zoom = null;
+        String presenterName = null;
 
-        eventDto.setId( event.getId() );
-        eventDto.setDate( event.getDate() );
-        eventDto.setTime( event.getTime() );
-        eventDto.setEventName( event.getEventName() );
-        eventDto.setCompany( event.getCompany() );
-        eventDto.setZoom( event.getZoom() );
-        eventDto.setPresenterName( event.getPresenterName() );
+        id = event.getId();
+        date = event.getDate();
+        time = event.getTime();
+        eventName = event.getEventName();
+        company = event.getCompany();
+        zoom = event.getZoom();
+        presenterName = event.getPresenterName();
+
+        EventDto eventDto = new EventDto( id, date, time, eventName, company, zoom, presenterName );
 
         return eventDto;
     }
@@ -64,7 +75,7 @@ public class EventMapperImpl implements EventMapper {
     }
 
     @Override
-    public void updateEventFromEventDto(EventDto eventDto, Event event) {
+    public void updateEntity(EventDto eventDto, Event event) {
         if ( eventDto == null ) {
             return;
         }

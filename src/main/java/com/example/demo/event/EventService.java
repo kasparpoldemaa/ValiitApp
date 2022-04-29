@@ -9,25 +9,13 @@ import java.util.List;
 public class EventService {
 
     @Resource
-    private EventMapper eventMapper;
-
-    @Resource
     private EventRepository eventRepository;
 
+    @Resource
+    private EventMapper eventMapper;
 
     public List<EventDto> getAllEvents() {
         List<Event> events = eventRepository.findAll();
         return eventMapper.toDtos(events);
-    }
-
-    public EventDto getEventById(Integer id) {
-        Event event = eventRepository.getById(id);
-        return eventMapper.toDto(event);
-    }
-
-    public EventDto addNewEvent(EventDto eventDto) {
-        Event event = eventMapper.toEntity(eventDto);
-        eventRepository.save(event);
-        return eventMapper.toDto(event);
     }
 }

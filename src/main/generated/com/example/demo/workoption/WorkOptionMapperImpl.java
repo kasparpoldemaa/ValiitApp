@@ -5,8 +5,8 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2022-04-28T10:29:46+0300",
-    comments = "version: 1.4.2.Final, compiler: javac, environment: Java 11.0.14.1 (Amazon.com Inc.)"
+    date = "2022-04-29T09:42:39+0300",
+    comments = "version: 1.4.2.Final, compiler: javac, environment: Java 11.0.14.1 (JetBrains s.r.o.)"
 )
 @Component
 public class WorkOptionMapperImpl implements WorkOptionMapper {
@@ -32,15 +32,11 @@ public class WorkOptionMapperImpl implements WorkOptionMapper {
             return null;
         }
 
-        Integer id = null;
-        String option = null;
-        String description = null;
+        WorkOptionDto workOptionDto = new WorkOptionDto();
 
-        id = workOption.getId();
-        option = workOption.getOption();
-        description = workOption.getDescription();
-
-        WorkOptionDto workOptionDto = new WorkOptionDto( id, option, description );
+        workOptionDto.setId( workOption.getId() );
+        workOptionDto.setOption( workOption.getOption() );
+        workOptionDto.setDescription( workOption.getDescription() );
 
         return workOptionDto;
     }
