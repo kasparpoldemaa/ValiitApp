@@ -7,9 +7,9 @@ import lombok.NoArgsConstructor;
 import java.io.Serializable;
 import java.time.LocalDate;
 
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
 public class EventDto implements Serializable {
 //    private final Integer id;
     private LocalDate date;

@@ -19,6 +19,7 @@ public class EventController {
     public EventDto addNewEvent(@RequestBody EventDto eventDto) {
         return eventService.addNewEvent(eventDto);
     }
+
     @PutMapping("/update")
     @Operation(summary = "Uuendab üritust id järgi")
     public void updateEvent(@RequestParam Integer eventId, @Valid @RequestBody EventDto eventDto) {
@@ -37,7 +38,6 @@ public class EventController {
         eventService.removeEventById(eventId);
 
     }
-
 
 
 }

@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.validation.Valid;
+import java.util.List;
 
 @RestController
 @RequestMapping("/education-experience")
@@ -14,22 +15,28 @@ public class EducationExperienceController {
     private EducationExperienceService educationExperienceService;
 
 
-    @PostMapping
-    @Operation(summary = "Lisab uue hariduse")
-    public EducationExperience addNewEducationExperience(@Valid @RequestBody EducationExperienceDto educationExperienceDto){
-        return educationExperienceService.addNewEducationExperience(educationExperienceDto);
+    @PostMapping("/add")
+    @Operation(summary = "Lisab uue hariduse id järgi.")
+    public EducationExperienceDto addNewEducationExperience(@RequestParam Integer studentId, @Valid @RequestBody EducationExperienceDto educationExperienceDto){
+        return educationExperienceService.addNewEducationExperience(studentId, educationExperienceDto);
     }
 
-
-    @GetMapping
-    @Operation(summary = "Kuvab hariduse id järgi." )
-    public EducationExperienceDto getEducationExperienceById(@RequestParam Integer studentId) {
-        return educationExperienceService.getEducationExperienceById(studentId);
+    @GetMapping("/all")
+    @Operation(summary = "Kuvab kõik haridused student id järgi." )
+    public List<EducationExperienceDto> getAllEducationExperienceById(@RequestParam Integer studentId) {
+        return educationExperienceService.getAllEducationExperienceById(studentId);
     }
 
-//    @PutMapping
-//    @Operation(summary = "Muudab hariduse id järgi.")
-//    public void updateEducationExperienceById(@Valid @RequestBody EducationExperienceDto educationExperienceDto) {
-//        educationExperienceService.updateEducationExperienceById(educationExperienceId, educationExperienceDto);
-//    }
+    @PutMapping("/update")
+    @Operation(summary = "Uuendab hariduse experience-id järgi.")
+    public void updateEducationExperienceById(@RequestParam Integer educationExperienceId, @Valid @RequestBody EducationExperienceDto educationExperienceDto) {
+        educationExperienceService.updateEducationExperienceById(educationExperienceId, educationExperienceDto);
+    }
+
+    @DeleteMapping("/delete")
+    @Operation(summary = "/Kustutab hariduse id järgi.")
+    public void removeEducationById(@RequestParam Integer educationExperienceId) {
+        educationExperienceService.removeEducationById(educationExperienceId);
+    }
+
 }
