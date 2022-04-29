@@ -27,16 +27,16 @@
               <input type="checkbox">Mäleta mind
             </div>
             <div class="form-group">
-              <input type="submit" value="Logi sisse" class="btn float-right login_btn" v-on:click="saveDataToSessionStorage">
+              <input type="submit" value="Logi sisse" class="btn float-right login_btn" v-on:click="saveDataToSessionStorage ,navigateToUserPage()">
             </div>
           </form>
         </div>
         <div class="card-footer">
           <div class="d-flex justify-content-center links">
-            Don't have an account?<a href="#">Sign Up</a>
+            Pole veel kasutajat?<a href="#" v-on:click="navigateToSignUp()">Loo kasutaja</a>
           </div>
           <div class="d-flex justify-content-center">
-            <a href="#">Forgot your password?</a>
+            <a href="#">Unustasid parooli?</a>
           </div>
         </div>
       </div>
@@ -59,6 +59,13 @@ export default {
       sessionStorage.setItem('userId', this.user.id)
       sessionStorage.setItem('roleId', this.role.id)
     },
+    navigateToSignUp: function () {
+      this.$router.push({name: 'sign-up'})
+    },
+    navigateToUserPage: function () {
+      this.$router.push({name: 'user-page'})
+    },
+
 
   }
 }
@@ -69,4 +76,5 @@ img {
   width:  20vw;
   height: auto;
 }
+
 </style>
