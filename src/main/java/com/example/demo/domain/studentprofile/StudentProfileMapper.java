@@ -9,5 +9,5 @@ public interface StudentProfileMapper {
     StudentProfileDto toDto(StudentProfile studentProfile);
 
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
-    void updateStudentProfileFromStudentProfileDto(StudentProfileDto studentProfileDto, @MappingTarget StudentProfile studentProfile);
+    void updateEntity(StudentProfileDto studentProfileDto, @MappingTarget StudentProfile studentProfile);
 }
