@@ -1,10 +1,11 @@
 package com.example.demo.event;
 
 import io.swagger.v3.oas.annotations.Operation;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
-import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -15,21 +16,9 @@ public class EventController {
     private EventService eventService;
 
     @GetMapping("/all")
-    @Operation(summary = "Tagastab kõik eventid")
+    @Operation(summary = "Kuvab kõik eventid")
     public List<EventDto> getAllEvents() {
         return eventService.getAllEvents();
-    }
-
-    @GetMapping("/id")
-    @Operation(summary = "Tagastab eventi sisestatud ID järgi")
-    public EventDto getEventById(@RequestParam Integer id) {
-        return eventService.getEventById(id);
-    }
-
-    @PostMapping("/new")
-    @Operation(summary = "Lisab uue eventi")
-    public EventDto addNewEvent(@Valid @RequestBody EventDto eventDto) {
-        return eventService.addNewEvent(eventDto);
     }
 
 }
