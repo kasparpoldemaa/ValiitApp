@@ -12,7 +12,7 @@ import java.time.LocalDate;
 @NoArgsConstructor
 public class EducationExperienceDto implements Serializable {
     //private Integer id;
-    private Integer studentId;
+    //private Integer studentId;
     private LocalDate startDate;
     private LocalDate endDate;
     private String school;
