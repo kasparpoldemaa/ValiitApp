@@ -12,19 +12,25 @@
           <form>
             <div class="input-group form-group">
               <div class="input-group-prepend">
-                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                <span class="input-group-text"><i class="fas fa-user">
+                  <img class="ui-menu-icons" alt="email" src="../assets/email.png">
+
+                </i></span>
               </div>
               <input type="text" class="form-control" placeholder="e-mail">
 
             </div>
             <div class="input-group form-group">
               <div class="input-group-prepend">
-                <span class="input-group-text"><i class="fas fa-key"></i></span>
+                <span class="input-group-text"><i class="fas fa-key">
+                  <img class="ui-menu-icons" alt="key" src="../assets/key.png">
+
+                </i></span>
               </div>
               <input type="password" class="form-control" placeholder="parool">
             </div>
-            <div class="row align-items-center remember">
-              <input type="checkbox">Mäleta mind
+            <div class="remember">
+              <input type="checkbox"> Mäleta mind
             </div>
             <div class="form-group">
               <input type="submit" value="Logi sisse" class="btn float-right login_btn" v-on:click="saveDataToSessionStorage ,navigateToUserPage()">
@@ -32,8 +38,8 @@
           </form>
         </div>
         <div class="card-footer">
-          <div class="d-flex justify-content-center links">
-            Pole veel kasutajat?<a href="#" v-on:click="navigateToSignUp()">Loo kasutaja</a>
+          <div class="create-user">
+            Pole veel kasutajat? <a href="#" v-on:click="navigateToSignUp()">Loo kasutaja</a>
           </div>
           <div class="d-flex justify-content-center">
             <a href="#">Unustasid parooli?</a>
@@ -73,8 +79,21 @@ export default {
 
 <style scoped>
 img {
-  width:  20vw;
+  width:  25vw;
   height: auto;
+}
+.ui-menu-icons{
+  width: 18px;
+  height: auto;
+
+}
+.login_btn{
+  background-color: blue;
+  color: white;
+}
+.login_btn:hover{
+  color: white ;
+  background-color: deepskyblue;
 }
 
 </style>
