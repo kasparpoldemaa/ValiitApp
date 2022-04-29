@@ -13,6 +13,11 @@ public class EducationExperienceService {
     @Resource
     private EducationExperienceRepository educationExperienceRepository;
 
+    public EducationExperience addNewEducationExperience(EducationExperienceDto educationExperienceDto) {
+
+        return null;
+    }
+
 
     public EducationExperienceDto getEducationExperienceById(Integer studentId) {
         EducationExperience educationExperience = educationExperienceRepository.getById(studentId);
@@ -32,7 +37,5 @@ public class EducationExperienceService {
 
     }
 
-    public EducationExperience addNewEducationExperience(EducationExperienceDto educationExperienceDto) {
-        return null;
-    }
+
 }
