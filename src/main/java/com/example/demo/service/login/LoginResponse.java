@@ -1,6 +1,6 @@
 package com.example.demo.service.login;
 
-import com.example.demo.userrole.UserRoleDto;
+import com.example.demo.domain.userrole.UserRoleDto;
 import lombok.Data;
 
 import java.util.List;
