@@ -17,10 +17,6 @@ public class EducationExperience {
     @Column(name = "id", nullable = false)
     private Integer id;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "student_id", nullable = false)
-    private Student student;
-
     @Column(name = "start_date", nullable = false)
     private LocalDate startDate;
 
@@ -35,5 +31,9 @@ public class EducationExperience {
 
     @Column(name = "field", nullable = false)
     private String field;
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "student_id", nullable = false)
+    private Student student;
 
 }

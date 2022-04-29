@@ -5,66 +5,66 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2022-04-28T15:21:26+0300",
+    date = "2022-04-28T15:25:45+0300",
     comments = "version: 1.4.2.Final, compiler: javac, environment: Java 17.0.2 (Oracle Corporation)"
 )
 @Component
 public class WorkExperienceMapperImpl implements WorkExperienceMapper {
 
     @Override
-    public WorkExperience toEntity(WorkExperienceDto workExperienceDto) {
-        if ( workExperienceDto == null ) {
+    public WorkExperience toEntity(WorkExperienceDto dto) {
+        if ( dto == null ) {
             return null;
         }
 
         WorkExperience workExperience = new WorkExperience();
 
-        workExperience.setStartDate( workExperienceDto.getStartDate() );
-        workExperience.setEndDate( workExperienceDto.getEndDate() );
-        workExperience.setCompanyName( workExperienceDto.getCompanyName() );
-        workExperience.setPosition( workExperienceDto.getPosition() );
-        workExperience.setJobDescription( workExperienceDto.getJobDescription() );
+        workExperience.setStartDate( dto.getStartDate() );
+        workExperience.setEndDate( dto.getEndDate() );
+        workExperience.setCompanyName( dto.getCompanyName() );
+        workExperience.setPosition( dto.getPosition() );
+        workExperience.setJobDescription( dto.getJobDescription() );
 
         return workExperience;
     }
 
     @Override
-    public WorkExperienceDto toDto(WorkExperience workExperience) {
-        if ( workExperience == null ) {
+    public WorkExperienceDto toDto(WorkExperience entity) {
+        if ( entity == null ) {
             return null;
         }
 
         WorkExperienceDto workExperienceDto = new WorkExperienceDto();
 
-        workExperienceDto.setStartDate( workExperience.getStartDate() );
-        workExperienceDto.setEndDate( workExperience.getEndDate() );
-        workExperienceDto.setCompanyName( workExperience.getCompanyName() );
-        workExperienceDto.setPosition( workExperience.getPosition() );
-        workExperienceDto.setJobDescription( workExperience.getJobDescription() );
+        workExperienceDto.setStartDate( entity.getStartDate() );
+        workExperienceDto.setEndDate( entity.getEndDate() );
+        workExperienceDto.setCompanyName( entity.getCompanyName() );
+        workExperienceDto.setPosition( entity.getPosition() );
+        workExperienceDto.setJobDescription( entity.getJobDescription() );
 
         return workExperienceDto;
     }
 
     @Override
-    public void updateEntity(WorkExperienceDto workExperienceDto, WorkExperience workExperience) {
-        if ( workExperienceDto == null ) {
+    public void updateEntity(WorkExperienceDto dto, WorkExperience workExperience) {
+        if ( dto == null ) {
             return;
         }
 
-        if ( workExperienceDto.getStartDate() != null ) {
-            workExperience.setStartDate( workExperienceDto.getStartDate() );
+        if ( dto.getStartDate() != null ) {
+            workExperience.setStartDate( dto.getStartDate() );
         }
-        if ( workExperienceDto.getEndDate() != null ) {
-            workExperience.setEndDate( workExperienceDto.getEndDate() );
+        if ( dto.getEndDate() != null ) {
+            workExperience.setEndDate( dto.getEndDate() );
         }
-        if ( workExperienceDto.getCompanyName() != null ) {
-            workExperience.setCompanyName( workExperienceDto.getCompanyName() );
+        if ( dto.getCompanyName() != null ) {
+            workExperience.setCompanyName( dto.getCompanyName() );
         }
-        if ( workExperienceDto.getPosition() != null ) {
-            workExperience.setPosition( workExperienceDto.getPosition() );
+        if ( dto.getPosition() != null ) {
+            workExperience.setPosition( dto.getPosition() );
         }
-        if ( workExperienceDto.getJobDescription() != null ) {
-            workExperience.setJobDescription( workExperienceDto.getJobDescription() );
+        if ( dto.getJobDescription() != null ) {
+            workExperience.setJobDescription( dto.getJobDescription() );
         }
     }
 }

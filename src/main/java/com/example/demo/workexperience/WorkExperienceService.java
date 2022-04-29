@@ -34,12 +34,12 @@ public class WorkExperienceService {
 
     public void updateWorkExperienceById(Integer workExperienceId, WorkExperienceDto workExperienceDto) {
         WorkExperience workExperience = workExperienceRepository.getById(workExperienceId);
-
-        workExperience.setStartDate(workExperienceDto.getStartDate());
-        workExperience.setEndDate(workExperienceDto.getEndDate());
-        workExperience.setCompanyName(workExperienceDto.getCompanyName());
-        workExperience.setPosition(workExperienceDto.getPosition());
-        workExperience.setJobDescription(workExperienceDto.getJobDescription());
+        workExperienceMapper.updateEntity(workExperienceDto,workExperience);
+//        workExperience.setStartDate(workExperienceDto.getStartDate());
+//        workExperience.setEndDate(workExperienceDto.getEndDate());
+//        workExperience.setCompanyName(workExperienceDto.getCompanyName());
+//        workExperience.setPosition(workExperienceDto.getPosition());
+//        workExperience.setJobDescription(workExperienceDto.getJobDescription());
         workExperienceRepository.save(workExperience);
 
     }

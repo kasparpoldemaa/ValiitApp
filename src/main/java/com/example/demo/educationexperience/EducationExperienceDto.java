@@ -1,6 +1,5 @@
-package com.example.demo.workexperience;
+package com.example.demo.educationexperience;
 
-import com.example.demo.student.StudentDto;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -11,14 +10,12 @@ import java.time.LocalDate;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class WorkExperienceDto implements Serializable {
+public class EducationExperienceDto implements Serializable {
     //private Integer id;
+    private Integer studentId;
     private LocalDate startDate;
     private LocalDate endDate;
-    private String companyName;
-    private String position;
-    private String jobDescription;
-    //private StudentDto student;
-
-
+    private String school;
+    private String degree;
+    private String field;
 }

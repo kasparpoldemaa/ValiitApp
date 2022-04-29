@@ -12,12 +12,14 @@ import java.time.LocalDate;
 @AllArgsConstructor
 public class StudentProfileDto implements Serializable {
     private Integer id;
-    private String availableFrom;
-    private String location;
+    private String firstName;
+    private String lastName;
     private LocalDate dateOfBirth;
+    private String location;
     private String competence;
     private String strength;
     private String aboutMe;
     private String linkedin;
     private String githubLink;
+    private String availableFrom;
 }

@@ -4,10 +4,11 @@ import org.mapstruct.*;
 
 @Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = "spring")
 public interface WorkExperienceMapper {
-    WorkExperience toEntity(WorkExperienceDto workExperienceDto);
 
-    WorkExperienceDto toDto(WorkExperience workExperience);
+    WorkExperience toEntity(WorkExperienceDto dto);
+
+    WorkExperienceDto toDto(WorkExperience entity);
 
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
-    void updateEntity(WorkExperienceDto workExperienceDto, @MappingTarget WorkExperience workExperience);
+    void updateEntity(WorkExperienceDto dto, @MappingTarget WorkExperience entity);
 }
