@@ -1,24 +1,19 @@
 package com.example.demo.domain.student;
 
+import com.example.demo.domain.studentprofile.StudentProfileDto;
+import com.example.demo.domain.user.UserDto;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
-import java.time.LocalDate;
 
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class StudentDto implements Serializable {
-    private final Integer id;
-    private final Integer userId;
-    private final String userUserName;
-    private final String userPassword;
-    private final Integer studentProfileId;
-    private final String studentProfileAvailableFrom;
-    private final String studentProfileLocation;
-    private final LocalDate studentProfileDateOfBirth;
-    private final String studentProfileCompetence;
-    private final String studentProfileStrength;
-    private final String studentProfileAboutMe;
-    private final String studentProfileLinkedin;
-    private final String studentProfileGithubLink;
-    private final Boolean isAvailable;
+    private Integer id;
+    private UserDto user;
+    private StudentProfileDto studentProfile;
+    private Boolean isAvailable;
 }
