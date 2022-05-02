@@ -10,6 +10,7 @@ public class LoginResponse {
     private Integer userId;
 //    private String userName;
 //    private String password;
-    private String roleName;
+//    private String roleName;
+    private Integer roleId;
 
 }
