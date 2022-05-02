@@ -4,6 +4,7 @@ import HomeView from '../views/HomeView.vue'
 import LoginView from "@/views/LoginView";
 import UserPageView from "@/views/UserPageView";
 import SignUpView from "@/views/SignUpView";
+import LogOutView from "@/views/LogOutView";
 
 Vue.use(VueRouter)
 
@@ -28,16 +29,7 @@ const routes = [
     name: 'sign-up',
     component: SignUpView
   },
-  {
-    path: '/about',
-    name: 'about',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: function () {
-      return import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
-    }
-  }
+
 ]
 
 const router = new VueRouter({

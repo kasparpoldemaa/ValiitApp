@@ -29,8 +29,8 @@ public class UserService {
 
     public User addNewUser(NewUserRequest request) {
         User user = userMapper.toEntity(request);
-        boolean customerExists = userRepository.existsByUserName(request.getUserName());
-        validationService.userNameExists(customerExists, request.getUserName());
+        boolean userExists = userRepository.existsByUserName(request.getUserName());
+        validationService.userNameExists(userExists, request.getUserName());
         userRepository.save(user);
         return user;
     }
