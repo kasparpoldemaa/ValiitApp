@@ -14,7 +14,7 @@ public class StudentProfileContoller {
     private StudentProfileService studentProfileService;
 
     @PostMapping("/add")
-    @Operation(summary = "Lisab uue student-profile student-id järgi")
+    @Operation(summary = "Loob uue student-profile")
     public StudentProfileDto addNewStudentProfile(@RequestBody StudentProfileDto studentProfileDto) {
         return studentProfileService.addNewStudentProfile(studentProfileDto);
     }
@@ -30,5 +30,11 @@ public class StudentProfileContoller {
     @Operation(summary = "/Kustuta student-profile id järgi")
     public void removeStudentProfileById(@RequestParam Integer id) {
         studentProfileService.removeStudentProfileById(id);
+    }
+
+    @PostMapping("/create-empty")
+    @Operation(summary = "Loob tühja profiili")
+    public Integer createEmptyProfile() {
+        return studentProfileService.createEmptyProfile();
     }
 }

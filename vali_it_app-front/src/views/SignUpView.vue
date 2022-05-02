@@ -51,6 +51,9 @@
               </div>
             </form>
           </div>
+
+          {{'id:'+ studentProfileId}}
+
           <div class="card-footer">
             <!--            footeri tekst-->
           </div>
@@ -73,6 +76,8 @@ export default {
       passwordConfirm: null,
       roleId: 0,
       userId: 0,
+      studentProfileId: 0,
+      studentId: 0,
     }
 
   },
@@ -88,7 +93,39 @@ export default {
       })
     },
 
+    saveDataToSessionStorage: function () {
+      sessionStorage.setItem('userId', this.userId)
+      sessionStorage.setItem('roleId', this.request.roleId)
+    },
+    navigateToUserPage: function (roleId) {
+      this.$router.push({name: 'user-page', query: {id: roleId}})
+    },
+    createEmptyProfile: function () {
 
+      this.$http.post("/student-profile/create-empty")
+          .then(response => {
+            this.studentProfileId = response.data
+            console.log(response.data)
+          }).catch(error => {
+        console.log(error)
+      })
+    },
+
+
+    addNewStudent: function (userId, studentProfileId) {
+      this.$http.post("/student/new", {
+        params: {
+          userId: userId,
+          studentProfileId: studentProfileId
+        }
+          }
+      ).then(response => {
+        this.studentId = response.data
+        console.log(response.data)
+      }).catch(error => {
+        console.log(error)
+      })
+    },
     addNewUser: function () {
 
       if (this.request.password === this.passwordConfirm) {
@@ -97,6 +134,8 @@ export default {
           this.userId = response.data.userId
           this.roleId = response.data.roleId
           this.saveDataToSessionStorage()
+          this.createEmptyProfile()
+          this.addNewStudent(6, 6)
           this.navigateToUserPage(response.data.userId)
         }).catch(error => {
           alert(error.response.data.detail)
@@ -107,13 +146,8 @@ export default {
         alert('parool ei klapi')
       }
     },
-    saveDataToSessionStorage: function () {
-      sessionStorage.setItem('userId', this.userId)
-      sessionStorage.setItem('roleId', this.request.roleId)
-    },
-    navigateToUserPage: function (roleId) {
-      this.$router.push({name: 'user-page', query: {id: roleId}})
-    },
+
+
 
 
   },

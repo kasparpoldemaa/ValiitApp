@@ -1,6 +1,5 @@
 package com.example.demo.domain.studentprofile;
 
-import com.example.demo.domain.student.StudentRepository;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -8,8 +7,6 @@ import javax.annotation.Resource;
 @Service
 public class StudentProfileService {
 
-    @Resource
-    private StudentRepository studentRepository;
 
     @Resource
     private StudentProfileMapper studentProfileMapper;
@@ -33,4 +30,20 @@ public class StudentProfileService {
         studentProfileRepository.deleteById(id);
     }
 
+    public StudentProfile getStudentProfileById(Integer studentProfileId) {
+        return studentProfileRepository.getById(studentProfileId);
+    }
+
+
+    public Integer createEmptyProfile() {
+        StudentProfile studentProfile = new StudentProfile();
+        studentProfileRepository.save(studentProfile);
+        return studentProfile.getId();
+    }
+
+    public StudentProfile findStudentProfileById(Integer studentProfileId) {
+        return studentProfileRepository.getById(studentProfileId);
+    }
 }
+
+
