@@ -92,6 +92,7 @@ export default {
             this.navigateToUserPage()
             console.log(response.data)
           }).catch(error => {
+        alert(error.response.data.detail)
         console.log(error)
       })
 
