@@ -17,7 +17,7 @@
 
                 </i></span>
               </div>
-              <input type="text" class="form-control" placeholder="e-mail">
+              <input type="text" v-model = "request.userName" class="form-control" placeholder="e-mail">
 
             </div>
             <div class="input-group form-group">
@@ -27,13 +27,14 @@
 
                 </i></span>
               </div>
-              <input type="password" class="form-control" placeholder="parool">
+              <input type="password" v-model = "request.password" class="form-control" placeholder="parool">
             </div>
             <div class="remember">
               <input type="checkbox"> Mäleta mind
             </div>
             <div class="form-group">
-              <input type="submit" value="Logi sisse" class="btn float-right login_btn" v-on:click="saveDataToSessionStorage ,navigateToUserPage()">
+              <input type="submit" value="Logi sisse" class="btn float-right login_btn"
+                     v-on:click="logIn(),saveDataToSessionStorage ,navigateToUserPage()">
             </div>
           </form>
         </div>
@@ -55,8 +56,10 @@
 <script>
 export default {
   name: "LoginView",
+
   data: function () {
     return {
+      request: {}
 
     }
   },
@@ -71,6 +74,16 @@ export default {
     navigateToUserPage: function () {
       this.$router.push({name: 'user-page'})
     },
+
+    logIn: function () {
+      this.$http.get("/login/in", this.request
+      ).then(response => {
+        console.log(response.data)
+      }).catch(error => {
+        console.log(error)
+      });
+
+    }
 
 
   }
