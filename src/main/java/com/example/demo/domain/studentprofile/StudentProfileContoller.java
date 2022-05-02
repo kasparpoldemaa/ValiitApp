@@ -18,8 +18,9 @@ public class StudentProfileContoller {
     public StudentProfileDto addNewStudentProfile(@RequestBody StudentProfileDto studentProfileDto) {
         return studentProfileService.addNewStudentProfile(studentProfileDto);
     }
-//TODO Swaggeris errorid update ja delete meetoditel
-    @GetMapping("/update")
+
+
+    @PutMapping("/update")
     @Operation(summary = "Uuendab student-profile id järgi.")
     public void updateStudentProfile(@RequestParam Integer studentProfileId, @Valid @RequestBody StudentProfileDto studentProfileDto) {
         studentProfileService.updateStudentProfile(studentProfileId, studentProfileDto);

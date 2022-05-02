@@ -32,4 +32,5 @@ public class StudentProfileService {
     public void removeStudentProfileById(Integer id) {
         studentProfileRepository.deleteById(id);
     }
+
 }
