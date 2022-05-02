@@ -42,7 +42,11 @@ public class UserService {
     }
 
     public User findUserByUserId(Integer userId) {
-        return userRepository.findById(userId).get();
+        return userRepository.getById(userId);
 
+    }
+
+    public UserDto getUserByUserId(Integer userId) {
+        return userMapper.toDto(userRepository.getById(userId));
     }
 }

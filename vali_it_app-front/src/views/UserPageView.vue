@@ -16,25 +16,25 @@
     <form action="/action_page.php">
       <div class="form-group">
         <label >Eesnimi:</label>
-        <input class="form-control" placeholder="Eesnimi">
+        <input  type="text" class="form-control" placeholder="Eesnimi" v-model="contact.firstName">
         <label >Perekonnanimi:</label>
-        <input class="form-control" placeholder="Perekonnanimi">
+        <input type="text" class="form-control" placeholder="Perekonnanimi" v-model="contact.lastName">
         <label >Sünniaeg:</label>
         <input type="date" class="form-control" placeholder="YYYY-MM-DD">
         <label >Elukoht:</label>
-        <input class="form-control" placeholder="Elukoht">
+        <input type="text" class="form-control" placeholder="Elukoht">
         <label >Sinu oskused:</label>
-        <input class="form-control" placeholder="Kirjelda oma oskusi, mida oskad teha">
+        <input type="text" class="form-control" placeholder="Kirjelda oma oskusi, mida oskad teha">
         <label >Tugevused:</label>
-        <input class="form-control" placeholder="Kirjelda oma tugevusi">
+        <input type="text" class="form-control" placeholder="Kirjelda oma tugevusi">
         <label >Minust:</label>
-        <input class="form-control" placeholder="Räägi natuke endast">
+        <input type="text" class="form-control" placeholder="Räägi natuke endast">
         <label >LinkedIn:</label>
-        <input class="form-control" placeholder="Sinu LinkedIn aadress">
+        <input type="text" class="form-control" placeholder="Sinu LinkedIn aadress">
         <label >GitHub:</label>
-        <input class="form-control" placeholder="Sinu GitHub aadress">
+        <input type="text" class="form-control" placeholder="Sinu GitHub aadress">
         <label >Olen saadaval alates:</label>
-        <input class="form-control" placeholder="Millal saaksid praktikaga alustada?">
+        <input type="text" class="form-control" placeholder="Millal saaksid praktikaga alustada?">
       </div>
       <div class="form-group form-check">
         <label class="form-check-label">
@@ -63,7 +63,8 @@ export default {
       userId: sessionStorage.getItem('userId'),
       showProfile: false,
       showInternship: false,
-      showCourse: false
+      showCourse: false,
+      contact: {}
 
 
     }

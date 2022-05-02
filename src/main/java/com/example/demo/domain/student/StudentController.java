@@ -1,8 +1,7 @@
 package com.example.demo.domain.student;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import io.swagger.v3.oas.annotations.Operation;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -18,4 +17,19 @@ public class StudentController {
     public List<StudentDto> getAvailableStudents() {
         return studentService.getAvailableStudents();
     }
+
+
+
+    @PutMapping("/set-profile")
+    @Operation(summary = "Seob profiili studentiga")
+    public void setProfileToStudent(@RequestParam Integer studentId, @RequestParam Integer studentProfileId) {
+        studentService.setProfileToStudent(studentId, studentProfileId);
+    }
+
+    @PostMapping("/new")
+    @Operation(summary = "Loo uus student")
+    public Integer addNewStudent(Integer userId, Integer studentProfileId) {
+        return studentService.addNewStudent(userId, studentProfileId);
+    }
+
 }
