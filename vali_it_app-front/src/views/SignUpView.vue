@@ -58,6 +58,7 @@
       </div>
     </div>
     </body>
+
   </div>
 </template>
 
@@ -69,7 +70,9 @@ export default {
     return {
       request: {},
       roles: {},
-      passwordConfirm: null
+      passwordConfirm: null,
+      roleId: 0,
+      userId: 0,
     }
 
   },
@@ -85,20 +88,33 @@ export default {
       })
     },
 
+
     addNewUser: function () {
 
       if (this.request.password === this.passwordConfirm) {
         this.$http.post("/register/new", this.request
         ).then(response => {
-          console.log(response.data)
+          this.userId = response.data.userId
+          this.roleId = response.data.roleId
+          this.saveDataToSessionStorage()
+          this.navigateToUserPage(response.data.userId)
         }).catch(error => {
-          console.log(error)
+          alert(error.response.data.detail)
+          console.log(error.response.data)
         });
       } else {
         // todo viska teade, et parool ei klapi
         alert('parool ei klapi')
       }
-    }
+    },
+    saveDataToSessionStorage: function () {
+      sessionStorage.setItem('userId', this.userId)
+      sessionStorage.setItem('roleId', this.request.roleId)
+    },
+    navigateToUserPage: function (roleId) {
+      this.$router.push({name: 'user-page', query: {id: roleId}})
+    },
+
 
   },
   mounted() {

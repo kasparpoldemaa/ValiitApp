@@ -21,7 +21,6 @@ public class RegisterService {
 
     public NewUserResponse addNewUser(NewUserRequest request) {
 
-
         User user = userService.addNewUser(request);
         UserRole userRole = userRoleService.saveUserRole(request);
 

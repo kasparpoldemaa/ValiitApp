@@ -3,14 +3,38 @@
     <nav>
       <router-link to="/">Home</router-link> |
       <router-link to="/login">Login</router-link> |
-<!--      <router-link to="/user-page">User Page</router-link> |-->
-<!--      <router-link to="/signup">SignUp</router-link> |-->
-      <router-link to="/about">About</router-link>
+      <router-link to="/user-page">User Page (ajutine)</router-link> |
+      <router-link to="/signup">SignUp (ajutine)</router-link> |
+      <button type="button" class="btn btn-primary btn-sm" v-on:click="navigateToHomePage()">Log out</button>
     </nav>
     <router-view/>
   </div>
 </template>
+<script>
+export default {
+  name: "SignUpView",
 
+  data: function () {
+    return {
+
+    }
+
+  },
+  methods: {
+
+    navigateToHomePage: function () {
+      sessionStorage.clear()
+      this.$router.push({name: 'home'})
+    },
+
+
+  },
+  mounted() {
+    this.getAllRoles()
+  }
+}
+
+</script>
 <style>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
@@ -32,4 +56,5 @@ nav a {
 nav a.router-link-exact-active {
   color: #42b983;
 }
+
 </style>
