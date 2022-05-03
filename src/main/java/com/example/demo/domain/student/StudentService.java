@@ -69,6 +69,21 @@ public class StudentService {
         return student.getId();
     }
 
+    public Integer getStudentIdByUser(Integer id) {
+        Student student = studentRepository.findByUser_Id(id);
+        return student.getId();
+    }
+
+    public StudentResponse getStudentByUser(Integer id) {
+        Student student = studentRepository.findByUser_Id(id);
+
+        StudentResponse studentResponse = new StudentResponse();
+        studentResponse.setStudentProfileId(student.getStudentProfile().getId());
+        studentResponse.setId(student.getId());
+
+        return studentResponse;
+    }
+
 
 //
 

@@ -19,22 +19,22 @@ public class ContactService {
     @Resource
     private ContactRepository contactRepository;
 
-    public ContactDto addContact(Integer userId, ContactDto contactDto) {
-        Contact input = contactMapper.toEntity(contactDto);
-        Contact contact = createAndSaveContact(userId, input);
-        return contactMapper.toDto(contact);
-    }
-
-    private Contact createAndSaveContact(Integer userId, Contact input) {
-        Contact contact = new Contact();
-        contact.setUser(userService.findUserByUserId(userId));
-        contact.setFirstName(input.getFirstName());
-        contact.setLastName(input.getLastName());
-        contact.setCompanyName(input.getCompanyName());
-        contact.setAddress(input.getAddress());
-        contactRepository.save(contact);
-        return contact;
-    }
+//    public ContactDto addContact(Integer userId, ContactDto contactDto) {
+//        Contact input = contactMapper.toEntity(contactDto);
+//        Contact contact = createAndSaveContact(userId, input);
+//        return contactMapper.toDto(contact);
+//    }
+//
+//    private Contact createAndSaveContact(Integer userId, Contact input) {
+//        Contact contact = new Contact();
+//        contact.setUser(userService.findUserByUserId(userId));
+//        contact.setFirstName(input.getFirstName());
+//        contact.setLastName(input.getLastName());
+//        contact.setCompanyName(input.getCompanyName());
+//        contact.setAddress(input.getAddress());
+//        contactRepository.save(contact);
+//        return contact;
+//    }
 
 
     public Integer addNewContact(Integer userId, NewUserRequest request) {
@@ -46,6 +46,11 @@ public class ContactService {
         contact.setLastName(request.getLastName());
         contact.setUser(user);
         contactRepository.save(contact);
+        return contact.getId();
+    }
+
+    public Integer getContactIdByUser(Integer id) {
+        Contact contact = contactRepository.findByUser_Id(id);
         return contact.getId();
     }
 }

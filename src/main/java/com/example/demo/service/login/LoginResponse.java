@@ -1,16 +1,16 @@
 package com.example.demo.service.login;
 
-import com.example.demo.service.register.NewUserRequest;
 import lombok.Data;
-
-import java.util.List;
+import org.springframework.lang.Nullable;
 
 @Data
 public class LoginResponse {
     private Integer userId;
-//    private String userName;
-//    private String password;
-//    private String roleName;
     private Integer roleId;
+    private Integer contactId;
+    @Nullable
+    private Integer studentProfileId;
+    @Nullable
+    private Integer studentId;
 
 }
