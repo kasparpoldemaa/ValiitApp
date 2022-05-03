@@ -60,10 +60,7 @@ export default {
       roleId: sessionStorage.getItem('roleId'),
       userId: sessionStorage.getItem('userId'),
       studentProfileId: sessionStorage.getItem('studentProfileId'),
-      profile: {
-      }
-
-
+      profile: {}
     }
   },
   methods:

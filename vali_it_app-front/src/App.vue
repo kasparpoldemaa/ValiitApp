@@ -4,6 +4,7 @@
       <router-link to="/">Home</router-link> |
       <router-link to="/login">Login</router-link> |
       <router-link to="/user-page">User Page (ajutine)</router-link> |
+      <router-link to="/company-page">Company Page (ajutine)</router-link> |
       <router-link to="/signup">SignUp (ajutine)</router-link> |
       <button type="button" class="btn btn-link btn-sm" v-on:click="navigateToHomePage()">Log out</button>
     </nav>
