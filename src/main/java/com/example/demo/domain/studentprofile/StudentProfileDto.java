@@ -11,9 +11,9 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @AllArgsConstructor
 public class StudentProfileDto implements Serializable {
-    //private Integer id;
-    private String firstName;
-    private String lastName;
+//    private Integer id;
+//    private String firstName;
+//    private String lastName;
     private LocalDate dateOfBirth;
     private String location;
     private String competence;
@@ -22,4 +22,5 @@ public class StudentProfileDto implements Serializable {
     private String linkedin;
     private String githubLink;
     private String availableFrom;
+
 }

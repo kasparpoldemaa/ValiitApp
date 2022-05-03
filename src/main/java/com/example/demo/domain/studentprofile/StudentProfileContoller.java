@@ -37,4 +37,10 @@ public class StudentProfileContoller {
     public Integer createEmptyProfile() {
         return studentProfileService.createEmptyProfile();
     }
+
+//    @PutMapping("/profileId")
+//    @Operation(summary = "Uuendab student-profile'i")
+//    public void updateStudentProfile(@Valid @RequestBody StudentProfileDto studentProfileDto) {
+//        studentProfileService.updateStudentProfile(studentProfileDto);
+//    }
 }
