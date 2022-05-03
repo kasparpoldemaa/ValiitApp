@@ -135,7 +135,7 @@ export default {
           this.roleId = response.data.roleId
           this.saveDataToSessionStorage()
           this.createEmptyProfile()
-          this.addNewStudent(6, 6)
+          this.addNewStudent(1,1 )
           this.navigateToUserPage(response.data.userId)
         }).catch(error => {
           alert(error.response.data.detail)

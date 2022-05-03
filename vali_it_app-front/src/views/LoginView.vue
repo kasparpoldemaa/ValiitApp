@@ -40,10 +40,7 @@
           </div>
           <div class="card-footer">
             <div class="create-user">
-              Pole veel kasutajat? <a href="#" v-on:click="navigateToSignUp()">Loo kasutaja</a>
-            </div>
-            <div class="d-flex justify-content-center">
-              <a href="#">Unustasid parooli?</a>
+              Pole veel kasutajat? <router-link to="/signup">Loo kasutaja</router-link>
             </div>
           </div>
         </div>
@@ -69,9 +66,6 @@ export default {
     saveDataToSessionStorage: function () {
       sessionStorage.setItem('userId', this.userId )
       sessionStorage.setItem('roleId', this.roleId )
-    },
-    navigateToSignUp: function () {
-      this.$router.push({name: 'sign-up'})
     },
     navigateToUserPage: function () {
       this.$router.push({name: 'user-page'})

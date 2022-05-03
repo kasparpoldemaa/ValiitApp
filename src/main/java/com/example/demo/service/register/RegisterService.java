@@ -1,5 +1,8 @@
 package com.example.demo.service.register;
 
+import com.example.demo.domain.contact.ContactService;
+import com.example.demo.domain.student.StudentService;
+import com.example.demo.domain.studentprofile.StudentProfileService;
 import com.example.demo.domain.user.User;
 import com.example.demo.domain.user.UserService;
 import com.example.demo.domain.userrole.UserRole;
@@ -17,6 +20,15 @@ public class RegisterService {
 
     @Resource
     private UserRoleService userRoleService;
+
+    @Resource
+    private ContactService contactService;
+
+    @Resource
+    private StudentProfileService studentProfileService;
+
+    @Resource
+    private StudentService studentService;
 
 
     public NewUserResponse addNewUser(NewUserRequest request) {
