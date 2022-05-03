@@ -32,10 +32,7 @@ public class StudentService {
         return studentMapper.toDtos(students);
     }
 
-    public void setProfileToStudent(Integer studentId, Integer studentProfileId) {
-        Student student = findStudentByStudentId(studentId);
-        student.setStudentProfile(studentProfileService.getStudentProfileById(studentProfileId));
-    }
+
 
     public Student findStudentByStudentId(Integer studentId) {
         return studentRepository.getById(studentId);
