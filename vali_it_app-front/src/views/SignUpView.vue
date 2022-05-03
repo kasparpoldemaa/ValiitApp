@@ -18,7 +18,6 @@
                 </select>
               </div>
 
-              <div v-if="request.roleId !== 3">
                 <div class="input-group form-group">
                   <div class="input-group-prepend">
                   <span class="input-group-text"><i class="fas fa-user">
@@ -36,7 +35,6 @@
                   </div>
                   <input type="text" class="form-control" placeholder="Perekonnanimi" v-model="request.lastName">
                 </div>
-              </div>
 
               <div v-if="request.roleId === 3">
                 <div class="input-group form-group">
@@ -124,7 +122,7 @@ export default {
   methods: {
 
     getAllRoles: function () {
-      this.$http.get("/role/all")
+      this.$http.get("/role/not-admin")
           .then(response => {
             this.roles = response.data
             console.log(response.data)
@@ -139,32 +137,7 @@ export default {
     navigateToUserPage: function (roleId) {
       this.$router.push({name: 'user-page', query: {id: roleId}})
     },
-    createEmptyProfile: function () {
 
-      this.$http.post("/student-profile/create-empty")
-          .then(response => {
-            this.studentProfileId = response.data
-            console.log(response.data)
-          }).catch(error => {
-        console.log(error)
-      })
-    },
-
-
-    addNewStudent: function (userId, studentProfileId) {
-      this.$http.post("/student/new", {
-            params: {
-              userId: userId,
-              studentProfileId: studentProfileId
-            }
-          }
-      ).then(response => {
-        this.studentId = response.data
-        console.log(response.data)
-      }).catch(error => {
-        console.log(error)
-      })
-    },
     addNewUser: function () {
 
       if (this.request.password === this.passwordConfirm) {
@@ -173,8 +146,6 @@ export default {
           this.userId = response.data.userId
           this.roleId = response.data.roleId
           this.saveDataToSessionStorage()
-          this.createEmptyProfile()
-          this.addNewStudent(1, 1)
           this.navigateToUserPage(response.data.userId)
         }).catch(error => {
           alert(error.response.data.detail)

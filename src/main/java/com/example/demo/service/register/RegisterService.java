@@ -34,15 +34,12 @@ public class RegisterService {
     public NewUserResponse addNewUser(NewUserRequest request) {
 
         User user = userService.addNewUser(request);
-
         UserRole userRole = userRoleService.saveUserRole(request);
+        Integer contactId = contactService.addNewContact(user.getId(), request);
 
         if (userRole.getRole().getId() == 2) {
 
-            Integer contactId = contactService.addNewContact(user.getId(), request);
-
             Integer studentProfileId = studentProfileService.addEmptyStudentProfile(request);
-
             Integer studentId = studentService.addNewStudentAtRegister(user.getId(), studentProfileId, request);
 
             NewUserResponse newUserResponse = new NewUserResponse();
@@ -56,8 +53,6 @@ public class RegisterService {
 
         } else {
 
-            Integer contactId = contactService.addNewContact(user.getId(), request);
-
             NewUserResponse newUserResponse = new NewUserResponse();
             newUserResponse.setUserId(user.getId());
             newUserResponse.setRoleId(userRole.getRole().getId());
@@ -66,7 +61,5 @@ public class RegisterService {
             return newUserResponse;
         }
 
-        // UserService abil salvestada user objekt
-        // UserRoleService abil salvesta roll
     }
 }

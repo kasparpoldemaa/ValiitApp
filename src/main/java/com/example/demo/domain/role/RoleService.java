@@ -24,6 +24,12 @@ public class RoleService {
        return roleMapper.toDtos(roleRepository.findAll());
     }
 
+    public List<RoleDto> getAllRolesExceptAdmin() {
+        List<RoleDto> roleDtos = roleMapper.toDtos(roleRepository.findAll());
+        roleDtos.remove(0);
+        return roleDtos;
+    }
+
 
 //    public void deleteById(Integer roleId) {
 //        roleRepository.deleteById(roleId);

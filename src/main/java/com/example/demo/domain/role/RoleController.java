@@ -20,6 +20,11 @@ public class RoleController {
         return roleService.getAllRoles();
     }
 
+
+    @GetMapping("/not-admin")
+    public List<RoleDto> getAllRolesExceptAdmin () {
+        return roleService.getAllRolesExceptAdmin();
+    }
 //    @GetMapping("/name")
 //    public Integer getRoleIdByName(String name) {
 //        return roleService.getRoleIdbyName(name);
