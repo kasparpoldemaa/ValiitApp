@@ -1,5 +1,6 @@
 package com.example.demo.domain.studentprofile;
 
+import com.example.demo.service.register.NewUserRequest;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -43,6 +44,12 @@ public class StudentProfileService {
 
     public StudentProfile findStudentProfileById(Integer studentProfileId) {
         return studentProfileRepository.getById(studentProfileId);
+    }
+
+    public Integer addEmptyStudentProfile(NewUserRequest request) {
+        StudentProfile studentProfile = new StudentProfile();
+        studentProfileRepository.save(studentProfile);
+        return studentProfile.getId();
     }
 }
 

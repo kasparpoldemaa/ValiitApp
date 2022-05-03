@@ -4,6 +4,7 @@ import com.example.demo.domain.studentprofile.StudentProfile;
 import com.example.demo.domain.studentprofile.StudentProfileService;
 import com.example.demo.domain.user.User;
 import com.example.demo.domain.user.UserService;
+import com.example.demo.service.register.NewUserRequest;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -53,6 +54,19 @@ public class StudentService {
 //        Student student = studentMapper.toEntity(studentDto);
 //        studentRepository.save(student);
 //        return student.getId();
+    }
+
+    public Integer addNewStudentAtRegister(Integer userId, Integer studentProfileId, NewUserRequest request) {
+        User user = userService.findUserByUserId(userId);
+        StudentProfile studentProfileById = studentProfileService.findStudentProfileById(studentProfileId);
+
+        Student student = new Student();
+        student.setIsAvailable(true);
+        student.setUser(user);
+        student.setStudentProfile(studentProfileById);
+        studentRepository.save(student);
+
+        return student.getId();
     }
 
 

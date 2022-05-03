@@ -1,6 +1,8 @@
 package com.example.demo.domain.contact;
 
+import com.example.demo.domain.user.User;
 import com.example.demo.domain.user.UserService;
+import com.example.demo.service.register.NewUserRequest;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -35,4 +37,15 @@ public class ContactService {
     }
 
 
+    public Integer addNewContact(Integer userId, NewUserRequest request) {
+        User user = userService.findUserByUserId(userId);
+        Contact contact = new Contact();
+        contact.setAddress(request.getAddress());
+        contact.setCompanyName(request.getCompanyName());
+        contact.setFirstName(request.getFirstName());
+        contact.setLastName(request.getLastName());
+        contact.setUser(user);
+        contactRepository.save(contact);
+        return contact.getId();
+    }
 }
