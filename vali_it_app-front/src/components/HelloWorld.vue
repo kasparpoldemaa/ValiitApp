@@ -1,31 +1,38 @@
 <template>
+
   <div class="hello">
     <h1>{{ msg }}</h1>
+    <br>
     <p>
-      For a guide and recipes on how to configure / customize this project,<br>
-      check out the
-      <a href="https://cli.vuejs.org" target="_blank" rel="noopener">vue-cli documentation</a>.
+      Siin kodulehel on võimalik viia kokku IT-ettevõtted ja Vali-IT ümberõppe programmis osalevad õppurid.
+      Kui sa oled ettevõtja siis saad:
+      *Tutvuda uusima Vali-IT lennu õpilastega ja vaadata nende profiile.
+      *Saad lisada praktikavõimalusi enda ettevõttes.
+      *Saad lisada kalendrisse kohtumisi kogu lennuga klassiruumis või veebi vahendusel.
+      *Saad kuvada ainult praktikakohta otsivaid õpilasi.
+
+      Kui sa oled üpilane siis saad:
+      *Lisada enda  profiilile uusima informatsiooni.
+      *Kandideerida praktikakohtadele, mis ettevõtted on lisanud.
+      *Vaadata eelolevate sündmuste kalendrit.
+      *Märkida, kas oled praktikakoha juba leidnud või oled veel otsimas.
+
     </p>
-    <h3>Installed CLI Plugins</h3>
+    <p>
+      „Vali IT!“ on täiskasvanute ümberõppeprogramm, mille eesmärgiks on anda osalejatele tarkvaraarendaja algoskused. Programmis osalejad läbivad 6-nädalase täismahus õppe (5 päeva nädalas, kuni 8 tundi päevas). Sellele järgneb 8-nädalane (40 tööpäeva, kuni 8 tundi päevas) praktika ettevõtetes.
+      Kandideerimine on avatud pidevalt. Andke teada oma huvist ja täitke kandideerimisankeet!
+
+    </p>
+    <h3>BCS koolituse koduleht</h3>
     <ul>
-      <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-router" target="_blank" rel="noopener">router</a></li>
+      <li><a href="https://www.bcskoolitus.ee/" target="_blank" rel="noopener">Vajuta siia</a></li>
     </ul>
-    <h3>Essential Links</h3>
+    <h3>Vali-IT koduleht</h3>
     <ul>
-      <li><a href="https://vuejs.org" target="_blank" rel="noopener">Core Docs</a></li>
-      <li><a href="https://forum.vuejs.org" target="_blank" rel="noopener">Forum</a></li>
-      <li><a href="https://chat.vuejs.org" target="_blank" rel="noopener">Community Chat</a></li>
-      <li><a href="https://twitter.com/vuejs" target="_blank" rel="noopener">Twitter</a></li>
-      <li><a href="https://news.vuejs.org" target="_blank" rel="noopener">News</a></li>
+      <li><a href="http://vali-it.ee/" target="_blank" rel="noopener">Vajuta siia</a></li>
     </ul>
-    <h3>Ecosystem</h3>
-    <ul>
-      <li><a href="https://router.vuejs.org" target="_blank" rel="noopener">vue-router</a></li>
-      <li><a href="https://vuex.vuejs.org" target="_blank" rel="noopener">vuex</a></li>
-      <li><a href="https://github.com/vuejs/vue-devtools#vue-devtools" target="_blank" rel="noopener">vue-devtools</a></li>
-      <li><a href="https://vue-loader.vuejs.org" target="_blank" rel="noopener">vue-loader</a></li>
-      <li><a href="https://github.com/vuejs/awesome-vue" target="_blank" rel="noopener">awesome-vue</a></li>
-    </ul>
+
+
   </div>
 </template>
 
