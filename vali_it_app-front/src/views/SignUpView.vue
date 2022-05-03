@@ -1,7 +1,6 @@
 <template>
   <div>
 
-
     <body>
     <div class="container">
       <div class="d-flex justify-content-center h-100">
@@ -9,8 +8,56 @@
           <div class="card-header">
             <h3>Loo uus kasutaja</h3>
           </div>
+
           <div class="card-body">
             <form>
+              <div class="form-group">
+                <label for="exampleFormControlSelect1">Vali roll</label>
+                <select class="form-control" id="exampleFormControlSelect1" v-model="request.roleId">
+                  <option selected v-for="role in roles" :value="role.id">{{ role.name }}</option>
+                </select>
+              </div>
+
+              <div v-if="request.roleId !== 3">
+                <div class="input-group form-group">
+                  <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="fas fa-user">
+                  <img class="ui-menu-icons" alt="email" src="../assets/user.png">
+                  </i></span>
+                  </div>
+                  <input type="text" class="form-control" placeholder="Eesnimi" v-model="request.firstName">
+                </div>
+
+                <div class="input-group form-group">
+                  <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="fas fa-user">
+                  <img class="ui-menu-icons" alt="email" src="../assets/user.png">
+                  </i></span>
+                  </div>
+                  <input type="text" class="form-control" placeholder="Perekonnanimi" v-model="request.lastName">
+                </div>
+              </div>
+
+              <div v-if="request.roleId === 3">
+                <div class="input-group form-group">
+                  <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="fas fa-user">
+                  <img class="ui-menu-icons" alt="email" src="../assets/business.png">
+                  </i></span>
+                  </div>
+                  <input type="text" class="form-control" placeholder="Ettevõtte nimi" v-model="request.companyName">
+                </div>
+              </div>
+
+              <div class="input-group form-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="fas fa-user">
+                  <img class="ui-menu-icons" alt="email" src="../assets/location.png">
+                  </i></span>
+                </div>
+                <input type="text" class="form-control" placeholder="Aadress" v-model="request.address">
+              </div>
+
               <div class="input-group form-group">
                 <div class="input-group-prepend">
                   <span class="input-group-text"><i class="fas fa-user">
@@ -18,31 +65,24 @@
                   </i></span>
                 </div>
                 <input type="text" class="form-control" placeholder="e-mail" v-model="request.userName">
-
               </div>
+
               <div class="input-group form-group">
                 <div class="input-group-prepend">
                   <span class="input-group-text"><i class="fas fa-key">
-
                     <img class="ui-menu-icons" alt="key" src="../assets/key.png">
                   </i></span>
                 </div>
                 <input type="password" class="form-control" placeholder="parool" v-model="request.password">
               </div>
+
               <div class="input-group form-group">
                 <div class="input-group-prepend">
                   <span class="input-group-text"><i class="fas fa-key">
-
                     <img class="ui-menu-icons" alt="key" src="../assets/key.png">
                   </i></span>
                 </div>
                 <input type="password" class="form-control" placeholder="parool uuesti" v-model="passwordConfirm">
-              </div>
-              <div class="form-group">
-                <label for="exampleFormControlSelect1">Vali roll</label>
-                <select class="form-control" id="exampleFormControlSelect1" v-model="request.roleId">
-                  <option selected v-for="role in roles" :value="role.id">{{ role.name }}</option>
-                </select>
               </div>
 
               <div class="form-group">
@@ -52,7 +92,7 @@
             </form>
           </div>
 
-          {{'id:'+ studentProfileId}}
+          {{ 'id:' + studentProfileId }}
 
           <div class="card-footer">
             <!--            footeri tekst-->
@@ -92,7 +132,6 @@ export default {
         console.log(error)
       })
     },
-
     saveDataToSessionStorage: function () {
       sessionStorage.setItem('userId', this.userId)
       sessionStorage.setItem('roleId', this.request.roleId)
@@ -114,10 +153,10 @@ export default {
 
     addNewStudent: function (userId, studentProfileId) {
       this.$http.post("/student/new", {
-        params: {
-          userId: userId,
-          studentProfileId: studentProfileId
-        }
+            params: {
+              userId: userId,
+              studentProfileId: studentProfileId
+            }
           }
       ).then(response => {
         this.studentId = response.data
@@ -135,7 +174,7 @@ export default {
           this.roleId = response.data.roleId
           this.saveDataToSessionStorage()
           this.createEmptyProfile()
-          this.addNewStudent(1,1 )
+          this.addNewStudent(1, 1)
           this.navigateToUserPage(response.data.userId)
         }).catch(error => {
           alert(error.response.data.detail)
@@ -146,8 +185,6 @@ export default {
         alert('parool ei klapi')
       }
     },
-
-
 
 
   },
