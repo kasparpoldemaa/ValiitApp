@@ -31,8 +31,9 @@ public class StudentProfileService {
         studentProfileRepository.deleteById(id);
     }
 
-    public StudentProfile getStudentProfileById(Integer studentProfileId) {
-        return studentProfileRepository.getById(studentProfileId);
+    public StudentProfileDto getStudentProfileById(Integer studentProfileId) {
+        StudentProfile studentProfile = studentProfileRepository.getById(studentProfileId);
+        return studentProfileMapper.toDto(studentProfile);
     }
 
 

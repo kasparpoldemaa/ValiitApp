@@ -20,11 +20,6 @@ public class StudentController {
 
 
 
-    @PutMapping("/set-profile")
-    @Operation(summary = "Seob profiili studentiga")
-    public void setProfileToStudent(@RequestParam Integer studentId, @RequestParam Integer studentProfileId) {
-        studentService.setProfileToStudent(studentId, studentProfileId);
-    }
 
     @PostMapping("/new")
     @Operation(summary = "Loo uus student")

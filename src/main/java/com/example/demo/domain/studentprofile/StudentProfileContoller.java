@@ -20,23 +20,29 @@ public class StudentProfileContoller {
     }
 
 
-    @PutMapping("/update")
+    @PutMapping("/id")
     @Operation(summary = "Uuendab student-profile id järgi.")
     public void updateStudentProfile(@RequestParam Integer studentProfileId, @Valid @RequestBody StudentProfileDto studentProfileDto) {
         studentProfileService.updateStudentProfile(studentProfileId, studentProfileDto);
     }
 
-    @DeleteMapping("/delete")
+    @DeleteMapping("/id")
     @Operation(summary = "/Kustuta student-profile id järgi")
     public void removeStudentProfileById(@RequestParam Integer id) {
         studentProfileService.removeStudentProfileById(id);
     }
 
-    @PostMapping("/create-empty")
-    @Operation(summary = "Loob tühja profiili")
-    public Integer createEmptyProfile() {
-        return studentProfileService.createEmptyProfile();
+    @GetMapping
+    @Operation(summary = "Leiab õpilase profiili studentProfileId järgi.")
+    public StudentProfileDto getStudentProfileById(@RequestParam Integer studentProfileId) {
+        return studentProfileService.getStudentProfileById(studentProfileId);
     }
+
+//    @PostMapping("/create-empty")
+//    @Operation(summary = "Loob tühja profiili")
+//    public Integer createEmptyProfile() {
+//        return studentProfileService.createEmptyProfile();
+//    }
 
 //    @PutMapping("/profileId")
 //    @Operation(summary = "Uuendab student-profile'i")
