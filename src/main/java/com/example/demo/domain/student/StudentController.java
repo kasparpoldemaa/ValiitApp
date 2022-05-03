@@ -18,7 +18,11 @@ public class StudentController {
         return studentService.getAvailableStudents();
     }
 
-
+    @PutMapping("/id")
+    @Operation(summary = "Muudab õpilase isAvailable välja")
+    public void setIsStudentAvailableByStudentId(@RequestParam Integer studentId, @RequestParam Boolean isAvailable) {
+        studentService.setIsStudentAvailableByStudentId(studentId, isAvailable);
+    }
 
 
     @PostMapping("/new")
