@@ -51,6 +51,12 @@ public class StudentProfileService {
         studentProfileRepository.save(studentProfile);
         return studentProfile.getId();
     }
+
+//    public void updateStudentProfile(StudentProfileDto studentProfileDto) {
+//        StudentProfile byId = studentProfileRepository.getById(studentProfileDto.getId());
+//        studentProfileMapper.updateEntity(studentProfileDto, byId);
+//        studentProfileRepository.save(byId);
+//    }
 }
 
 
