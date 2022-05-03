@@ -77,9 +77,8 @@
 </template>
 
 <script>
-import LogOutView from "@/views/LogOutView";
 export default {
-  components: {LogOutView},
+
   data: function () {
     return {}
   }
