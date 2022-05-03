@@ -5,7 +5,6 @@
     <br>
 
     <form>
-
       <div class="form-group">
         <label class="label-form">Sünniaeg</label>
         <input type="date" class="form-control" placeholder="Sünniaeg" v-model="profile.dateOfBirth">
@@ -26,20 +25,22 @@
         <label class="label-form">Profiili ID</label>
       </div>
       <div>
-      <div class="form-group form-check">
-        <label class="form-check-label">
-          <input class="form-check-input" type="checkbox"> Otsin praktikakohta
-        </label>
+        <label for="exampleFormControlSelect1">Otsin praktikakohta</label>
+        <select class="form-control" id="exampleFormControlSelect1"  v-model="isAvailable">
+          <option selected :value="true">Jah</option>
+          <option selected :value="false">Ei</option>
+        </select>
       </div>
-      </div>
+
       <button class="btn btn-primary" v-on:click="updateStudentProfile">Submit</button>
     </form>
 
 
 
+    <div>{{'this is isAvailable value: ' + this.isAvailable}}</div>
     <div>{{'this is session roleID: ' + roleId}}</div>
     <div>{{'this is session userID: ' +userId}}</div>
-    <di>{{'this is session profileID: ' +studentProfileId}}</di>
+    <div>{{'this is session profileID: ' +studentProfileId}}</div>
   </div>
 </template>
 
@@ -59,9 +60,9 @@ export default {
       showCourse: false,
       roleId: sessionStorage.getItem('roleId'),
       userId: sessionStorage.getItem('userId'),
-      studentProfileId: sessionStorage.getItem('studentProfileId'),
-      profile: {
-      }
+      studentProfileId: sessionStorage.getItem('studentId'),
+      profile: {},
+      isAvailable: true,
 
 
     }
@@ -82,15 +83,29 @@ export default {
             console.log(error)
           })
         },
+        setIsAvailable: function () {
+          this.$http.put("/student/id", {
+            params: {
+              studentProfileId: this.studentProfileId,
+              isAvailable: this.isAvailable
+            }
+              }
+          ).then(response => {
+            console.log(response.data)
+          }).catch(error => {
+            console.log(error)
+          })
+        },
 
         updateStudentProfile: function () {
 
-          this.$http.put("/student-profile/update",this.profile, {
+          this.$http.put("/student-profile/id",this.profile, {
             params: {
               studentProfileId: this.studentProfileId
             }
               }
           ).then(response => {
+            this.setIsAvailable()
             console.log(response.data)
           }).catch(error => {
             console.log(error)
@@ -99,7 +114,10 @@ export default {
 
       },
   mounted(){
-this.getStudentProfileById(this.studentProfileId)
+    if (this.roleId == 2) {
+      this.getStudentProfileById(this.studentProfileId);
+    }
+
 
   }
 

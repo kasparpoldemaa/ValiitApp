@@ -81,6 +81,13 @@ public class StudentService {
         return studentResponse;
     }
 
+    public void setIsStudentAvailableByStudentId(Integer studentId, Boolean isAvailable) {
+        Student student = studentRepository.getById(studentId);
+        student.setIsAvailable(isAvailable);
+        studentRepository.save(student);
+
+    }
+
 
 //
 
