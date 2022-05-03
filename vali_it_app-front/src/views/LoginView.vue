@@ -14,7 +14,6 @@
                 <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-user">
                   <img class="ui-menu-icons" alt="email" src="../assets/email.png">
-
                 </i></span>
                 </div>
                 <input type="text" v-model="request.userName" class="form-control" placeholder="e-mail">
