@@ -57,7 +57,10 @@ export default {
     return {
       request: {},
       userId: 0,
-      roleId: 0
+      roleId: 0,
+      contactId: 0 ,
+      studentProfileId: 0 ,
+      studentId: 0
 
     }
   },
@@ -65,6 +68,9 @@ export default {
     saveDataToSessionStorage: function () {
       sessionStorage.setItem('userId', this.userId )
       sessionStorage.setItem('roleId', this.roleId )
+      sessionStorage.setItem('contactId', this.contactId )
+      sessionStorage.setItem('studentProfileId', this.studentProfileId )
+      sessionStorage.setItem('studentId', this.studentId )
     },
     navigateToUserPage: function () {
       this.$router.push({name: 'user-page'})
@@ -81,6 +87,9 @@ export default {
             this.request = response.data
             this.userId = response.data.userId
             this.roleId = response.data.roleId
+            this.contactId = response.data.contactId
+            this.studentProfileId = response.data.studentProfileId
+            this.studentId = response.data.studentId
             this.saveDataToSessionStorage()
             this.navigateToUserPage()
             console.log(response.data)

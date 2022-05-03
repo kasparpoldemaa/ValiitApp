@@ -27,11 +27,7 @@ export default {
       this.$router.push({name: 'home'})
     },
 
-
   },
-  mounted() {
-    this.getAllRoles()
-  }
 }
 
 </script>

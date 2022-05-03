@@ -114,14 +114,15 @@ export default {
       passwordConfirm: null,
       roleId: 0,
       userId: 0,
+      contactId: 0 ,
       studentProfileId: 0,
-      studentId: 0,
+      studentId: 0
     }
 
   },
   methods: {
 
-    getAllRoles: function () {
+    getAllRolesExceptAdmin: function () {
       this.$http.get("/role/not-admin")
           .then(response => {
             this.roles = response.data
@@ -132,7 +133,10 @@ export default {
     },
     saveDataToSessionStorage: function () {
       sessionStorage.setItem('userId', this.userId)
-      sessionStorage.setItem('roleId', this.request.roleId)
+      sessionStorage.setItem('roleId', this.roleId)
+      sessionStorage.setItem('contactId', this.contactId)
+      sessionStorage.setItem('studentProfileId', this.studentProfileId)
+      sessionStorage.setItem('studentId', this.studentId)
     },
     navigateToUserPage: function (roleId) {
       this.$router.push({name: 'user-page', query: {id: roleId}})
@@ -145,6 +149,9 @@ export default {
         ).then(response => {
           this.userId = response.data.userId
           this.roleId = response.data.roleId
+          this.contactId = response.data.contactId
+          this.studentProfileId = response.data.studentProfileId
+          this.studentId = response.data.studentId
           this.saveDataToSessionStorage()
           this.navigateToUserPage(response.data.userId)
         }).catch(error => {
@@ -160,7 +167,7 @@ export default {
 
   },
   mounted() {
-    this.getAllRoles()
+    this.getAllRolesExceptAdmin()
   }
 }
 
