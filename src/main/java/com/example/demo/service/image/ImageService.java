@@ -12,10 +12,15 @@ public class ImageService {
     private PictureService pictureService;
 
     public void addPicture(ImageRequest request) {
+        //TODO otsi student ID järgi kas pilt on olemas, kui jah, siis asenda uuega
         pictureService.addPicture(request);
     }
 
     public List<ImageResponse> getAllPictures() {
         return pictureService.getAllPictures();
+    }
+
+    public ImageResponse getPictureByStudentId(Integer studentId) {
+        return pictureService.getPictureByStudentId(studentId);
     }
 }

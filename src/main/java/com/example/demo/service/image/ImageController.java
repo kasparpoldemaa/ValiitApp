@@ -21,8 +21,15 @@ public class ImageController {
         }
 
         @GetMapping("/all")
+        @Operation (summary = "Tagastab kõik pildid")
         public List<ImageResponse> getAllPictures (){
                 return imageService.getAllPictures();
+        }
+
+        @GetMapping("/id")
+        @Operation(summary = "Leiab pildi studentId järgi")
+        public ImageResponse getPictureByStudentId(Integer studentId) {
+                return imageService.getPictureByStudentId(studentId);
         }
 
 

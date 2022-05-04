@@ -53,4 +53,8 @@ public class ContactService {
         Contact contact = contactRepository.findByUser_Id(id);
         return contact.getId();
     }
+
+    public ContactDto getContactById(Integer contactId) {
+        return contactMapper.toDto(contactRepository.getById(contactId));
+    }
 }
