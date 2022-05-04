@@ -1,8 +1,8 @@
 <template>
   <div>
 
-    <button type="button" class="btn btn-outline-dark" v-on:click="getStudentWorkExperienceById(studentId)">
-      Dark
+    <button type="button" class="btn btn-outline-dark" v-on:click="getStudentWorkExperienceById()">
+      Kuva töökogemused
     </button>
 <!--    <div v-if="tableDivDisplay"></div>-->
       <table class="table table-hover">
@@ -99,14 +99,14 @@ export default {
     },
 
 
-    getStudentWorkExperienceById: function (id) {
+    getStudentWorkExperienceById: function () {
       this.$http.get("/work-experience/all", {
             params: {
-              studentId: id
+              studentId: this.studentId
             }
           }
       ).then(response => {
-        this.response = response.data
+        this.workExperiences = response.data
         console.log(response.data)
       }).catch(error => {
         console.log(error)

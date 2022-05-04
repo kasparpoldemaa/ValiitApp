@@ -18,9 +18,6 @@ public class WorkExperienceService {
     @Resource
     private WorkExperienceMapper workExperienceMapper;
 
-    @Resource
-    private WorkExperienceService workExperienceService;
-
 //TODO: - studentRepository ei tohiks siin klassis olla.
     public WorkExperienceDto addNewWorkExperience(Integer studentId, WorkExperienceDto workExperienceDto) {
         WorkExperience workExperience = workExperienceMapper.toEntity(workExperienceDto);
