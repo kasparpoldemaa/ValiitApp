@@ -22,6 +22,10 @@ public class PictureService {
     private StudentService studentService;
 
     public void addPicture(ImageRequest request) {
+        if(pictureRepository.existsByStudentId(request.getStudentId())){
+            Picture picture = pictureRepository.findByStudentId(request.getStudentId());
+            pictureRepository.delete(picture);
+        }
         byte[] data = request.getBase64().getBytes(StandardCharsets.UTF_8);
         Picture picture = new Picture();
         picture.setBase64(data);

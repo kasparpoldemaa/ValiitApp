@@ -15,7 +15,7 @@ public class ImageController {
         private ImageService imageService;
 
         @PostMapping("/in")
-        @Operation(summary = "Lisa pilt")
+        @Operation(summary = "Lisab pildi ")
         public void addPicture(@RequestBody ImageRequest request) {
                 imageService.addPicture(request);
         }
