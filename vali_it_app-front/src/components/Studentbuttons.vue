@@ -1,7 +1,7 @@
 <template>
   <div class="btn-group btn-group-toggle" data-toggle="buttons">
     <label class="btn btn-info active">
-      <input type="radio" name="options" id="option1" autocomplete="off" checked v-on:click="showProfile"> Minu profiil
+      <input type="radio" name="options" id="option1" autocomplete="off" checked v-on:="showProfile"> Minu profiil
     </label>
     <label class="btn btn-info">
       <input type="radio" name="options" id="option2" autocomplete="off" v-on:click="showInternship"> Minu praktika
