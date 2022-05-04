@@ -27,6 +27,7 @@
 
           </div>
           <div>
+
             <label class="label-form">Otsin praktikakohta (ei tööta)</label>
             <select class="selection" @click="isAvailable">
               <option selected :value="true">Jah</option>
