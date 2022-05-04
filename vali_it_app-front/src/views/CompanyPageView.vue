@@ -67,6 +67,7 @@ export default {
     addInternship: function () {
 
       this.$http.post("/company/add-intership", this.offer, {
+        //TODO MUUDA BACKI NII, ET VÕTAKS SISSE REQUESTPARAMINA KA int USER-ID JA IS boolean PAYABLE
             params: {
               userId: 3,
               isPayable: this.isPayable
