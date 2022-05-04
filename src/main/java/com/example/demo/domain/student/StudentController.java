@@ -14,12 +14,13 @@ public class StudentController {
     private StudentService studentService;
 
     @GetMapping("/get-by-availability")
+    @Operation(summary = "Tagastab tudengi saadavuse alusel")
     public List<StudentDto> getAvailableStudents() {
         return studentService.getAvailableStudents();
     }
 
     @PutMapping("/id")
-    @Operation(summary = "Muudab õpilase isAvailable välja")
+    @Operation(summary = "Muudab õpilase saadavuse alusel")
     public void setIsStudentAvailableByStudentId(@RequestParam Integer studentId, @RequestParam Boolean isAvailable) {
         studentService.setIsStudentAvailableByStudentId(studentId, isAvailable);
     }

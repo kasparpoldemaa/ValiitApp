@@ -4,6 +4,7 @@ import com.example.demo.domain.student.StudentRepository;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 @Service
 public class WorkExperienceService {
@@ -17,6 +18,9 @@ public class WorkExperienceService {
     @Resource
     private WorkExperienceMapper workExperienceMapper;
 
+    @Resource
+    private WorkExperienceService workExperienceService;
+
 //TODO: - studentRepository ei tohiks siin klassis olla.
     public WorkExperienceDto addNewWorkExperience(Integer studentId, WorkExperienceDto workExperienceDto) {
         WorkExperience workExperience = workExperienceMapper.toEntity(workExperienceDto);
@@ -26,9 +30,9 @@ public class WorkExperienceService {
     }
 
 
-    public WorkExperienceDto getWorkExperienceById(Integer studentId) {
-        WorkExperience workExperience = workExperienceRepository.getById(studentId);
-        return workExperienceMapper.toDto(workExperience);
+    public List<WorkExperienceDto> getWorkExperiencesById(Integer studentId) {
+        List<WorkExperience> workExperience = workExperienceRepository.findByStudentId(studentId);
+        return workExperienceMapper.toDtos(workExperience);
 
     }
 
