@@ -4,7 +4,7 @@ import HomeView from '../views/HomeView.vue'
 import LoginView from "@/views/LoginView";
 import UserPageView from "@/views/UserPageView";
 import SignUpView from "@/views/SignUpView";
-import EventView from "@/views/EventView";
+import AdminPageView from "@/views/AdminPageView";
 
 Vue.use(VueRouter)
 
@@ -30,9 +30,9 @@ const routes = [
     component: SignUpView
   },
   {
-    path: '/event',
-    name: 'event',
-    component: EventView
+    path: '/admin',
+    name: 'admin',
+    component: AdminPageView
   },
 
 ]
