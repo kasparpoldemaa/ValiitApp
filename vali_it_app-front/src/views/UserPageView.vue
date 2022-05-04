@@ -22,24 +22,24 @@
         <label class="label-form">GitHub</label>
         <input type="text" class="form-control" placeholder="Sinu GitHub aadress" v-model="profile.githubLink">
         <label class="label-form">Olen saadaval alates</label>
-        <input type="text" class="form-control" placeholder="Millal sooviksid praktikaga alustada?" v-model="profile.availableFrom">
+        <input type="text" class="form-control" placeholder="Millal sooviksid praktikaga alustada?"
+               v-model="profile.availableFrom">
         <label class="label-form">Profiili ID</label>
       </div>
       <div>
-      <div class="form-group form-check">
-        <label class="form-check-label">
-          <input class="form-check-input" type="checkbox"> Otsin praktikakohta
-        </label>
-      </div>
+        <div class="form-group form-check">
+          <label class="form-check-label">
+            <input class="form-check-input" type="checkbox"> Otsin praktikakohta
+          </label>
+        </div>
       </div>
       <button class="btn btn-primary" v-on:click="updateStudentProfile">Submit</button>
     </form>
 
 
-
-    <div>{{'this is session roleID: ' + roleId}}</div>
-    <div>{{'this is session userID: ' +userId}}</div>
-    <di>{{'this is session profileID: ' +studentProfileId}}</di>
+    <div>{{ 'this is session roleID: ' + roleId }}</div>
+    <div>{{ 'this is session userID: ' + userId }}</div>
+    <di>{{ 'this is session profileID: ' + studentProfileId }}</di>
   </div>
 </template>
 
@@ -82,10 +82,10 @@ export default {
 
         updateStudentProfile: function () {
 
-          this.$http.put("/student-profile/update",this.profile, {
-            params: {
-              studentProfileId: this.studentProfileId
-            }
+          this.$http.put("/student-profile/update", this.profile, {
+                params: {
+                  studentProfileId: this.studentProfileId
+                }
               }
           ).then(response => {
             console.log(response.data)
@@ -95,8 +95,8 @@ export default {
         }
 
       },
-  mounted(){
-this.getStudentProfileById(this.studentProfileId)
+  mounted() {
+    this.getStudentProfileById(this.studentProfileId)
 
   }
 
@@ -120,11 +120,17 @@ form {
 }
 
 div.form-group {
-  display:grid;
+  display: grid;
   grid-template-columns: max-content max-content;
-  grid-gap:10px;
+  grid-gap: 10px;
 }
-div.form-group label       { text-align:right;
-margin-top: 10px}
-div.form-group label:after { content: ":"; }
+
+div.form-group label {
+  text-align: right;
+  margin-top: 10px
+}
+
+div.form-group label:after {
+  content: ":";
+}
 </style>

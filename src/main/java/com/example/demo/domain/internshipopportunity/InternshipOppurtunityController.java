@@ -6,9 +6,11 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.annotation.Resource;
 
 @RestController
-@RequestMapping("/internship-opportunity")
-public class InternshipOpportunityController {
+@RequestMapping("/internship-oppurtunity")
+public class InternshipOppurtunityController {
 
     @Resource
-    private InternshipOpportunityService internshipOpportunityService;
+    private InternshipOppurtunityService internshipOppurtunityService;
+
+
 }

@@ -4,15 +4,13 @@ import org.mapstruct.*;
 
 @Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = "spring")
 public interface InternshipOpportunityMapper {
-    @Mapping(source = "workOptionsId", target = "workOptions.id")
-    @Mapping(source = "workOptionsOption", target = "workOptions.option")
-    @Mapping(source = "workOptionsDescription", target = "workOptions.description")
-    InternshipOpportunity toEntity(InternshipOpportunityDto internshipOpportunityDto);
+    @Mapping(source = "userId", target = "user.id")
+    InternshipOpportunity internshipOpportunityDtoToInternshipOpportunity(InternshipOpportunityDto internshipOpportunityDto);
 
-    @InheritInverseConfiguration(name = "toEntity")
-    InternshipOpportunityDto toDto(InternshipOpportunity internshipOpportunity);
+    @Mapping(source = "user.id", target = "userId")
+    InternshipOpportunityDto internshipOpportunityToInternshipOpportunityDto(InternshipOpportunity internshipOpportunity);
 
-    @InheritConfiguration(name = "toEntity")
+    @Mapping(source = "userId", target = "user.id")
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
     void updateInternshipOpportunityFromInternshipOpportunityDto(InternshipOpportunityDto internshipOpportunityDto, @MappingTarget InternshipOpportunity internshipOpportunity);
 }
