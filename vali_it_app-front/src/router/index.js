@@ -5,6 +5,7 @@ import LoginView from "@/views/LoginView";
 import UserPageView from "@/views/UserPageView";
 import SignUpView from "@/views/SignUpView";
 import AdminPageView from "@/views/AdminPageView";
+import CompanyPageView from "@/views/CompanyPageView";
 
 Vue.use(VueRouter)
 
@@ -23,6 +24,11 @@ const routes = [
     path: '/user-page',
     name: 'user-page',
     component: UserPageView
+  },
+  {
+    path: '/company-page',
+    name: 'company-page',
+    component: CompanyPageView
   },
   {
     path: '/signup',

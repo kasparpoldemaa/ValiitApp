@@ -1,7 +1,7 @@
 <template>
   <div>
 
-    <CompanyButtons :show-internship="addOffer" :show-profile="applications"/>
+<!--    <CompanyButtons :show-internship="addOffer" :show-profile="applications"/>-->
     <br>
     <form>
 
@@ -31,8 +31,10 @@
       </div>
 
       <div>
-        Praktikakoht on tasustatud €  <input class="p-switch" type="checkbox">
+        Praktikakoht on tasustatud €  <input class="p-switch" type="checkbox" v-on:click="paid">
       </div>
+
+      <button class="btn btn-primary" v-on:click="addInternship">Lisa uus pakkumine</button>
 
     </form>
 
@@ -48,41 +50,34 @@ export default {
   components: {CompanyButtons},
   data: function () {
     return {
-      addOffer: false,
-      applications: false,
       offer: {},
-      options: {}
+      options: {},
+      isPayable: false,
+      userId: sessionStorage.getItem('userId')
 
 
     }
   },
   methods: {
 
-    getAllWorkOptions: function () {
-      this.$http.get("/work-option/all")
-          .then(response => {
-            this.options = response.data
-            console.log(response.data)
-          }).catch(error => {
+    paid: function () {
+      this.isPayable = true
+    },
+
+    addInternship: function () {
+
+      this.$http.post("/company/add-intership", this.offer, {
+            params: {
+              userId: 3,
+              isPayable: this.isPayable
+            }
+          }
+      ).then(response => {
+        console.log(response.data)
+      }).catch(error => {
         console.log(error)
       })
-    },
-  },
-
-  // addNewOffer: function () {
-  //
-  //     this.$http.post("/internship-opportunity/new", this.offer
-  //     ).then(response => {
-  //
-  //     }).catch(error => {
-  //
-  //       console.log(error.response.data)
-  //     });
-  //
-  // },
-
-  mounted() {
-    this.getAllWorkOptions()
+    }
   }
 }
 </script>
@@ -98,7 +93,7 @@ export default {
 
 form {
   display: inline-block;
-  margin-right: 130px;
+  margin-right: 100px;
 }
 
 div.form-group {
