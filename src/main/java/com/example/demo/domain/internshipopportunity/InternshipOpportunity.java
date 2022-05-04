@@ -1,7 +1,6 @@
 package com.example.demo.domain.internshipopportunity;
 
 import com.example.demo.domain.user.User;
-import com.example.demo.domain.workoption.WorkOption;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -16,10 +15,6 @@ public class InternshipOpportunity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Integer id;
-
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "work_options_id", nullable = false)
-    private WorkOption workOptions;
 
     @Column(name = "location")
     private String location;
@@ -42,5 +37,11 @@ public class InternshipOpportunity {
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
+
+    @Column(name = "technology", nullable = false, length = 500)
+    private String technology;
+
+    @Column(name = "work_type", nullable = false, length = 500)
+    private String workType;
 
 }
