@@ -5,7 +5,8 @@ import LoginView from "@/views/LoginView";
 import UserPageView from "@/views/UserPageView";
 import SignUpView from "@/views/SignUpView";
 import AdminPageView from "@/views/AdminPageView";
-import CompanyPageView from "@/views/CompanyPageView";
+import WorkExperienceView from "@/views/WorkExperienceView";
+import AddWorkExperience from "@/views/AddWorkExperience";
 
 Vue.use(VueRouter)
 
@@ -26,11 +27,6 @@ const routes = [
     component: UserPageView
   },
   {
-    path: '/company-page',
-    name: 'company-page',
-    component: CompanyPageView
-  },
-  {
     path: '/signup',
     name: 'sign-up',
     component: SignUpView
@@ -39,6 +35,17 @@ const routes = [
     path: '/admin',
     name: 'admin',
     component: AdminPageView
+  },
+  {
+    path: '/work-experience',
+    name: 'work-experience',
+    component: WorkExperienceView
+  },
+
+  {
+    path: '/work-experience/add',
+    name: 'work-experience-add',
+    component: AddWorkExperience
   },
 
 ]

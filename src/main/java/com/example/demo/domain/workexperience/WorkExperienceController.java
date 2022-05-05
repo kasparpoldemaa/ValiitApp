@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.validation.Valid;
+import java.util.List;
 
 @RestController
 @RequestMapping("/work-experience")
@@ -22,8 +23,8 @@ public class WorkExperienceController {
 
     @GetMapping("/all")
     @Operation(summary = "Tagastab õpilase id järgi töökogemused")
-    public WorkExperienceDto getWorkExperienceById(@RequestParam Integer studentId){
-        return workExperienceService.getWorkExperienceById(studentId);
+    public List<WorkExperienceDto> getWorkExperiencesById(@RequestParam Integer studentId){
+        return workExperienceService.getWorkExperiencesById(studentId);
     }
 
     @PutMapping("/update")
