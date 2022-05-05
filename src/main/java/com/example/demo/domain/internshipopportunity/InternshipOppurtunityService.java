@@ -16,16 +16,16 @@ public class InternshipOppurtunityService {
     @Resource
     private InternshipOpportunityRepository internshipOpportunityRepository;
 
-    public CompanyResponse addNewInternship(InternshipOpportunityDto dto) {
+    public CompanyResponse addNewInternship(Boolean isPayable, Integer userId, InternshipOpportunityDto dto) {
 
-        User user = userService.findUserByUserId(dto.getUserId());
+        User user = userService.findUserByUserId(userId);
 
         InternshipOpportunity internshipOpportunity = new InternshipOpportunity();
         internshipOpportunity.setUser(user);
         internshipOpportunity.setComment(dto.getComment());
         internshipOpportunity.setDuration(dto.getDuration());
         internshipOpportunity.setLocation(dto.getLocation());
-        internshipOpportunity.setIsPayable(dto.getIsPayable());
+        internshipOpportunity.setIsPayable(isPayable);
         internshipOpportunity.setStartTime(dto.getStartTime());
         internshipOpportunity.setNumberOfPositions(dto.getNumberOfPositions());
         internshipOpportunity.setTechnology(dto.getTechnology());

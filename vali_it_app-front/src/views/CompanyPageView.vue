@@ -1,7 +1,7 @@
 <template>
   <div>
 
-<!--    <CompanyButtons :show-internship="addOffer" :show-profile="applications"/>-->
+<!--        <CompanyButtons :show-internship="addOffer" :show-profile="applications"/>-->
     <br>
     <form>
 
@@ -31,7 +31,7 @@
       </div>
 
       <div>
-        Praktikakoht on tasustatud €  <input class="p-switch" type="checkbox" v-on:click="paid">
+        Praktikakoht on tasustatud € <input class="p-switch" type="checkbox" v-on:click="paid">
       </div>
 
       <button class="btn btn-primary" v-on:click="addInternship">Lisa uus pakkumine</button>
@@ -44,6 +44,7 @@
 
 <script>
 import CompanyButtons from "@/components/CompanyButtons";
+import axios from "axios";
 
 export default {
   name: "CompanyPageView",
@@ -51,7 +52,8 @@ export default {
   data: function () {
     return {
       offer: {},
-      options: {},
+      addOffer: false,
+      applications: false,
       isPayable: false,
       userId: sessionStorage.getItem('userId')
 
@@ -66,10 +68,9 @@ export default {
 
     addInternship: function () {
 
-      this.$http.post("/company/add-intership", this.offer, {
-        //TODO MUUDA BACKI NII, ET VÕTAKS SISSE REQUESTPARAMINA KA int USER-ID JA IS boolean PAYABLE
+      this.$http.post("/company/new-internship", this.offer, {
             params: {
-              userId: 3,
+              userId: this.userId,
               isPayable: this.isPayable
             }
           }

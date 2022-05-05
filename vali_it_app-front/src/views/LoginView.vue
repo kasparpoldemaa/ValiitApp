@@ -73,7 +73,13 @@ export default {
       sessionStorage.setItem('studentId', this.studentId )
     },
     navigateToUserPage: function () {
-      this.$router.push({name: 'user-page'})
+      if (this.roleId === 1){
+        this.$router.push({name: 'admin'})
+      }else if (this.roleId === 2){
+        this.$router.push({name: 'user-page'})
+      }else {
+        this.$router.push({name: 'company-page'})
+      }
     },
 
     logIn: function (userName, password) {

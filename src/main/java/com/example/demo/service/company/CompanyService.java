@@ -13,8 +13,8 @@ public class CompanyService {
     @Resource
     private InternshipOppurtunityService internshipOppurtunityService;
 
-    public CompanyResponse addNewInternship(InternshipOpportunityDto dto) {
-        CompanyResponse companyResponse = internshipOppurtunityService.addNewInternship(dto);
+    public CompanyResponse addNewInternship(Boolean isPayable, Integer userId,InternshipOpportunityDto dto) {
+        CompanyResponse companyResponse = internshipOppurtunityService.addNewInternship(isPayable, userId,dto);
         return companyResponse;
     }
 }
