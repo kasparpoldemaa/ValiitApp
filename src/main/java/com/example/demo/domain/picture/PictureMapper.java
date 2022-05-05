@@ -10,7 +10,7 @@ import java.util.List;
 @Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = "spring")
 public interface PictureMapper {
 
-    @Mapping(target = "studentId", source = "student.id")
+
     @Mapping(target = "base64", source = "base64", qualifiedByName = "byteToString")
     ImageResponse toResponse(Picture picture);
 

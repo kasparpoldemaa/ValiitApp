@@ -11,16 +11,24 @@ public class ImageService {
     @Resource
     private PictureService pictureService;
 
-    public void addPicture(ImageRequest request) {
+    public Integer addPicture(Integer studentId, ImageRequest request) {
         //TODO otsi student ID järgi kas pilt on olemas, kui jah, siis asenda uuega
-        pictureService.addPicture(request);
+       return pictureService.addPicture(studentId, request);
     }
 
     public List<ImageResponse> getAllPictures() {
         return pictureService.getAllPictures();
     }
 
-    public ImageResponse getPictureByStudentId(Integer studentId) {
-        return pictureService.getPictureByStudentId(studentId);
+    public ImageResponse getPictureById(Integer pictureId) {
+        return pictureService.getPictureById(pictureId);
+    }
+
+    public ImageResponse findPictureByStudentId(Integer studentId) {
+        return pictureService.findPictureByStudentId(studentId);
+    }
+
+    public void deleteStudentPicture(Integer studentId) {
+        pictureService.deleteStudentPicture(studentId);
     }
 }

@@ -1,6 +1,5 @@
 package com.example.demo.domain.picture;
 
-import com.example.demo.domain.student.Student;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -15,10 +14,6 @@ public class Picture {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Integer id;
-
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "student_id", nullable = false)
-    private Student student;
 
     @Column(name = "base64", nullable = false)
     private byte[] base64;

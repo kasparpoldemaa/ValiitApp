@@ -1,7 +1,8 @@
 package com.example.demo.domain.student;
 
-import com.example.demo.domain.user.User;
+import com.example.demo.domain.picture.Picture;
 import com.example.demo.domain.studentprofile.StudentProfile;
+import com.example.demo.domain.user.User;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -27,5 +28,9 @@ public class Student {
 
     @Column(name = "is_available", nullable = false)
     private Boolean isAvailable = false;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "picture_id")
+    private Picture picture;
 
 }

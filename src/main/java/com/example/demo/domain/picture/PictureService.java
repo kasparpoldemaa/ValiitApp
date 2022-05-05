@@ -1,5 +1,6 @@
 package com.example.demo.domain.picture;
 
+import com.example.demo.domain.student.Student;
 import com.example.demo.domain.student.StudentService;
 import com.example.demo.service.image.ImageRequest;
 import com.example.demo.service.image.ImageResponse;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class PictureService {
@@ -21,16 +23,18 @@ public class PictureService {
     @Resource
     private StudentService studentService;
 
-    public void addPicture(ImageRequest request) {
-        if(pictureRepository.existsByStudentId(request.getStudentId())){
-            Picture picture = pictureRepository.findByStudentId(request.getStudentId());
-            pictureRepository.delete(picture);
-        }
+    public Integer addPicture(Integer studentId, ImageRequest request) {
+        Student student = studentService.findStudentByStudentId(studentId);
+//        Integer id = student.getPicture().getId();
+//        if (id != null) {
+//            pictureRepository.deleteById(id);
+//        }
         byte[] data = request.getBase64().getBytes(StandardCharsets.UTF_8);
         Picture picture = new Picture();
         picture.setBase64(data);
-        picture.setStudent(studentService.findStudentByStudentId(request.getStudentId()));
+        student.setPicture(picture);
         pictureRepository.save(picture);
+        return picture.getId();
     }
 
 
@@ -39,7 +43,21 @@ public class PictureService {
         return pictureMapper.toResponses(pictures);
     }
 
-    public ImageResponse getPictureByStudentId(Integer studentId) {
-        return pictureMapper.toResponse(pictureRepository.findByStudentId(studentId));
+    public ImageResponse getPictureById(Integer pictureId) {
+        return pictureMapper.toResponse(pictureRepository.getById(pictureId));
+    }
+
+    public ImageResponse findPictureByStudentId(Integer studentId) {
+        Student student = studentService.findStudentByStudentId(studentId);
+        return pictureMapper.toResponse(student.getPicture());
+    }
+
+    public void deleteStudentPicture(Integer studentId) {
+        Student student = studentService.findStudentByStudentId(studentId);
+        Integer pictureId = student.getPicture().getId();
+        student.setPicture(null);
+        pictureRepository.deleteById(pictureId);
+
+
     }
 }

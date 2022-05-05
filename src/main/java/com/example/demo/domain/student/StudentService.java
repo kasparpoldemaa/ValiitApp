@@ -4,6 +4,7 @@ import com.example.demo.domain.studentprofile.StudentProfile;
 import com.example.demo.domain.studentprofile.StudentProfileService;
 import com.example.demo.domain.user.User;
 import com.example.demo.domain.user.UserService;
+import com.example.demo.service.image.ImageResponse;
 import com.example.demo.service.register.NewUserRequest;
 import org.springframework.stereotype.Service;
 
@@ -89,6 +90,5 @@ public class StudentService {
     }
 
 
-//
 
 }

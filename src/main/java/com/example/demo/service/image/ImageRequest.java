@@ -6,6 +6,6 @@ import java.io.Serializable;
 
 @Data
 public class ImageRequest implements Serializable {
-    private Integer studentId;
+//    private Integer studentId;
     private String base64;
 }

@@ -8,11 +8,11 @@ import java.util.List;
 public interface StudentMapper {
     @Mapping(source = "userId", target = "user.id")
     @Mapping(source = "studentProfileId", target = "studentProfile.id")
+    @Mapping(source = "pictureId", target = "picture.id")
     Student toEntity(StudentDto studentDto);
 
     @InheritInverseConfiguration(name = "toEntity")
     StudentDto toDto(Student student);
-
     List<StudentDto> toDtos(List<Student> students);
 
     @InheritConfiguration(name = "toEntity")
