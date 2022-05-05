@@ -15,9 +15,9 @@ public class CompanyController {
     private CompanyService companyService;
 
 
-    @PostMapping("/add-intership")
+    @PostMapping("/new-internship")
     @Operation(summary = "Lisab uue praktika pakkumise")
-    public CompanyResponse addNewInternship( @Valid @RequestBody InternshipOpportunityDto dto) {
-        return companyService.addNewInternship(dto);
+    public CompanyResponse addNewInternship(@RequestParam Boolean isPayable, @RequestParam Integer userId, @Valid @RequestBody InternshipOpportunityDto dto) {
+        return companyService.addNewInternship(isPayable, userId, dto);
     }
 }

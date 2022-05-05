@@ -14,10 +14,10 @@ public class InternshipOpportunityDto implements Serializable {
     private String location;
     private String startTime;
     private String duration;
-    private Boolean isPayable;
+//    private Boolean isPayable;
     private String numberOfPositions;
     private String comment;
-    private Integer userId;
+//    private Integer userId;
     private String technology;
     private String workType;
 }

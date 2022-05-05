@@ -138,8 +138,14 @@ export default {
       sessionStorage.setItem('studentProfileId', this.studentProfileId)
       sessionStorage.setItem('studentId', this.studentId)
     },
-    navigateToUserPage: function (roleId) {
-      this.$router.push({name: 'user-page', query: {id: roleId}})
+    navigateToUserPage: function () {
+      if (this.roleId === 1){
+        this.$router.push({name: 'admin'})
+      }else if (this.roleId === 2){
+        this.$router.push({name: 'user-page'})
+      }else {
+        this.$router.push({name: 'company-page'})
+      }
     },
 
     addNewUser: function () {
