@@ -16,8 +16,8 @@ public class ImageController {
 
         @PostMapping("/in")
         @Operation(summary = "Lisab pildi ")
-        public void addPicture(@RequestBody ImageRequest request) {
-                imageService.addPicture(request);
+        public Integer addPicture(@RequestParam Integer studentId, @RequestBody ImageRequest request) {
+               return imageService.addPicture(studentId, request);
         }
 
         @GetMapping("/all")
@@ -27,10 +27,25 @@ public class ImageController {
         }
 
         @GetMapping("/id")
-        @Operation(summary = "Leiab pildi studentId järgi")
-        public ImageResponse getPictureByStudentId(Integer studentId) {
-                return imageService.getPictureByStudentId(studentId);
+        @Operation(summary = "Leiab pildi id")
+        public ImageResponse getPictureById(Integer pictureId) {
+                return imageService.getPictureById(pictureId);
         }
+
+        @GetMapping("/student")
+        @Operation(summary = "Leiab pildi studentId põhjal")
+        public ImageResponse getStudentPicture(Integer studentId) {
+                return imageService.findPictureByStudentId(studentId);
+        }
+
+
+        @DeleteMapping("/student")
+        @Operation (summary = "Eemaldab pildi studentId põhjal")
+        public void deleteStudentPicture(Integer studentId) {
+                imageService.deleteStudentPicture(studentId);
+        }
+
+
 
 
 

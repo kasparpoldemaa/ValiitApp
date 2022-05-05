@@ -1,17 +1,12 @@
 package com.example.demo.service.login;
 
 import com.example.demo.domain.contact.ContactService;
-import com.example.demo.domain.role.Role;
-import com.example.demo.domain.role.RoleService;
-import com.example.demo.domain.student.StudentDto;
 import com.example.demo.domain.student.StudentResponse;
 import com.example.demo.domain.student.StudentService;
-import com.example.demo.domain.studentprofile.StudentProfileService;
 import com.example.demo.domain.user.User;
 import com.example.demo.domain.user.UserService;
 import com.example.demo.domain.userrole.UserRole;
 import com.example.demo.domain.userrole.UserRoleService;
-import com.example.demo.service.register.NewUserResponse;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;

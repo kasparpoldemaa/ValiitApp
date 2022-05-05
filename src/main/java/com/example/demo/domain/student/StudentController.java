@@ -1,5 +1,6 @@
 package com.example.demo.domain.student;
 
+import com.example.demo.service.image.ImageResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.web.bind.annotation.*;
 
@@ -31,5 +32,7 @@ public class StudentController {
     public Integer addNewStudent(Integer userId, Integer studentProfileId) {
         return studentService.addNewStudent(userId, studentProfileId);
     }
+
+
 
 }
