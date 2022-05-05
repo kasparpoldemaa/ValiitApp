@@ -15,36 +15,37 @@
     <div>
 
       <div class="companyandstudent">
-        <div class="card" id="student" >
+        <div class="card" id="student">
           <img src="../assets/IT-companyold.jpg" class="card-img-top" alt="Student picture">
           <div class="card-body">
             <h5 class="card-title">Õpilane saab:</h5>
             <p class="card-text">
             <h5>
-            <li>lisada enda profiilile uusima informatsiooni.</li>
-            <li>kandideerida praktikakohtadele, mis ettevõtted on lisanud.</li>
-            <li>vaadata eelolevate sündmuste kalendrit.</li>
-            <li>märkida, kas oled praktikakoha juba leidnud või oled veel otsimas ja avatud pakkumistele.</li> </h5>
+              <li>lisada enda profiilile uusima informatsiooni.</li>
+              <li>kandideerida praktikakohtadele, mis ettevõtted on lisanud.</li>
+              <li>vaadata eelolevate sündmuste kalendrit.</li>
+              <li>märkida, kas oled praktikakoha juba leidnud või oled veel otsimas ja avatud pakkumistele.</li>
+            </h5>
           </div>
         </div>
 
         <div>
-          <div class="card" id="company" >
+          <div class="card" id="company">
             <img src="../assets/IT-companyold.jpg" class="card-img-top" alt="Company picture">
             <div class="card-body">
               <h5 class="card-title">Ettevõte saab:</h5>
               <p class="card-text">
               <h5>
-              <li>tutvuda viimase Vali-IT lennu õpilastega ja vaadata nende profiile.</li>
-              <li>lisada praktikavõimalusi enda ettevõttes.</li>
-              <li>lisada kalendrisse kohtumisi kogu lennuga klassiruumis või veebi vahendusel.</li>
-              <li>kuvada ainult praktikakohta otsivaid õpilasi.</li> </h5>
+                <li>tutvuda viimase Vali-IT lennu õpilastega ja vaadata nende profiile.</li>
+                <li>lisada praktikavõimalusi enda ettevõttes.</li>
+                <li>lisada kalendrisse kohtumisi kogu lennuga klassiruumis või veebi vahendusel.</li>
+                <li>kuvada ainult praktikakohta otsivaid õpilasi.</li>
+              </h5>
             </div>
           </div>
         </div>
 
       </div>
-
 
 
       <div class="text">
@@ -65,12 +66,15 @@
       <h3>Vali-IT koduleht</h3>
       <p><a href="http://vali-it.ee/" target="_blank" rel="noopener">Vajuta siia</a></p>
 
+    </div>
 
+    <div class="fa-3x">
+      <h5>Loading New Students</h5>
+      <i class="fa-solid fa-circle-notch fa-spin"></i>
     </div>
-    <h5>Loading New Students</h5>
-    <div class="spinner-border text-primary" role="status">
-      <span class="visually-hidden">Loading...</span>
-    </div>
+    <!--    <div class="spinner-border text-primary" role="status">-->
+    <!--      <span class="visually-hidden">Loading...</span>-->
+    <!--    </div>-->
 
   </div>
 
@@ -87,7 +91,7 @@ export default {
 
 <style>
 
-.logo{
+.logo {
   margin-top: 1vh;
   margin-bottom: 1vh;
 }
@@ -102,32 +106,38 @@ img {
   margin-bottom: 10vh;
   /*border: 2px solid red;*/
 }
-.companyandstudent{
-  width:70%;
+
+.companyandstudent {
+  width: 70%;
   height: auto;
   margin: auto auto 10vh;
 }
-#student{
+
+#student {
   float: left;
   width: 47%;
   margin-right: 6%;
 
 }
-#company{
+
+#company {
   width: 47%;
   /*margin-bottom: 10vh;*/
 }
 
-.text{
-  margin-top: 5vh;
-  margin-bottom: 5vh;
-}
-.spinner-border text-primary{
+.text {
   margin-top: 5vh;
   margin-bottom: 5vh;
 }
 
+.spinner-border text-primary {
+  margin-top: 5vh;
+  margin-bottom: 5vh;
+}
 
+.fa-3x {
+  margin-bottom: 20vh;
+}
 
 
 </style>

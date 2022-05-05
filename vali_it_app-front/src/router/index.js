@@ -6,6 +6,7 @@ import UserPageView from "@/views/UserPageView";
 import SignUpView from "@/views/SignUpView";
 import AdminPageView from "@/views/AdminPageView";
 import WorkExperienceView from "@/views/WorkExperienceView";
+import AddWorkExperience from "@/views/AddWorkExperience";
 
 Vue.use(VueRouter)
 
@@ -39,6 +40,12 @@ const routes = [
     path: '/work-experience',
     name: 'work-experience',
     component: WorkExperienceView
+  },
+
+  {
+    path: '/work-experience/add',
+    name: 'work-experience-add',
+    component: AddWorkExperience
   },
 
 ]

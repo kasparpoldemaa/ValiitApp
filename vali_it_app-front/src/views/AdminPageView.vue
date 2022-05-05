@@ -3,7 +3,7 @@
     <div>
 
       <button v-on:click="displayTableEvent()" type="button" class="btn btn-outline-danger">Loo üritus</button>
-      <button v-on:click="displayAllStudent()" type="button" class="btn btn-outline-danger">Õpilased</button>
+<!--      <button v-on:click="displayAllStudent()" type="button" class="btn btn-outline-danger">Õpilased</button>-->
 
 <!--    <div class="btn-group btn-group-toggle" data-toggle="buttons">-->
 <!--&lt;!&ndash;      <label class="btn btn-info active">&ndash;&gt;-->

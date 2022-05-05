@@ -4,11 +4,11 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface WorkExperienceRepository extends JpaRepository<WorkExperience, Integer> {
     @Query("select w from WorkExperience w where w.student.id = ?1")
     List<WorkExperience> findByStudentId(Integer id);
-
 
 
 
