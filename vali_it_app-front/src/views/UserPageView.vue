@@ -43,7 +43,7 @@
 
 
       <div class="card" id="profile">
-        <div class="card-body" id="cardBody">
+        <div class="card-body">
           <StudentProfile :profile="profile"/>
           <label class="label-form m-1">Otsin praktikakohta</label>
           <input type="checkbox" v-model="isAvailable">
@@ -460,7 +460,7 @@ img {
 
 }
 #profile {
-  width: 25%;
+  width: 420px;
   /*border: 2px solid blue;*/
   margin: auto 60vh auto;
 
