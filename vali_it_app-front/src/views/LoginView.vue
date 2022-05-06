@@ -9,7 +9,7 @@
             <h3>Logi sisse</h3>
           </div>
           <div class="card-body">
-            <form>
+
               <div class="input-group form-group">
                 <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-user">
@@ -35,7 +35,7 @@
                 <input type="submit" value="Logi sisse" class="btn float-right login_btn"
                        v-on:click="logIn(request.userName,request.password)">
               </div>
-            </form>
+
           </div>
           <div class="card-footer">
             <div class="create-user">

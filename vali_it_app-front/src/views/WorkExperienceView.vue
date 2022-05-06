@@ -76,10 +76,10 @@
             <input type="text" class="form-control" placeholder="Töö kirjeldus" v-model="workExperience.jobDescription">
           </div>
         </form>
-
+        <button class="btn btn-primary" v-on:click="updateWorkExperienceById()">Uuenda töökogemus</button>
       </div>
       <div class="button2">
-        <button class="btn btn-primary" v-on:click="updateWorkExperienceById()">Uuenda töökogemus</button>
+
       </div>
 
     </div>

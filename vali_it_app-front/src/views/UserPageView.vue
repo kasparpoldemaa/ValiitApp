@@ -8,79 +8,142 @@
     </div>
 
     <div v-if="profileView">
-      <div class="pictureAndForm">
-        <div class="form">
-          <form>
-            <div class="form-group">
-              <label class="label-form">Sünniaeg</label>
-              <input type="date" class="form-control" placeholder="Sünniaeg" v-model="profile.dateOfBirth">
-              <label class="label-form">Linn, kus soovid töötada</label>
-              <input type="text" class="form-control" placeholder="Linn" v-model="profile.location">
-              <label class="label-form">Sinu oskused</label>
-              <input type="text" class="form-control" placeholder="Kirjelda oma oskusi" v-model="profile.competence">
-              <label class="label-form">Tugevused</label>
-              <input type="text" class="form-control" placeholder="Kirjelda oma tugevusi" v-model="profile.strength">
-              <label class="label-form">Minust</label>
-              <input type="text" class="form-control" placeholder="Räägi natuke endast" v-model="profile.aboutMe">
-              <label class="label-form">LinkedIn</label>
-              <input type="text" class="form-control" placeholder="Sinu LinkedIn aadress" v-model="profile.linkedin">
-              <label class="label-form">GitHub</label>
-              <input type="text" class="form-control" placeholder="Sinu GitHub aadress" v-model="profile.githubLink">
-              <label class="label-form">Olen saadaval alates</label>
-              <input type="text" class="form-control" placeholder="Millal sooviksid praktikaga alustada?"
-                     v-model="profile.availableFrom">
-            </div>
-            <div>
-              <label class="label-form m-1">Otsin praktikakohta</label>
-              <input type="checkbox" v-model="isAvailable">
-            </div>
-            <button class="btn btn-primary" v-on:click="updateStudentProfile">Submit</button>
-          </form>
-        </div>
 
-        <div class="profile">
-          <div class="card" id="profile">
-            <div v-if="picture.base64 === null">
-              <img src="../assets/default-profile.png" class="card-img-top" alt="">
-            </div>
-            <div v-else>
-              <img :src="picture.base64" class="card-img-top" alt="">
-            </div>
-            <div class="card-body">
+    </div>
+    <div class="workExperience" v-if="profileView">
 
-              <div class="upload-button">
-                <input type="file" @change="handleImage" accept="image/x-png,image/jpeg">
-                <button v-on:click="addPicture" type="button" class="btn btn-outline-link btn-sm m-3">Lisa pilt</button>
-                <button v-on:click="deletePicture" type="button" class="btn btn-outline-link btn-sm">Eemalda pilt</button>
-              </div>
+    </div>
 
 
-              <h5 class="card-title">{{ this.contact.firstName + ' ' + this.contact.lastName }}</h5>
-              <small>About me</small>
-              <p class="card-text">
+    <!--    </div>-->
 
-                <input type="text" class="form-control" placeholder="Räägi natuke endast" v-model="profile.aboutMe">
-              </p>
-            </div>
+
+    <div class="pictureAndForm">
+      <div class="card" id="picture">
+        <!--            <div v-if="picture.base64 === null">-->
+        <!--              <img src="../assets/default-profile.png" class="card-img-top" alt="">-->
+        <!--            </div>-->
+        <!--            <div v-else>-->
+        <img :src="picture.base64" class="card-img-top" alt="">
+        <!--            </div>-->
+        <div class="card-body">
+          <div class="upload-button">
+            <input type="file" @change="handleImage" accept="image/x-png,image/jpeg">
+            <button v-on:click="addPicture" type="button" class="btn btn-outline-link btn-sm m-3">Lisa pilt</button>
+            <button v-on:click="deletePicture" type="button" class="btn btn-outline-link btn-sm">Eemalda pilt
+            </button>
           </div>
+          <h5 class="card-title">{{ this.contact.firstName + ' ' + this.contact.lastName }}</h5>
+          <small>About me</small>
+          <p class="card-text">
+            <input type="text" class="form-control" placeholder="Räägi natuke endast" v-model="profile.aboutMe">
+          </p>
         </div>
       </div>
+
+
+      <div class="card" id="profile">
+        <div class="card-body" id="cardBody">
+          <StudentProfile :profile="profile"/>
+          <label class="label-form m-1">Otsin praktikakohta</label>
+          <input type="checkbox" v-model="isAvailable">
+
+        </div>
+
+      </div>
     </div>
+
+    <button id="submit" class="btn btn-primary btn-lg" v-on:click="updateStudentProfile">Uuenda profiili</button>
+
+
+    <div class="workExperience" v-if="showExperience">
+      <h3 id="title">Minu töökogemused</h3>
+      <table class="table table-hover">
+        <thead id="expTable">
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Alguskuupäev</th>
+          <th scope="col">Lõppkuupäev</th>
+          <th scope="col">Ettevõtte nimi</th>
+          <th scope="col">Ametinimetus</th>
+          <th scope="col">Töö kirjeldus</th>
+          <th scope="col"></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr v-for="(experience, index) in workExperiences">
+          <td>{{ index + 1 }}</td>
+          <td>{{ experience.startDate }}</td>
+          <td>{{ experience.endDate }}</td>
+          <td>{{ experience.companyName }}</td>
+          <td>{{ experience.position }}</td>
+          <td>{{ experience.jobDescription }}</td>
+          <td>
+            <button type="submit" class="btn btn-primary btn-xs m-3"
+                    @click="hideExperienceTable(experience.id)">Muuda
+            </button>
+            <button type="submit" class="btn btn-primary btn-xs"
+                    @click="deleteWorkExperienceById(experience.id)">
+              Kustuta
+            </button>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+      <button id="addNew" type="submit" class="btn btn-success btn-xs" @click="displayNewExperience">
+        Loo uus töökogemus
+      </button>
+    </div>
+    <div class="table">
+      <form>
+        <div class="workExperience" v-if="!showExperience">
+          <h3 id="title-2">Minu töökogemused</h3>
+          <div class="form-group">
+            <label class="label-form">Alguskuupäev</label>
+            <input type="date" class="form-control" placeholder="Kuupäev" v-model="workExperience.startDate">
+
+            <label class="label-form">Lõppkuupäev</label>
+            <input type="date" class="form-control" placeholder="Kuupäev" v-model="workExperience.endDate">
+
+            <label class="label-form">Ettevõtte nimi</label>
+            <input type="text" class="form-control" placeholder="Ettevõtte nimi" v-model="workExperience.companyName">
+
+            <label class="label-form">Ametinimetus</label>
+            <input type="text" class="form-control" placeholder="Ametinimetus" v-model="workExperience.position">
+
+            <label class="label-form">Töö kirjeldus</label>
+            <input type="text" class="form-control" placeholder="Töö kirjeldus" v-model="workExperience.jobDescription">
+          </div>
+          <div v-if="!addNew">
+          <button class="btn btn-success" v-on:click="addNewWork()">Loo uus töökogemus</button>
+          </div>
+          <div v-if="addNew">
+          <button class="btn btn-primary" v-on:click="updateWorkExperienceById()">Uuenda andmed</button>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="newExperience" v-if="displayExperience">
+
+
+
+
+    </div>
+
+
+
 
   </div>
 </template>
 
 <script>
-import Studentbuttons from "@/components/Studentbuttons";
+import StudentProfile from "@/components/StudentProfile";
 
 export default {
   name: "UserPageView",
-  components: {Studentbuttons},
+  components: {StudentProfile},
   data: function () {
     return {
-      adminPage: 1,
-      studentPage: 2,
-      companyPage: 3,
       profileView: false,
       internShipView: false,
       courseView: false,
@@ -94,13 +157,34 @@ export default {
       contact: {},
       picture: {},
       pictureExport: {},
-      displayPic: false
+      displayPic: false,
+      workExperience: {},
+      workExperiences: {},
+      workExperienceId: null,
+      response: {},
+      displayTable: false,
+      showExperience: true,
+      displayExperience: false,
+      addNew: false,
     }
   },
   methods:
       {
+        displayNewExperience: function () {
+          this.showExperience = false
+          this.displayExperience = true
+
+        },
 
 
+        hideExperienceTable: function (id) {
+          this.workExperienceId = id
+          this.showExperience = false
+          this.getWorkExperienceById()
+        },
+        hideTable: function () {
+          this.displayTable = false
+        },
         handleImage(event) {
           // this.displayInputPicture = true
           // this.displayUploadPictureDetailsOptions = true
@@ -147,9 +231,9 @@ export default {
         },
         deletePicture: function () {
           this.$http.delete("/picture/student", {
-            params: {
-              studentId: this.studentId
-            }
+                params: {
+                  studentId: this.studentId
+                }
               }
           ).then(response => {
             this.displayPic = false
@@ -229,11 +313,81 @@ export default {
           this.internShipView = false;
           this.courseView = true;
         },
+        getStudentWorkExperienceById: function () {
+          this.$http.get("/work-experience/all", {
+                params: {
+                  studentId: this.studentId
+                }
+              }
+          ).then(response => {
+            this.workExperiences = response.data
+            console.log(response.data)
+          }).catch(error => {
+            console.log(error)
+          })
+        },
+
+        updateWorkExperienceById: function () {
+          this.$http.put("/work-experience/update", this.workExperience, {
+                params: {
+                  workExperienceId: this.workExperienceId
+                }
+              }
+          ).then(response => {
+            this.showExperience = true
+            console.log(response.data)
+          }).catch(error => {
+            console.log(error)
+          })
+        },
+
+        deleteWorkExperienceById: async function (experienceId) {
+          await this.$http.delete("/work-experience/delete", {
+                params: {
+                  workExperienceId: experienceId
+                }
+              }
+          ).then(response => {
+            this.getStudentWorkExperienceById()
+            console.log(response.data)
+          }).catch(error => {
+            console.log(error)
+          })
+        },
+        getWorkExperienceById: function () {
+          this.$http.get("/work-experience/id", {
+            params: {
+              workExperienceId: this.workExperienceId
+            }
+          })
+              .then(response => {
+                this.workExperience = response.data
+                console.log(response.data)
+              }).catch(error => {
+            console.log(error)
+          })
+        },
+        addNewWork: function () {
+          this.$http.post("/work-experience/add", this.workExperience, {
+                params: {
+                  studentId: this.studentId
+                }
+              }
+          ).then(response => {
+            this.showExperience = true
+            this.displayExperience = false
+            console.log(response.data)
+          }).catch(error => {
+            console.log(error)
+          })
+        },
+
       },
   mounted() {
     this.getStudentProfileById()
     this.getContactInfo()
     this.getStudentPicture()
+    this.getStudentWorkExperienceById()
 
   }
 
@@ -242,32 +396,33 @@ export default {
 </script>
 
 <style scoped>
-/*body {*/
-/*  text-align: center;*/
-/*}*/
+#title {
+  margin-top: 50px;
+  margin-bottom: 30px;
 
-/*.label-form{*/
-/*  padding-top: 10px;*/
-/*  margin-right: 100px;*/
-/*}*/
-
-form {
-  float: left;
-
-  margin-right: 100px;
 }
 
-div.form-group {
-  display: grid;
-  grid-template-columns: max-content max-content;
-  grid-gap: 10px;
+#title-2 {
+  margin-top: 50px;
+  margin-bottom: 30px;
 
+}
+
+/*.workExperience{*/
+/*  margin-top: 50px;*/
+
+/*}*/
+
+StudentProfile {
+  width: 70%;
+  margin-left: -200px;
 }
 
 
 div.form-group label {
-  text-align: right;
+  text-align: left;
   margin-top: 10px;
+  padding: 5px;
 
 }
 
@@ -277,58 +432,42 @@ div.form-group label:after {
 
 img {
 
-  width: auto;
+  max-width: 100%;
   height: auto;
-
-
+  /*border: 2px solid red;*/
 }
 
-.upload {
-  padding-top: 5px;
-  padding-bottom: 5px;
-}
 
 .pictureAndForm {
   width: 70%;
   height: auto;
-  margin: auto auto 10vh;
+  margin: auto;
 
 }
 
-.card-img-top {
-  width: 100%;
-  height: auto;
+#submit {
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
-#profile {
+
+#picture {
   float: left;
   width: 30%;
-  margin-right: 6%;
+  height: auto;
+  margin-left: 150px;
+  /*border: 2px solid green;*/
+
 }
-.btn-primary{
+#profile {
+  width: 25%;
+  /*border: 2px solid blue;*/
+  margin: auto 60vh auto;
+
+}
+#addNew{
   float: right;
+  margin-right: 50px;
 }
-
-/*.card-text {*/
-/*  height: ;*/
-/*  */
-/*}*/
-
-.selection {
-  margin-left: 5px;
-  /*border: 2px solid red;*/
-}
-
-#form {
-  width: 47%;
-  /*margin-bottom: 10vh;*/
-}
-
-
-
-/*.text{*/
-/*  margin-top: 5vh;*/
-/*  margin-bottom: 5vh;*/
-/*}*/
 
 </style>

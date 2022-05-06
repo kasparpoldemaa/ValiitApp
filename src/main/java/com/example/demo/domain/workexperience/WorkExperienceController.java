@@ -27,6 +27,14 @@ public class WorkExperienceController {
         return workExperienceService.getWorkExperiencesById(studentId);
     }
 
+    @GetMapping("/id")
+    @Operation(summary = "Tagastab id järgi töökogemuse")
+    public WorkExperienceDto getWorkExperienceById(@RequestParam Integer workExperienceId){
+        return workExperienceService.getWorkExperienceById(workExperienceId);
+    }
+
+
+
     @PutMapping("/update")
     @Operation(summary = "Uuendab töökogemuse id järgi" )
     public void updateWorkExperienceById(@RequestParam Integer workExperienceId, @Valid @RequestBody WorkExperienceDto workExperienceDto) {

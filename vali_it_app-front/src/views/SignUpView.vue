@@ -10,7 +10,7 @@
           </div>
 
           <div class="card-body">
-            <form>
+
               <div class="form-group">
                 <label for="exampleFormControlSelect1">Vali roll</label>
                 <select class="form-control" id="exampleFormControlSelect1" v-model="request.roleId">
@@ -87,7 +87,7 @@
                 <input type="submit" value="Loo uus kasutaja" class="btn float-right login_btn"
                        v-on:click="addNewUser()">
               </div>
-            </form>
+
           </div>
 
           {{ 'id:' + studentProfileId }}

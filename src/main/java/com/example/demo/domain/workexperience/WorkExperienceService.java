@@ -49,4 +49,8 @@ public class WorkExperienceService {
         workExperienceRepository.deleteById(workExperienceId);
 
     }
+
+    public WorkExperienceDto getWorkExperienceById(Integer workExperienceId) {
+       return workExperienceMapper.toDto(workExperienceRepository.getById(workExperienceId));
+    }
 }
