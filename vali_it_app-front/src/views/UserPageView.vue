@@ -2,9 +2,9 @@
   <div>
 
     <div class="btn-group" role="group" aria-label="Basic example">
-      <button type="button" class="btn btn-dark" @click="showProfileView">Minu profiil</button>
-      <button type="button" class="btn btn-dark" @click="showInternShipView">Minu praktika</button>
-      <button type="button" class="btn btn-dark" @click="showCourseView">Näita kandideerimisi</button>
+      <button type="button" class="btn btn-primary" @click="showProfileView">Minu profiil</button>
+      <button type="button" class="btn btn-primary" @click="showInternShipView">Minu praktika</button>
+      <button type="button" class="btn btn-primary" @click="showCourseView">Näita kandideerimisi</button>
     </div>
 
     <div v-if="profileView">
@@ -391,7 +391,6 @@ export default {
 
   }
 
-
 }
 </script>
 
@@ -429,7 +428,6 @@ div.form-group label {
 div.form-group label:after {
   content: ":";
 }
-
 img {
 
   max-width: 100%;
@@ -460,7 +458,7 @@ img {
 
 }
 #profile {
-  width: 25%;
+  width: 44%;
   /*border: 2px solid blue;*/
   margin: auto 60vh auto;
 
@@ -468,6 +466,9 @@ img {
 #addNew{
   float: right;
   margin-right: 50px;
+}
+.btn-group{
+  margin-bottom: 50px;
 }
 
 </style>
