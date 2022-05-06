@@ -72,7 +72,7 @@
 
       </div>
       <div class="button2">
-        <button class="btn btn-primary" v-on:click="updateEducationById()">Uuenda haridus</button>
+        <button class="btn btn-primary" v-on:click="updateEducationExperienceById">Uuenda haridus</button>
       </div>
 
     </div>
@@ -109,41 +109,44 @@ export default {
         console.log(error)
       })
     },
+
+
+    updateEducationExperienceById: function (educationId) {
+      this.$http.put("/education-experience/update", this.educationExperience, {
+            params: {
+              educationExperienceId: educationId
+            }
+          }
+      ).then(response => {
+        console.log(response.data)
+      }).catch(error => {
+        console.log(error)
+      })
+    },
+    deleteEducationExperienceById: async function (educationId) {
+      await this.$http.delete("/education-experience/delete", {
+            params: {
+              educationExperienceId: educationId
+            }
+          }
+      ).then(response => {
+        this.getStudentEducationExperienceById()
+        console.log(response.data)
+      }).catch(error => {
+        console.log(error)
+      })
+
+    },
   },
 
-  updateEducationExperienceById: function (educationId) {
-    this.$http.put("/education-experience/update", this.educationExperience, {
-          params: {
-            educationExperienceId: educationId
-          }
-        }
-    ).then(response => {
-      console.log(response.data)
-    }).catch(error => {
-      console.log(error)
-    })
-  },
-  deleteEducationExperienceById: async function (educationId) {
-    await this.$http.delete("/education-experience/delete", {
-          params: {
-            educationExperienceId: educationId
-          }
-        }
-    ).then(response => {
-      this.getStudentEducationExperienceById()
-      console.log(response.data)
-    }).catch(error => {
-      console.log(error)
-    })
-
-  },
 
   mounted() {
     this.getStudentEducationExperienceById()
 
 
-  },
+  }
 }
+
 
 
 
