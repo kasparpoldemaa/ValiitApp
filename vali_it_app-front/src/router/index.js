@@ -9,6 +9,7 @@ import WorkExperienceView from "@/views/WorkExperienceView";
 import AddWorkExperience from "@/views/AddWorkExperience";
 import EducationExperienceView from "@/views/EducationExperienceView";
 import AddEducationExperienceView from "@/views/AddEducationExperience";
+import CompanyPageView from "@/views/CompanyPageView";
 
 Vue.use(VueRouter)
 
@@ -27,6 +28,11 @@ const routes = [
     path: '/user-page',
     name: 'user-page',
     component: UserPageView
+  },
+  {
+    path: '/company-page',
+    name: 'company-page',
+    component: CompanyPageView
   },
   {
     path: '/signup',
