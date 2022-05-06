@@ -156,7 +156,7 @@ export default {
   },
   methods: {
 
-    // answerToBoolean: function (isPayable) {
+    // answerToBoolean: function () {
     //   if(this.isPayable===true){
     //     this.answer = 'jah'
     //   }else{
