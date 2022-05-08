@@ -39,4 +39,10 @@ public class EducationExperienceController {
         educationExperienceService.removeEducationById(educationExperienceId);
     }
 
+    @GetMapping("/id")
+    @Operation(summary = "Leiab konkreetse hariduse id järgi")
+    public EducationExperienceDto getEducationExperienceById(@RequestParam Integer educationExperienceId) {
+        return educationExperienceService.getEducationExperienceById(educationExperienceId);
+    }
+
 }

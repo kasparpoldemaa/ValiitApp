@@ -1,21 +1,20 @@
 package com.example.demo.domain.educationexperience;
 
-import lombok.AllArgsConstructor;
+import com.example.demo.domain.student.StudentDto;
 import lombok.Data;
-import lombok.NoArgsConstructor;
+import org.springframework.lang.Nullable;
 
 import java.io.Serializable;
 import java.time.LocalDate;
 
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
 public class EducationExperienceDto implements Serializable {
-    //private Integer id;
-    //private Integer studentId;
+
+    private Integer id;
     private LocalDate startDate;
     private LocalDate endDate;
     private String school;
     private String degree;
     private String field;
+//    private StudentDto student;
 }

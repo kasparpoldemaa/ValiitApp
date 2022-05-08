@@ -30,14 +30,19 @@ export default {
 <style scoped>
 
 
-/*body {*/
-/*  text-align: center;*/
-/*}*/
+body {
+  text-align: center;
+}
 
-/*.label-form{*/
-/*  padding-top: 10px;*/
-/*  margin-right: 100px;*/
-/*}*/
+.label-form{
+  padding-top: 10px;
+  /*border: 2px solid red;*/
+}
+
+.form-control{
+  width: 20vw;
+}
+
 input{
   margin-top: 3%;
   margin-bottom: 3%;
@@ -52,6 +57,7 @@ div.form-group {
   display: grid;
   grid-template-columns: max-content max-content;
   grid-gap: 10px;
+
 
 }
 
