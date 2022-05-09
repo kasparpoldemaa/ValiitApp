@@ -10,7 +10,7 @@ import java.io.Serializable;
 @NoArgsConstructor
 @AllArgsConstructor
 public class InternshipOpportunityDto implements Serializable {
-    private Integer id;
+    private Integer opportunityId;
     private String location;
     private String startTime;
     private String duration;
@@ -21,4 +21,5 @@ public class InternshipOpportunityDto implements Serializable {
 //    private Integer userId;
     private String technology;
     private String workType;
+    private Integer interestedCount;
 }
