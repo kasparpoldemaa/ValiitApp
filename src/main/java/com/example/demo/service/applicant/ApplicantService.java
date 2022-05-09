@@ -15,7 +15,7 @@ public class ApplicantService {
         return internshipApplicantService.addNewApplicant(offerId, studentId, letter);
     }
 
-    public InternshipOppurtunityResponse getCountAndStudentId(Integer internshipOppurtunityId) {
-        return internshipApplicantService.findStundetCountAndId(internshipOppurtunityId);
-    }
+//    public InternshipOppurtunityResponse getCountAndStudentId(Integer internshipOppurtunityId) {
+//        return internshipApplicantService.findStundetCountAndId(internshipOppurtunityId);
+//    }
 }

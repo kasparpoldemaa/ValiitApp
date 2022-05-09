@@ -102,7 +102,7 @@
 
                         <td>
                           <button type="button" class="btn btn-primary">
-                            Huvilised <span class="badge badge-light">{{'siia on vaja counti'}}</span>
+                            Huvilised <span class="badge badge-light">{{offerForm.interestedCount}}</span>
                             <span class="sr-only">how many applicants</span>
                           </button>
 
@@ -144,26 +144,11 @@ export default {
       userId: sessionStorage.getItem('userId'),
       id: null,
       answer: '',
-      count: 0,
-      internshipOppurtunityId: null,
-      studentIds: {}
 
 
     }
   },
   methods: {
-
-    // getApplicationsDiv: function () {
-    //   this.applications = true
-    //   this.addOffer = false
-    //   this.showOffers = false
-    // },
-
-    // getShowOffersDiv: function () {
-    //   this.showOffers = true
-    //   this.applications = false
-    //   this.addOffer = false
-    // },
 
     refreshPage: function () {
       window.location.reload();
@@ -213,27 +198,12 @@ export default {
       })
     },
 
-    getAllApplicants: function (internshipOppurtunityId) {
-      this.$http.get("/applicant/all", {
-            params: {
-              internshipOppurtunityId: internshipOppurtunityId
-            }
-          }
-      ).then(response => {
-        this.count = response.data.studentCount
-        this.studentIds = response.data.studentId
-        console.log(response.data)
-      }).catch(error => {
-        console.log(error)
-      })
-    },
   },
 
 
   mounted() {
     this.addInternship()
     this.getAllOffersByUserId()
-    this.getAllApplicants()
 
   }
 }

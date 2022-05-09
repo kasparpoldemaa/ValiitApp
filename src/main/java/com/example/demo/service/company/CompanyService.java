@@ -23,20 +23,20 @@ public class CompanyService {
     private InternshipApplicantService internshipApplicantService;
 
     public CompanyResponse addNewInternship(Boolean isPayable, Integer userId, InternshipOpportunityDto dto) {
-        CompanyResponse companyResponse = internshipOppurtunityService.addNewInternship(isPayable, userId, dto);
-        return companyResponse;
+        return internshipOppurtunityService.addNewInternship(isPayable, userId, dto);
     }
 
         public List<InternshipOpportunityDto> getAllOffersByUserId(Integer userId) {
         List<InternshipOpportunity> internshipOpportunities = internshipOpportunityRepository.findByUserId(userId);
-        //TODO: too ära siia responsi count
 
-//            List<InternshipOpportunityDto> opportunityDtos = internshipOpportunityMapper.toDtos(internshipOpportunities);
-//            for (InternshipOpportunityDto opportunityDto : opportunityDtos) {
-//                Integer count = internshipApplicantService.getApplicantCount(opportunityDto.getOpportunityId())
-//                opportunityDto.setInterestedCount(count);
-//            }
-            return internshipOpportunityMapper.toDtos(internshipOpportunities);
+            List<InternshipOpportunityDto> opportunityDtos = internshipOpportunityMapper.toDtos(internshipOpportunities);
+            for (InternshipOpportunityDto opportunityDto : opportunityDtos) {
+                Integer count = internshipApplicantService.getApplicantCount(opportunityDto.getId());
+                List<Integer> appliedStudentIds = internshipApplicantService.getAppliedStudentIds(opportunityDto.getId());
+                opportunityDto.setInterestedCount(count);
+                opportunityDto.setStudentId(appliedStudentIds);
+            }
+            return opportunityDtos;
     }
 
     public void removeById(Integer id) {
@@ -44,9 +44,6 @@ public class CompanyService {
     }
 
     public List<InternshipOpportunityDto> getAllOffers() {
-
-
-
         return internshipOpportunityMapper.toDtos(internshipOpportunityRepository.findAll());
     }
 

@@ -8,7 +8,9 @@ import java.util.List;
 public interface InternshipOpportunityMapper {
 
     InternshipOpportunityDto toDto(InternshipOpportunity internshipOpportunity);
-//    @Mapping(source = "user.id", target = "userId")
+
+    //    @Mapping(source = "user.id", target = "userId")
+//    @Mapping(target = "opportunityId", ignore = true)
     List<InternshipOpportunityDto> toDtos(List<InternshipOpportunity> internshipOpportunity);
 
 

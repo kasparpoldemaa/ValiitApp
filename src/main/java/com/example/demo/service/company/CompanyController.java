@@ -28,7 +28,6 @@ public class CompanyController {
         return companyService.getAllOffersByUserId(userId);
     }
 
-
     @DeleteMapping("/remove")
     @Operation(summary = "Kustutab praktika avalduse id järgi ")
     public void removeById(@RequestParam Integer id) {

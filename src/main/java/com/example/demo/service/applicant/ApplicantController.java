@@ -19,11 +19,11 @@ public class ApplicantController {
         return applicantService.addNewApplicant(offerId,studentId,letter);
     }
 
-    @GetMapping("/all")
-    @Operation(summary = "Tagastab studentite objektid ja nende ID-d, kes konkreetsele pakkumisele kandideerisid")
-    public InternshipOppurtunityResponse getCountAndStudentId(@RequestParam Integer internshipOppurtunityId) {
-        return applicantService.getCountAndStudentId(internshipOppurtunityId);
-    }
+//    @GetMapping("/all")
+//    @Operation(summary = "Tagastab studentite objektid ja nende ID-d, kes konkreetsele pakkumisele kandideerisid")
+//    public InternshipOppurtunityResponse getCountAndStudentId(@RequestParam Integer internshipOppurtunityId) {
+//        return applicantService.getCountAndStudentId(internshipOppurtunityId);
+//    }
 
 
 
