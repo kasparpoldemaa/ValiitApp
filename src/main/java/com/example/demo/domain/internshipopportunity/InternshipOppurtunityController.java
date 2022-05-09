@@ -2,8 +2,8 @@ package com.example.demo.domain.internshipopportunity;
 
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
@@ -15,5 +15,11 @@ public class InternshipOppurtunityController {
     @Resource
     private InternshipOppurtunityService internshipOppurtunityService;
 
+
+    @GetMapping("/all")
+    @Operation(summary = "Tagastab studentite koguse, kes antud avaldusele kandideerisid")
+    public Integer getCount(@RequestParam Integer internshipId) {
+        return null;
+    }
 
 }
