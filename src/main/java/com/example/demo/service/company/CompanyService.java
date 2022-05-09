@@ -29,6 +29,8 @@ public class CompanyService {
 
         public List<InternshipOpportunityDto> getAllOffersByUserId(Integer userId) {
         List<InternshipOpportunity> internshipOpportunities = internshipOpportunityRepository.findByUserId(userId);
+        //TODO: too ära siia responsi count
+
 //            List<InternshipOpportunityDto> opportunityDtos = internshipOpportunityMapper.toDtos(internshipOpportunities);
 //            for (InternshipOpportunityDto opportunityDto : opportunityDtos) {
 //                Integer count = internshipApplicantService.getApplicantCount(opportunityDto.getOpportunityId())
