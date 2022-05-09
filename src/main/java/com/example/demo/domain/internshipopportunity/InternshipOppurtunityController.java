@@ -16,10 +16,6 @@ public class InternshipOppurtunityController {
     private InternshipOppurtunityService internshipOppurtunityService;
 
 
-    @GetMapping("/all")
-    @Operation(summary = "Tagastab studentite koguse, kes antud avaldusele kandideerisid")
-    public Integer getCount(@RequestParam Integer internshipId) {
-        return null;
-    }
+
 
 }

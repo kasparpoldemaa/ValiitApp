@@ -99,9 +99,10 @@
                             Kustuta
                           </button>
                         </td>
+
                         <td>
                           <button type="button" class="btn btn-primary">
-                            Huvilised <span class="badge badge-light">{{offerForm.id}}</span>
+                            Huvilised <span class="badge badge-light">{{'siia on vaja counti'}}</span>
                             <span class="sr-only">how many applicants</span>
                           </button>
 
@@ -142,7 +143,10 @@ export default {
       arrayLength: '',
       userId: sessionStorage.getItem('userId'),
       id: null,
-      answer: ''
+      answer: '',
+      count: 0,
+      internshipOppurtunityId: null,
+      studentIds: {}
 
 
     }
@@ -208,10 +212,28 @@ export default {
         console.log(error)
       })
     },
+
+    getAllApplicants: function (internshipOppurtunityId) {
+      this.$http.get("/applicant/all", {
+            params: {
+              internshipOppurtunityId: internshipOppurtunityId
+            }
+          }
+      ).then(response => {
+        this.count = response.data.studentCount
+        this.studentIds = response.data.studentId
+        console.log(response.data)
+      }).catch(error => {
+        console.log(error)
+      })
+    },
   },
+
+
   mounted() {
     this.addInternship()
     this.getAllOffersByUserId()
+    this.getAllApplicants()
 
   }
 }

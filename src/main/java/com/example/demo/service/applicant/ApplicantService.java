@@ -14,4 +14,8 @@ public class ApplicantService {
     public ApplicantResponse addNewApplicant(Integer offerId, Integer studentId, String letter) {
         return internshipApplicantService.addNewApplicant(offerId, studentId, letter);
     }
+
+    public InternshipOppurtunityResponse getCountAndStudentId(Integer internshipOppurtunityId) {
+        return internshipApplicantService.findStundetCountAndId(internshipOppurtunityId);
+    }
 }

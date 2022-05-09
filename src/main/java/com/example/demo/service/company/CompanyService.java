@@ -1,5 +1,6 @@
 package com.example.demo.service.company;
 
+import com.example.demo.domain.internshipapplicant.InternshipApplicantService;
 import com.example.demo.domain.internshipopportunity.*;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +19,9 @@ public class CompanyService {
     @Resource
     private InternshipOppurtunityService internshipOppurtunityService;
 
+    @Resource
+    private InternshipApplicantService internshipApplicantService;
+
     public CompanyResponse addNewInternship(Boolean isPayable, Integer userId, InternshipOpportunityDto dto) {
         CompanyResponse companyResponse = internshipOppurtunityService.addNewInternship(isPayable, userId, dto);
         return companyResponse;
@@ -25,7 +29,12 @@ public class CompanyService {
 
         public List<InternshipOpportunityDto> getAllOffersByUserId(Integer userId) {
         List<InternshipOpportunity> internshipOpportunities = internshipOpportunityRepository.findByUserId(userId);
-        return internshipOpportunityMapper.toDtos(internshipOpportunities);
+//            List<InternshipOpportunityDto> opportunityDtos = internshipOpportunityMapper.toDtos(internshipOpportunities);
+//            for (InternshipOpportunityDto opportunityDto : opportunityDtos) {
+//                Integer count = internshipApplicantService.getApplicantCount(opportunityDto.getOpportunityId())
+//                opportunityDto.setInterestedCount(count);
+//            }
+            return internshipOpportunityMapper.toDtos(internshipOpportunities);
     }
 
     public void removeById(Integer id) {
