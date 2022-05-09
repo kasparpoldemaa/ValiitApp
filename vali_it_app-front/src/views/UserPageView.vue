@@ -1,10 +1,10 @@
 <template>
-  <div>
+  <div id="userPage">
 
-    <div class="btn-group" role="group" aria-label="Basic example">
-      <button type="button" class="btn btn-primary" @click="showProfileView">Minu profiil</button>
-      <button type="button" class="btn btn-primary" @click="showInternShipView">Minu praktika</button>
-      <button type="button" class="btn btn-primary" @click="showCourseView">Näita kandideerimisi</button>
+    <div id="navButtons" class="btn-group" role="group" aria-label="Basic example">
+      <button type="button" class="btn btn-primary btn-lg" @click="showProfileView">Minu profiil</button>
+      <button type="button" class="btn btn-primary btn-lg" @click="showInternShipView">Minu praktika</button>
+      <button type="button" class="btn btn-primary btn-lg" @click="showCourseView">Näita kandideerimisi</button>
     </div>
 
 
@@ -63,19 +63,19 @@
             <th scope="col">Ettevõtte nimi</th>
             <th scope="col">Ametinimetus</th>
             <th id="jobDescriptionHeader" scope="col">Töö kirjeldus</th>
-            <th scope="col"></th>
+
           </tr>
           </thead>
           <tbody>
-          <tr v-for="(experience, index) in workExperiences" id="expFields">
+          <tr v-for="(experience, index) in workExperiences" id="expFields" style="word-wrap: break-word">
             <th>{{ index + 1 }}</th>
             <td>{{ experience.startDate }}</td>
             <td>{{ experience.endDate }}</td>
             <td>{{ experience.companyName }}</td>
             <td>{{ experience.position }}</td>
-            <td id="jobDescription" style="word-wrap: break-word">{{ experience.jobDescription }}</td>
-            <td>
-              <button type="submit" class="btn btn-primary btn-xs m-3"
+            <td id="jobDescription" >{{ experience.jobDescription }}</td>
+            <td  style="float: right">
+              <button  type="submit" class="btn btn-primary btn-xs m-3"
                       @click="hideExperienceTable(experience.id)">Muuda
               </button>
               <button type="submit" class="btn btn-primary btn-xs"
@@ -142,14 +142,14 @@
           </tr>
           </thead>
           <tbody>
-          <tr v-for="(education,index) in educationExperiences">
+          <tr v-for="(education,index) in educationExperiences" style="word-wrap: break-word">
             <th scope="row">{{ index + 1 }}</th>
             <td>{{ education.startDate }}</td>
             <td>{{ education.endDate }}</td>
-            <td>{{ education.school }}</td>
+            <td id="schoolName">{{ education.school }}</td>
             <td>{{ education.degree }}</td>
-            <td>{{ education.field }}</td>
-            <td>
+            <td id="eduDescription">{{ education.field }}</td>
+            <td style="float: right">
               <button type="submit" class="btn btn-primary btn-xs m-3" v-on:click="hideEducationTable(education.id)">
                 Muuda
               </button>
@@ -202,9 +202,10 @@
     </div>
 
     <div class="internship" v-if="internShipView">
-
-
-      <table class="table table-hover">
+      <div v-if="showMessage" class="alert alert-success" role="alert">
+        {{ addSuccessMessage }}
+      </div>
+      <table id="companyListTable" class="table table-hover">
         <thead>
         <tr>
           <th scope="col">Firma nimi</th>
@@ -224,7 +225,7 @@
         </tbody>
       </table>
 
-      <table class="table table-hover">
+      <table id="offersTable" class="table table-hover" v-if="showOffers">
         <thead>
         <tr>
           <th scope="col"></th>
@@ -240,11 +241,6 @@
         </thead>
         <tbody>
         <tr v-for="offerForm in offerForms" >
-          <th scope="row">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chat-left-fill" viewBox="0 0 16 16">
-              <path d="M2 0a2 2 0 0 0-2 2v12.793a.5.5 0 0 0 .854.353l2.853-2.853A1 1 0 0 1 4.414 12H14a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/></svg>
-          </th>
-
           <td>{{ offerForm.startTime }}</td>
           <td>{{ offerForm.duration }}</td>
           <td>{{ offerForm.location }}</td>
@@ -254,11 +250,55 @@
           <td>{{ offerForm.isPayable }}</td>
           <td>{{ offerForm.comment }}</td>
           <td>
-            <button type="button" class="btn btn-success">Kandideeri</button>
+            <button type="button" class="btn btn-success" @click="showMotivationLetter(offerForm.id)">Kandideeri</button>
           </td>
         </tr>
         </tbody>
       </table>
+      <div v-if="showMotivation">
+        <h4>Ülevaade pakkumisest </h4>
+
+        <table class="table table-hover" id="detailsTable">
+          <thead>
+
+          </thead>
+          <tbody>
+          <tr>
+            <td>Asukoht:</td>
+            <td>{{ internship.location}}</td>
+          </tr>
+          <tr>
+            <td>Kestvus:</td>
+            <td>{{ internship.duration}}</td>
+          </tr>
+          <tr>
+            <td>Tehnoloogia:</td>
+            <td>{{ internship.technology}}</td>
+          </tr>
+          <tr>
+            <td>Töövorm:</td>
+            <td>{{ internship.workType}}</td>
+          </tr>
+          <tr>
+            <td>Tasu:</td>
+            <td>{{ internship.isPayable}}</td>
+          </tr>
+          <tr>
+            <td>Vabad kohad:</td>
+            <td>{{ internship.numberOfPositions}}</td>
+          </tr>
+          </tbody>
+        </table>
+        <label id="motLabel" class="label-form" >Motivatsioonikiri:</label>
+        <textarea id="motivationField"  class="form-control" placeholder="Max 1000 tähemärki"  v-model="letter"></textarea>
+
+        <div id="motButtons">
+        <button type="button" class="btn btn-success m-3" @click="addNewApplicant(internship.id, letter)">Kandideeri praktikale</button>
+        <button type="button" class="btn btn-danger" @click="resetOfferView">Tühista</button>
+        </div>
+
+
+      </div>
 
 
     </div>
@@ -276,7 +316,7 @@ export default {
   components: {StudentProfile},
   data: function () {
     return {
-      profileView: false,
+      profileView: true,
       internShipView: false,
       courseView: false,
       isAvailable: true,
@@ -307,6 +347,11 @@ export default {
       companies: {},
       offerId: null,
       internship: {},
+      showMotivation: false,
+      showOffers:false,
+      letter: '',
+      addSuccessMessage: '',
+      showMessage: false
 
 
 
@@ -327,12 +372,15 @@ export default {
           this.profileView = true
           this.internShipView = false
           this.courseView = false
+
         },
 
         showInternShipView: function () {
           this.profileView = false
           this.internShipView = true
           this.courseView = false
+          this.showMessage = false
+          this.resetOfferView()
         },
 
         showCourseView: function () {
@@ -367,6 +415,16 @@ export default {
           this.displayTable = false
         },
 
+        showMotivationLetter: function (id) {
+          this.showMotivation = true
+          this.showOffers = false
+          this.getOfferById(id)
+        },
+        resetOfferView: function () {
+          this.showMotivation = false
+          this.showOffers = false
+        },
+
         handleImage(event) {
           const selectedImage = event.target.files[0];
           this.createBase64Image(selectedImage);
@@ -391,6 +449,7 @@ export default {
               }
           ).then(response => {
             this.displayPic = true
+            window.location.reload();
             console.log(response.data)
           }).catch(error => {
             console.log(error)
@@ -476,6 +535,7 @@ export default {
           ).then(response => {
             this.setIsAvailable()
             console.log(response.data)
+            window.location.reload();
           }).catch(error => {
             console.log(error)
           })
@@ -503,6 +563,7 @@ export default {
               }
           ).then(response => {
             this.showExperience = true
+            window.location.reload();
             console.log(response.data)
           }).catch(error => {
             console.log(error)
@@ -546,6 +607,7 @@ export default {
           ).then(response => {
             this.showExperience = true
             this.showWorkTable = false
+            window.location.reload();
             console.log(response.data)
           }).catch(error => {
             console.log(error)
@@ -573,6 +635,7 @@ export default {
                 }
               }
           ).then(response => {
+            window.location.reload();
             console.log(response.data)
           }).catch(error => {
             console.log(error)
@@ -602,6 +665,7 @@ export default {
           ).then(response => {
             this.showEducation = true
             this.showEduTable = false
+            window.location.reload();
             console.log(response.data)
           }).catch(error => {
             console.log(error)
@@ -629,6 +693,8 @@ export default {
             }
           })
               .then(response => {
+                this.showOffers = true
+                this.showMotivation = false
                 this.offerForms = response.data
                 console.log(response.data)
               }).catch(error => {
@@ -659,6 +725,25 @@ export default {
           })
         },
 
+        //TODO lisa õige URL pärast merge'i
+        addNewApplicant: function (id, letter) {
+          this.$http.post("/new", {}, {
+            params: {
+              studentId: this.studentId,
+              offerId: id,
+              letter: letter
+            }
+              }
+          ).then(response => {
+            this.resetOfferView()
+            this.showMessage = true
+            this.addSuccessMessage = 'Kandideerimise ankeet on edukalt saadetud!'
+            console.log(response.data)
+          }).catch(error => {
+            console.log(error)
+          })
+        },
+
 
 
 
@@ -679,22 +764,40 @@ export default {
 </script>
 
 <style scoped>
+#companyListTable {
+  width: 30vw;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#offersTable {
+  margin-top: 50px;
+}
+
 #title-work {
   margin-top: 50px;
   margin-bottom: 30px;
 
 }
+#navButtons {
+  margin-top: 50px;
+}
 
 #jobDescription{
   max-width: 300px;
+}
+#schoolName {
+  max-width: 300px;
+}
 
+#eduDescription {
+  max-width: 300px;
 }
 
 
 #title-work2 {
   margin-top: 50px;
   margin-bottom: 30px;
-
 }
 
 #title-edu1 {
@@ -708,20 +811,19 @@ export default {
   margin-bottom: 30px;
 }
 
+#motButtons {
+  margin-top: 30px;
+}
 
 StudentProfile {
   width: 70%;
   margin-left: -200px;
-
 }
-
 
 div.form-group label {
   text-align: left;
   margin-top: 10px;
   padding: 5px;
-
-
 }
 
 div.form-group label:after {
@@ -743,9 +845,26 @@ img {
 
 }
 
+
 #submit {
   margin-top: 20px;
   margin-bottom: 20px;
+}
+
+#detailsTable {
+  max-width: 300px;
+  margin-left: auto;
+  margin-right: auto;
+}
+#motivationField{
+  max-width: 30vw;
+  height: 10vw;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 0;
+  padding-left: 0;
+  line-height: 1em;
+
 }
 
 
@@ -768,6 +887,14 @@ img {
 #addNewWork {
   float: right;
   margin-right: 50px;
+}
+
+#submit-1 {
+  float: right;
+  margin-left: auto;
+}
+#submit-2 {
+  float: right;
 }
 
 #addNewEdu {
@@ -796,5 +923,7 @@ img {
 #nr{
   width: 30px;
 }
+
+
 
 </style>
