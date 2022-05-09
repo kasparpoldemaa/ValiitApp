@@ -149,7 +149,7 @@
             <td>{{ education.field }}</td>
             <td>
               <button type="submit" class="btn btn-primary btn-xs m-3" v-on:click="hideEducationTable(education.id)">
-                Muuda (meetod ei funka)
+                Muuda
               </button>
               <button type="submit" class="btn btn-primary btn-xs"
                       v-on:click="deleteEducationExperienceById(education.id)">
@@ -497,10 +497,10 @@ export default {
           })
         },
 
-        updateEducationExperienceById: function (educationId) {
+        updateEducationExperienceById: function () {
           this.$http.put("/education-experience/update", this.educationExperience, {
                 params: {
-                  educationExperienceId: educationId
+                  educationExperienceId: this.educationExperienceId
                 }
               }
           ).then(response => {

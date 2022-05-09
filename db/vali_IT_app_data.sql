@@ -1,6 +1,6 @@
 INSERT INTO public."user" (id, user_name, password) VALUES (DEFAULT, 'asd', 'asd');
-INSERT INTO public."user" (id, user_name, password) VALUES (DEFAULT, 'maria@bcs.ee', 'maria123');
-INSERT INTO public."user" (id, user_name, password) VALUES (DEFAULT, 'energia@energia.ee', 'eesti');
+INSERT INTO public."user" (id, user_name, password) VALUES (DEFAULT, 'admin', 'admin');
+INSERT INTO public."user" (id, user_name, password) VALUES (DEFAULT, 'firma', 'firma');
 INSERT INTO public."user" (id, user_name, password) VALUES (DEFAULT, 'j00nas@gmail.com', 'Joonas456');
 INSERT INTO public."user" (id, user_name, password) VALUES (DEFAULT, 'moduulo@mod.ee', 'moduulo69');
 

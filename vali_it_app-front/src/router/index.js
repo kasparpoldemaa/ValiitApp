@@ -5,10 +5,6 @@ import LoginView from "@/views/LoginView";
 import UserPageView from "@/views/UserPageView";
 import SignUpView from "@/views/SignUpView";
 import AdminPageView from "@/views/AdminPageView";
-import WorkExperienceView from "@/views/WorkExperienceView";
-import AddWorkExperience from "@/views/AddWorkExperience";
-import EducationExperienceView from "@/views/EducationExperienceView";
-import AddEducationExperienceView from "@/views/AddEducationExperience";
 import CompanyPageView from "@/views/CompanyPageView";
 
 Vue.use(VueRouter)
@@ -43,29 +39,6 @@ const routes = [
     path: '/admin',
     name: 'admin',
     component: AdminPageView
-  },
-  {
-    path: '/work-experience',
-    name: 'work-experience',
-    component: WorkExperienceView
-  },
-
-  {
-    path: '/work-experience/add',
-    name: 'work-experience-add',
-    component: AddWorkExperience
-  },
-
-  {
-    path: '/education-experience',
-    name: 'education-experience',
-    component: EducationExperienceView
-  },
-
-  {
-    path: '/education-experience/add',
-    name: 'education-experience-add',
-    component: AddEducationExperienceView
   },
 
 ]

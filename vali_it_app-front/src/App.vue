@@ -1,19 +1,21 @@
 <template>
   <div id="app">
+
     <nav>
       <router-link to="/">Home</router-link> |
       <router-link to="/login">Login</router-link> |
       <router-link to="/user-page">User Page (ajutine)</router-link> |
-      <router-link to="/company-page">Company Page (ajutine)</router-link> |
-      <router-link to="/signup">SignUp (ajutine)</router-link> |
-      <button type="button" class="btn btn-link btn-sm" v-on:click="navigateToHomePage()">Log out</button>
+      <router-link to="/company-page">Company Page (ajutine)</router-link>
+      <button id="logout" type="button" class="btn btn-info btn-sm" v-on:click="navigateToHomePage()">Log out</button>
     </nav>
     <router-view/>
+
   </div>
 </template>
 <script>
 export default {
   name: "SignUpView",
+
 
   data: function () {
     return {
@@ -56,7 +58,9 @@ nav a.router-link-exact-active {
 button {
   text-align: center;
   padding: 100px;
-
+}
+#logout {
+  float: right;
 }
 
 </style>

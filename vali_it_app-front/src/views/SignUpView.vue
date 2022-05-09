@@ -90,10 +90,8 @@
 
           </div>
 
-          {{ 'id:' + studentProfileId }}
-
           <div class="card-footer">
-            <!--            footeri tekst-->
+            Vali IT 2022
           </div>
         </div>
       </div>
