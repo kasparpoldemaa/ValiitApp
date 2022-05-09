@@ -7,9 +7,11 @@
       <button type="button" class="btn btn-primary" @click="showCourseView">Näita kandideerimisi</button>
     </div>
 
-<!--    ================================PROFIILIPILT================================-->
+
 
     <div class="workExperience" v-if="profileView">
+
+      <!--    ================================PROFIILIPILT================================-->
       <!--    </div>-->
       <div class="pictureAndForm">
         <div class="card" id="picture">
@@ -52,26 +54,26 @@
 
       <div class="workAndEducation" v-if="showExperience">
         <h3 id="title-work">Minu töökogemused</h3>
-        <table class="table table-hover">
+        <table class="table table-hover" >
           <thead id="expTable">
           <tr>
-            <th scope="col">#</th>
+            <th scope="col" id="nr">#</th>
             <th scope="col">Alguskuupäev</th>
             <th scope="col">Lõppkuupäev</th>
             <th scope="col">Ettevõtte nimi</th>
             <th scope="col">Ametinimetus</th>
-            <th scope="col">Töö kirjeldus</th>
+            <th id="jobDescriptionHeader" scope="col">Töö kirjeldus</th>
             <th scope="col"></th>
           </tr>
           </thead>
           <tbody>
-          <tr v-for="(experience, index) in workExperiences">
+          <tr v-for="(experience, index) in workExperiences" id="expFields">
             <th>{{ index + 1 }}</th>
             <td>{{ experience.startDate }}</td>
             <td>{{ experience.endDate }}</td>
             <td>{{ experience.companyName }}</td>
             <td>{{ experience.position }}</td>
-            <td>{{ experience.jobDescription }}</td>
+            <td id="jobDescription" style="word-wrap: break-word">{{ experience.jobDescription }}</td>
             <td>
               <button type="submit" class="btn btn-primary btn-xs m-3"
                       @click="hideExperienceTable(experience.id)">Muuda
@@ -199,7 +201,67 @@
       </div>
     </div>
 
+    <div class="internship" v-if="internShipView">
 
+
+      <table class="table table-hover">
+        <thead>
+        <tr>
+          <th scope="col">Firma nimi</th>
+          <th scope="col"></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr v-for="company in companies" >
+
+
+          <td>{{ company.companyName }}</td>
+          <td>
+            <button type="button" class="btn btn-info" @click="getOffersById(company.userId)">{{'Vaata pakkumisi' }}</button>
+          </td>
+
+        </tr>
+        </tbody>
+      </table>
+
+      <table class="table table-hover">
+        <thead>
+        <tr>
+          <th scope="col"></th>
+          <th scope="col">Algus kuupäev</th>
+          <th scope="col">Kestvus</th>
+          <th scope="col">Asukoht</th>
+          <th scope="col">Vabad kohad</th>
+          <th scope="col">Kasutusel tehnoloogiad</th>
+          <th scope="col">Töövorm</th>
+          <th scope="col">Tasu</th>
+          <th scope="col">Lisainfo</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr v-for="offerForm in offerForms" >
+          <th scope="row">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chat-left-fill" viewBox="0 0 16 16">
+              <path d="M2 0a2 2 0 0 0-2 2v12.793a.5.5 0 0 0 .854.353l2.853-2.853A1 1 0 0 1 4.414 12H14a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/></svg>
+          </th>
+
+          <td>{{ offerForm.startTime }}</td>
+          <td>{{ offerForm.duration }}</td>
+          <td>{{ offerForm.location }}</td>
+          <td>{{ offerForm.numberOfPositions }}</td>
+          <td>{{ offerForm.technology }}</td>
+          <td>{{ offerForm.workType }}</td>
+          <td>{{ offerForm.isPayable }}</td>
+          <td>{{ offerForm.comment }}</td>
+          <td>
+            <button type="button" class="btn btn-success">Kandideeri</button>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+
+
+    </div>
 
 
 
@@ -241,6 +303,13 @@ export default {
       educationExperience: {},
       educationExperiences: {},
       educationExperienceId: null,
+      offerForms: {},
+      companies: {},
+      offerId: null,
+      internship: {},
+
+
+
 
     }
   },
@@ -553,6 +622,46 @@ export default {
           })
         },
 
+        getOffersById: function (id) {
+          this.$http.get("/company/all", {
+            params: {
+              userId: id
+            }
+          })
+              .then(response => {
+                this.offerForms = response.data
+                console.log(response.data)
+              }).catch(error => {
+            console.log(error)
+          })
+        },
+
+        getAllCompanies: function () {
+          this.$http.get("/contact/all-companies")
+              .then(response => {
+                this.companies = response.data
+                console.log(response.data)
+              }).catch(error => {
+            console.log(error)
+          })
+        },
+
+        getOfferById: function (id) {
+          this.$http.get("/company/id", {
+            params: {
+              offerId: id
+            }
+          })
+              .then(response => {
+                this.internship = response.data
+              }).catch(error => {
+            console.log(error)
+          })
+        },
+
+
+
+
       },
   mounted() {
     this.getStudentProfileById()
@@ -560,6 +669,9 @@ export default {
     this.getStudentPicture()
     this.getStudentWorkExperienceById()
     this.getStudentEducationExperienceById()
+    this.getAllCompanies()
+
+
 
   }
 
@@ -570,6 +682,11 @@ export default {
 #title-work {
   margin-top: 50px;
   margin-bottom: 30px;
+
+}
+
+#jobDescription{
+  max-width: 300px;
 
 }
 
@@ -673,6 +790,11 @@ img {
   width: 40vw;
   margin-left: auto;
   margin-right: auto;
+}
+
+
+#nr{
+  width: 30px;
 }
 
 </style>

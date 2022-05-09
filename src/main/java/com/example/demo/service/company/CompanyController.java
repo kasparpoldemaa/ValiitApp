@@ -31,7 +31,19 @@ public class CompanyController {
 
     @DeleteMapping("/remove")
     @Operation(summary = "Kustutab praktika avalduse id järgi ")
-    public void removeById(Integer id) {
+    public void removeById(@RequestParam Integer id) {
         companyService.removeById(id);
+    }
+
+    @GetMapping("/all-offers")
+    @Operation(summary = "Kuvab kõik pakkumised")
+    public List<InternshipOpportunityDto> getAllOffers() {
+        return companyService.getAllOffers();
+    }
+
+    @GetMapping("/id")
+    @Operation(summary = "Leiab pakkumise id järgi")
+    public InternshipOpportunityDto getOfferById(@RequestParam Integer offerId) {
+        return companyService.getOfferById(offerId);
     }
 }

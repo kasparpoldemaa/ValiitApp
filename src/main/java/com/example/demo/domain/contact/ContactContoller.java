@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 @RestController
 @RequestMapping("/contact")
@@ -20,4 +21,9 @@ public class ContactContoller {
         return contactService.getContactById(contactId);
     }
 
+    @GetMapping("/all-companies")
+    @Operation(summary = "Kuvab kõik firma nimed")
+    public List<ContactDto> getAllCompanyContacts() {
+        return contactService.getAllCompanyContacts();
+    }
 }

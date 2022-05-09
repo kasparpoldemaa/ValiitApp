@@ -6,6 +6,8 @@ import com.example.demo.service.register.NewUserRequest;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class ContactService {
@@ -56,5 +58,16 @@ public class ContactService {
 
     public ContactDto getContactById(Integer contactId) {
         return contactMapper.toDto(contactRepository.getById(contactId));
+    }
+
+    public List<ContactDto> getAllCompanyContacts() {
+        List<Contact> contacts = contactRepository.findAll();
+        List<Contact> companyNames = new ArrayList<>();
+        for (Contact contact : contacts) {
+            if (contact.getCompanyName() != null) {
+                companyNames.add(contact);
+            }
+        }
+        return contactMapper.toDtos(companyNames);
     }
 }

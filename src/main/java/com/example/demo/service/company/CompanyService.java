@@ -31,4 +31,15 @@ public class CompanyService {
     public void removeById(Integer id) {
         internshipOpportunityRepository.deleteById(id);
     }
+
+    public List<InternshipOpportunityDto> getAllOffers() {
+
+
+
+        return internshipOpportunityMapper.toDtos(internshipOpportunityRepository.findAll());
+    }
+
+    public InternshipOpportunityDto getOfferById(Integer offerId) {
+        return internshipOpportunityMapper.toDto(internshipOpportunityRepository.getById(offerId));
+    }
 }

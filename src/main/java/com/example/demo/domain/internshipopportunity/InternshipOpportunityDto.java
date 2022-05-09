@@ -17,6 +17,7 @@ public class InternshipOpportunityDto implements Serializable {
     private Boolean isPayable = false;
     private String numberOfPositions;
     private String comment;
+    private String companyName;
 //    private Integer userId;
     private String technology;
     private String workType;
