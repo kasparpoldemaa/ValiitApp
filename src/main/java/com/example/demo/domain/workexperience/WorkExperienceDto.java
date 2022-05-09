@@ -11,6 +11,7 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @NoArgsConstructor
 public class WorkExperienceDto implements Serializable {
+
     private Integer id;
     private LocalDate startDate;
     private LocalDate endDate;
