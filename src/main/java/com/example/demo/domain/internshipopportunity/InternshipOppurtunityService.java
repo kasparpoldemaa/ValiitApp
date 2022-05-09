@@ -39,5 +39,7 @@ public class InternshipOppurtunityService {
         return companyResponse;
     }
 
-
+    public InternshipOpportunity getOfferById(Integer offerId) {
+        return internshipOpportunityRepository.getById(offerId);
+    }
 }
