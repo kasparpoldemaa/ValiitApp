@@ -7,7 +7,7 @@
       <button type="button" class="btn btn-primary" @click="showCourseView">Näita kandideerimisi</button>
     </div>
 
-    <!--    ================================PROFIILIPILT================================-->
+<!--    ================================PROFIILIPILT================================-->
 
     <div class="workExperience" v-if="profileView">
       <!--    </div>-->
@@ -34,7 +34,7 @@
           </div>
         </div>
 
-        <!--    ================================PROFIILI ANKEET================================-->
+<!--    ================================PROFIILI ANKEET================================-->
 
         <div class="card" id="profile">
           <div class="card-body" id="cardBody">
@@ -48,7 +48,7 @@
       <button id="submit" class="btn btn-primary btn-lg" v-on:click="updateStudentProfile">Uuenda profiili</button>
 
 
-      <!--    ================================WORK EXPERIENCE================================-->
+<!--    ================================WORK EXPERIENCE================================-->
 
       <div class="workAndEducation" v-if="showExperience">
         <h3 id="title-work">Minu töökogemused</h3>
@@ -89,7 +89,7 @@
         </button>
       </div>
 
-      <!--    ================================LISA/UUENDA WORK EXPERIENCE================================-->
+<!--    ================================LISA/UUENDA WORK EXPERIENCE================================-->
 
       <div class="table">
         <form>
@@ -124,7 +124,7 @@
         </form>
       </div>
 
-      <!--    ================================EDUCATION================================-->
+<!--    ================================EDUCATION================================-->
 
       <div class="workAndEducation" v-if="showEducation">
         <h3 id="title-edu1">Minu haridus</h3>
@@ -197,9 +197,11 @@
           <button class="btn btn-danger" v-on:click="resetView">Tühista</button>
         </div>
       </div>
-
-
     </div>
+
+
+
+
 
   </div>
 </template>

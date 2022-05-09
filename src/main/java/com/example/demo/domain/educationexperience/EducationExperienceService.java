@@ -34,12 +34,12 @@ public class EducationExperienceService {
 
     public void updateEducationExperienceById(Integer educationExperienceId, EducationExperienceDto educationExperienceDto) {
         EducationExperience educationExperience = educationExperienceRepository.getById(educationExperienceId);
-//        educationExperienceMapper.updateEntity(educationExperienceDto,educationExperience);
-        educationExperience.setStartDate(educationExperience.getStartDate());
-        educationExperience.setEndDate(educationExperience.getEndDate());
-        educationExperience.setSchool(educationExperience.getSchool());
-        educationExperience.setDegree(educationExperience.getDegree());
-        educationExperience.setField(educationExperience.getField());
+        educationExperienceMapper.updateEntity(educationExperienceDto,educationExperience);
+//        educationExperience.setStartDate(educationExperience.getStartDate());
+//        educationExperience.setEndDate(educationExperience.getEndDate());
+//        educationExperience.setSchool(educationExperience.getSchool());
+//        educationExperience.setDegree(educationExperience.getDegree());
+//        educationExperience.setField(educationExperience.getField());
         educationExperienceRepository.save(educationExperience);
 
     }
