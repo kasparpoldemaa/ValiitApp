@@ -38,4 +38,6 @@ public class InternshipOppurtunityService {
 
         return companyResponse;
     }
+
+
 }
