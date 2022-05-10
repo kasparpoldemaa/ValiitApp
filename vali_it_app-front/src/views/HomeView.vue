@@ -134,6 +134,8 @@ img {
 .text {
   margin-top: 5vh;
   margin-bottom: 5vh;
+  width: 70%;
+  margin: auto;
 }
 
 .spinner-border text-primary {

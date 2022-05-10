@@ -85,7 +85,7 @@
           </tr>
           </tbody>
         </table>
-        <button id="addNewWork" type="submit" class="btn btn-success btn-xs" @click="displayNewExperience">
+        <button id="addNewWork" type="submit" class="btn btn-default btn-xs" @click="displayNewExperience">
           Loo uus töökogemus
         </button>
       </div>
@@ -160,7 +160,7 @@
           </tr>
           </tbody>
         </table>
-        <button id="addNewEdu" type="submit" class="btn btn-success btn-xs" @click="displayNewEducation">
+        <button id="addNewEdu" type="submit" class="btn btn-default btn-xs" @click="displayNewEducation">
           Loo uus haridus
         </button>
       </div>
@@ -202,7 +202,7 @@
 
     <div class="internship" v-if="internShipView">
 
-      <h3 id="internshipTitle">Praktika pakkumised</h3>
+      <h3 id="internshipTitle"><strong>Praktika pakkumised</strong></h3>
       <div v-if="showMessage" class="alert alert-success" role="alert">
         {{ addSuccessMessage }}
       </div>
@@ -280,14 +280,14 @@
           <td>{{ offerForm.isPayable ? 'jah' : 'ei'}}</td>
           <td>{{ offerForm.comment }}</td>
           <td>
-            <button type="button" class="btn btn-success" @click="showMotivationLetter(offerForm.id)">Kandideeri
+            <button type="button" class="btn btn-info" @click="showMotivationLetter(offerForm.id)">Kandideeri
             </button>
           </td>
         </tr>
         </tbody>
       </table>
       <div v-if="showMotivation">
-        <h4>Ülevaade pakkumisest </h4>
+        <h3><strong>Ülevaade pakkumisest </strong></h3>
 
         <table class="table table-hover" id="detailsTable">
           <thead>
@@ -324,8 +324,8 @@
         <textarea id="motivationField" class="form-control" placeholder="Max 1000 tähemärki"
                   v-model="letter"></textarea>
 
-        <div id="motButtons">
-          <button type="button" class="btn btn-success m-3" @click="addNewApplicant(internship.id, letter)">Kandideeri
+        <div id="motButtons" class="motButtons">
+          <button type="button" class="btn btn-info m-3" @click="addNewApplicant(internship.id, letter)">Kandideeri
             praktikale
           </button>
           <button type="button" class="btn btn-danger" @click="resetOfferView">Tühista</button>
@@ -813,6 +813,10 @@ export default {
 
 <style scoped>
 
+.internship {
+ margin-bottom: 20vh;
+}
+
 
 #companyListTable {
   width: 30vw;
@@ -865,6 +869,7 @@ export default {
 
 #motButtons {
   margin-top: 30px;
+  margin-bottom: 30px;
 }
 
 StudentProfile {
@@ -921,6 +926,7 @@ img {
 }
 #internshipTitle {
   margin-bottom: 30px;
+
 }
 
 
@@ -979,6 +985,12 @@ img {
 
 #nr {
   width: 30px;
+}
+
+/*.btn btn-default btn-xs{*/
+.btn-default, .btn-default:hover, .btn-default:active, .btn-default:visited {
+  background-color: #16A085 !important;
+  color: white;
 }
 
 

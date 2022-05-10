@@ -1,7 +1,8 @@
 <template>
   <div>
     <div>
-
+      <br>
+      <br>
       <button v-on:click="displayTableEvent()" type="button" class="btn btn-primary btn-lg">Loo üritus</button>
 <!--      <button v-on:click="displayAllStudent()" type="button" class="btn btn-outline-danger">Õpilased</button>-->
 
@@ -15,7 +16,8 @@
 <!--      </label>-->
 
     </div>
-
+    <br>
+    <br>
 
     <div class="form" v-if="this.tableDivDisplay">
       <EventForm :add-new-event="addNewEvent" :event="event"/>

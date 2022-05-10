@@ -6,7 +6,7 @@
       <router-link to="/login">Logi sisse</router-link> |
       <router-link to="/user-page">User Page (ajutine)</router-link> |
       <router-link to="/company-page">Company Page (ajutine)</router-link>
-      <button id="logout" type="button" class="btn btn-info btn-sm" v-on:click="navigateToHomePage()">Logi välja</button>
+      <button id="logout" type="button" class="btn btn-info" v-on:click="navigateToHomePage()">Logi välja</button>
     </nav>
     <router-view/>
 
@@ -62,8 +62,15 @@ button {
   text-align: center;
   padding: 100px;
 }
+
+/*.btn-default, .btn-default:hover, .btn-default:active, .btn-default:visited {*/
+/*  background-color: #16A085 !important;*/
+/*  color: white;*/
+/*  */
+/*}*/
 #logout {
   float: right;
+  margin-top: -10px !important;
 }
 
 </style>
