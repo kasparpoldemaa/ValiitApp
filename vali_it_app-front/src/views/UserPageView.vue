@@ -288,6 +288,9 @@
           </td>
         </tr>
         </tbody>
+        <br>
+        <br>
+        <br>
       </table>
       <div v-if="showMotivation">
         <h3><strong>Ülevaade pakkumisest </strong></h3>
