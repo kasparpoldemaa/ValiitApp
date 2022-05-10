@@ -14,5 +14,6 @@ public class ApplicantResponse {
     private InternshipOpportunityDto internshipOpportunity;
     private StudentDto student;
     private String motivationLetter;
+    private String companyName;
 
 }

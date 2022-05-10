@@ -18,4 +18,5 @@ public class ContactDto implements Serializable {
     private Integer userId;
     private String userUserName;
     private String userPassword;
+    private Integer applicationCount;
 }

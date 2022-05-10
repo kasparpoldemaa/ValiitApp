@@ -19,7 +19,7 @@ public class InternshipOpportunityDto implements Serializable {
     private String numberOfPositions;
     private String comment;
     private String companyName;
-//    private Integer userId;
+    private Integer userId;
     private String technology;
     private String workType;
     private Integer interestedCount;

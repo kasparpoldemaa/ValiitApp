@@ -1,5 +1,6 @@
 package com.example.demo.domain.internshipapplicant;
 
+import com.example.demo.domain.contact.ContactService;
 import com.example.demo.domain.internshipopportunity.InternshipOpportunity;
 import com.example.demo.domain.internshipopportunity.InternshipOpportunityRepository;
 import com.example.demo.domain.internshipopportunity.InternshipOppurtunityService;
@@ -30,6 +31,9 @@ public class InternshipApplicantService {
     @Resource
     private InternshipOppurtunityService internshipOppurtunityService;
 
+    @Resource
+    private ContactService contactService;
+
     public ApplicantResponse addNewApplicant(Integer offerId, Integer studentId, String letter) {
         Student student = studentService.findStudentByStudentId(studentId);
         InternshipOpportunity offer = internshipOppurtunityService.getOfferById(offerId);
@@ -53,6 +57,15 @@ public class InternshipApplicantService {
             studenIds.add(internshipApplicant.getStudent().getId());
         }
         return studenIds;
+    }
+
+    public List<ApplicantResponse> getApplicantApplication(Integer studentId) {
+        List<ApplicantResponse> applicantResponses = internshipApplicantMapper.toDtos(internshipApplicantRepository.findByStudentId(studentId));
+//        for (ApplicantResponse applicantResponse : applicantResponses) {
+//            internshipOppurtunityService.
+//            applicantResponse.setCompanyName(contactService.getCompanyNameByUserId(applicantResponse.getInternshipOpportunity().getUserId()));
+//        }
+        return applicantResponses;
     }
 
 

@@ -22,7 +22,7 @@ public class ContactContoller {
     }
 
     @GetMapping("/all-companies")
-    @Operation(summary = "Kuvab kõik firma nimed")
+    @Operation(summary = "Kuvab kõik firma nimed ja pakkumsite hulga")
     public List<ContactDto> getAllCompanyContacts() {
         return contactService.getAllCompanyContacts();
     }

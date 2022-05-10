@@ -8,4 +8,9 @@ import java.util.List;
 public interface InternshipOpportunityRepository extends JpaRepository<InternshipOpportunity, Integer> {
     @Query("select i from InternshipOpportunity i where i.user.id = ?1")
     List<InternshipOpportunity> findByUserId(Integer id);
+
+    @Query("select count(i) from InternshipOpportunity i where i.user.id = ?1")
+    long countByUserId(Integer id);
+
+
 }

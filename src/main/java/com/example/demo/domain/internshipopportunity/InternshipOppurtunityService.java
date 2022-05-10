@@ -42,4 +42,10 @@ public class InternshipOppurtunityService {
     public InternshipOpportunity getOfferById(Integer offerId) {
         return internshipOpportunityRepository.getById(offerId);
     }
+
+    public Integer countApplicationsByUserId(Integer userId) {
+        long l = internshipOpportunityRepository.countByUserId(userId);
+        return Math.toIntExact(l);
+    }
+
 }

@@ -1,5 +1,6 @@
 package com.example.demo.domain.contact;
 
+import com.example.demo.domain.internshipopportunity.InternshipOppurtunityService;
 import com.example.demo.domain.user.User;
 import com.example.demo.domain.user.UserService;
 import com.example.demo.service.register.NewUserRequest;
@@ -20,6 +21,9 @@ public class ContactService {
 
     @Resource
     private ContactRepository contactRepository;
+
+    @Resource
+    private InternshipOppurtunityService internshipOppurtunityService;
 
 //    public ContactDto addContact(Integer userId, ContactDto contactDto) {
 //        Contact input = contactMapper.toEntity(contactDto);
@@ -61,13 +65,18 @@ public class ContactService {
     }
 
     public List<ContactDto> getAllCompanyContacts() {
-        List<Contact> contacts = contactRepository.findAll();
-        List<Contact> companyNames = new ArrayList<>();
-        for (Contact contact : contacts) {
-            if (contact.getCompanyName() != null) {
-                companyNames.add(contact);
+        List<ContactDto> contactDtos = contactMapper.toDtos(contactRepository.findAll());
+        List<ContactDto> companyNames = new ArrayList<>();
+        for (ContactDto contactDto : contactDtos) {
+            if (contactDto.getCompanyName() != null) {
+                contactDto.setApplicationCount(internshipOppurtunityService.countApplicationsByUserId(contactDto.getUserId()));
+                companyNames.add(contactDto);
             }
         }
-        return contactMapper.toDtos(companyNames);
+        return companyNames;
+    }
+
+    public String getCompanyNameByUserId(Integer userId) {
+        return contactRepository.findByUser_Id(userId).getCompanyName();
     }
 }

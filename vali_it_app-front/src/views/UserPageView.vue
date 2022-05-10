@@ -8,7 +8,6 @@
     </div>
 
 
-
     <div class="workExperience" v-if="profileView">
 
       <!--    ================================PROFIILIPILT================================-->
@@ -36,7 +35,7 @@
           </div>
         </div>
 
-<!--    ================================PROFIILI ANKEET================================-->
+        <!--    ================================PROFIILI ANKEET================================-->
 
         <div class="card" id="profile">
           <div class="card-body" id="cardBody">
@@ -50,11 +49,11 @@
       <button id="submit" class="btn btn-primary btn-lg" v-on:click="updateStudentProfile">Uuenda profiili</button>
 
 
-<!--    ================================WORK EXPERIENCE================================-->
+      <!--    ================================WORK EXPERIENCE================================-->
 
       <div class="workAndEducation" v-if="showExperience">
         <h3 id="title-work">Minu töökogemused</h3>
-        <table class="table table-hover" >
+        <table class="table table-hover">
           <thead id="expTable">
           <tr>
             <th scope="col" id="nr">#</th>
@@ -73,9 +72,9 @@
             <td>{{ experience.endDate }}</td>
             <td>{{ experience.companyName }}</td>
             <td>{{ experience.position }}</td>
-            <td id="jobDescription" >{{ experience.jobDescription }}</td>
-            <td  style="float: right">
-              <button  type="submit" class="btn btn-primary btn-xs m-3"
+            <td id="jobDescription">{{ experience.jobDescription }}</td>
+            <td style="float: right">
+              <button type="submit" class="btn btn-primary btn-xs m-3"
                       @click="hideExperienceTable(experience.id)">Muuda
               </button>
               <button type="submit" class="btn btn-primary btn-xs"
@@ -91,7 +90,7 @@
         </button>
       </div>
 
-<!--    ================================LISA/UUENDA WORK EXPERIENCE================================-->
+      <!--    ================================LISA/UUENDA WORK EXPERIENCE================================-->
 
       <div class="table">
         <form>
@@ -126,7 +125,7 @@
         </form>
       </div>
 
-<!--    ================================EDUCATION================================-->
+      <!--    ================================EDUCATION================================-->
 
       <div class="workAndEducation" v-if="showEducation">
         <h3 id="title-edu1">Minu haridus</h3>
@@ -202,6 +201,8 @@
     </div>
 
     <div class="internship" v-if="internShipView">
+
+      <h3 id="internshipTitle">Praktika pakkumised</h3>
       <div v-if="showMessage" class="alert alert-success" role="alert">
         {{ addSuccessMessage }}
       </div>
@@ -213,17 +214,47 @@
         </tr>
         </thead>
         <tbody>
-        <tr v-for="company in companies" >
+        <tr v-for="company in companies">
 
 
           <td>{{ company.companyName }}</td>
           <td>
-            <button type="button" class="btn btn-info" @click="getOffersById(company.userId)">{{'Vaata pakkumisi' }}</button>
+            <button type="button" class="btn btn-info" @click="getOffersById(company.userId)">Vaata pakkumisi <span class="badge badge-light">{{company.applicationCount}}</span>
+            </button>
           </td>
 
         </tr>
         </tbody>
       </table>
+
+<!--      <h3 id="applyTitle"> Minu kandideerimised </h3>-->
+<!--      <table class="table table-hover">-->
+<!--        <thead>-->
+<!--        <tr>-->
+<!--          <th scope="col">Algus kuupäev</th>-->
+<!--          <th scope="col">Kestvus</th>-->
+<!--          <th scope="col">Asukoht</th>-->
+<!--          <th scope="col">Vabad kohad</th>-->
+<!--          <th scope="col">Kasutusel tehnoloogiad</th>-->
+<!--          <th scope="col">Töövorm</th>-->
+<!--          <th scope="col">Tasu</th>-->
+<!--          <th scope="col">Lisainfo</th>-->
+<!--        </tr>-->
+<!--        </thead>-->
+<!--        <tbody>-->
+<!--        <tr v-for="application in applications">-->
+<!--          <td>{{ application.data.startTime }}</td>-->
+<!--          <td>{{ application.data.duration }}</td>-->
+<!--          <td>{{ application.data.location }}</td>-->
+<!--          <td>{{ application.data.numberOfPositions }}</td>-->
+<!--          <td>{{ application.data.technology }}</td>-->
+<!--          <td>{{ application.data.workType }}</td>-->
+<!--          <td>{{ application.data.isPayable ? 'jah' : 'ei'}}</td>-->
+<!--          <td>{{ application.data.comment }}</td>-->
+<!--        </tr>-->
+<!--        </tbody>-->
+<!--      </table>-->
+
 
       <table id="offersTable" class="table table-hover" v-if="showOffers">
         <thead>
@@ -239,17 +270,18 @@
         </tr>
         </thead>
         <tbody>
-        <tr v-for="offerForm in offerForms" >
+        <tr v-for="offerForm in offerForms">
           <td>{{ offerForm.startTime }}</td>
           <td>{{ offerForm.duration }}</td>
           <td>{{ offerForm.location }}</td>
           <td>{{ offerForm.numberOfPositions }}</td>
           <td>{{ offerForm.technology }}</td>
           <td>{{ offerForm.workType }}</td>
-          <td>{{ offerForm.isPayable }}</td>
+          <td>{{ offerForm.isPayable ? 'jah' : 'ei'}}</td>
           <td>{{ offerForm.comment }}</td>
           <td>
-            <button type="button" class="btn btn-success" @click="showMotivationLetter(offerForm.id)">Kandideeri</button>
+            <button type="button" class="btn btn-success" @click="showMotivationLetter(offerForm.id)">Kandideeri
+            </button>
           </td>
         </tr>
         </tbody>
@@ -264,36 +296,39 @@
           <tbody>
           <tr>
             <td>Asukoht:</td>
-            <td>{{ internship.location}}</td>
+            <td>{{ internship.location }}</td>
           </tr>
           <tr>
             <td>Kestvus:</td>
-            <td>{{ internship.duration}}</td>
+            <td>{{ internship.duration }}</td>
           </tr>
           <tr>
             <td>Tehnoloogia:</td>
-            <td>{{ internship.technology}}</td>
+            <td>{{ internship.technology }}</td>
           </tr>
           <tr>
             <td>Töövorm:</td>
-            <td>{{ internship.workType}}</td>
+            <td>{{ internship.workType }}</td>
           </tr>
           <tr>
             <td>Tasu:</td>
-            <td>{{ internship.isPayable}}</td>
+            <td>{{ internship.isPayable ? 'jah' : 'ei'}}</td>
           </tr>
           <tr>
             <td>Vabad kohad:</td>
-            <td>{{ internship.numberOfPositions}}</td>
+            <td>{{ internship.numberOfPositions }}</td>
           </tr>
           </tbody>
         </table>
-        <label id="motLabel" class="label-form" >Motivatsioonikiri:</label>
-        <textarea id="motivationField"  class="form-control" placeholder="Max 1000 tähemärki"  v-model="letter"></textarea>
+        <label id="motLabel" class="label-form">Motivatsioonikiri:</label>
+        <textarea id="motivationField" class="form-control" placeholder="Max 1000 tähemärki"
+                  v-model="letter"></textarea>
 
         <div id="motButtons">
-        <button type="button" class="btn btn-success m-3" @click="addNewApplicant(internship.id, letter)">Kandideeri praktikale</button>
-        <button type="button" class="btn btn-danger" @click="resetOfferView">Tühista</button>
+          <button type="button" class="btn btn-success m-3" @click="addNewApplicant(internship.id, letter)">Kandideeri
+            praktikale
+          </button>
+          <button type="button" class="btn btn-danger" @click="resetOfferView">Tühista</button>
         </div>
 
 
@@ -304,31 +339,8 @@
 
     <div class="courses" v-if="courseView">
 
-      <div class="card" v-for="experience in workExperience">
-        <!--        <div v-if="picture.base64.length > -1">-->
-        <!--          <img src="../assets/default-profile.png" class="card-img-top" alt="">-->
-        <!--        </div>-->
-        <!--        <div v-else>-->
-        <img :src="picture.base64" class="card-img-top" alt="">
-        {{experience.startDate}}
-        <!--        </div>-->
-        <div class="card-body">
-          <div class="upload-button">
-            <input type="file" @change="handleImage" accept="image/x-png,image/jpeg">
-            <button v-on:click="addPicture" type="button" class="btn btn-outline-link btn-sm m-3">Lisa pilt</button>
-            <button v-on:click="deletePicture" type="button" class="btn btn-outline-link btn-sm">Eemalda pilt
-            </button>
-          </div>
-        </div>
-        </div>
-
-
-
-
-
 
     </div>
-
 
 
   </div>
@@ -375,12 +387,11 @@ export default {
       offerId: null,
       internship: {},
       showMotivation: false,
-      showOffers:false,
+      showOffers: false,
       letter: '',
       addSuccessMessage: '',
-      showMessage: false
-
-
+      showMessage: false,
+      applications: {}
 
 
     }
@@ -752,14 +763,13 @@ export default {
           })
         },
 
-        //TODO lisa õige URL pärast merge'i
         addNewApplicant: function (id, letter) {
-          this.$http.post("/new", {}, {
-            params: {
-              studentId: this.studentId,
-              offerId: id,
-              letter: letter
-            }
+          this.$http.post("/applicant/new", {}, {
+                params: {
+                  studentId: this.studentId,
+                  offerId: id,
+                  letter: letter
+                }
               }
           ).then(response => {
             this.resetOfferView()
@@ -770,8 +780,19 @@ export default {
             console.log(error)
           })
         },
-
-
+        getMyApplications: function () {
+          this.$http.get("/applicant/student-id", {
+            params: {
+              studentId: this.studentId
+            }
+          })
+              .then(response => {
+                this.applications = response.data
+                console.log(response.data)
+              }).catch(error => {
+            console.log(error)
+          })
+        }
 
 
       },
@@ -782,7 +803,7 @@ export default {
     this.getStudentWorkExperienceById()
     this.getStudentEducationExperienceById()
     this.getAllCompanies()
-
+    this.getMyApplications()
 
 
   }
@@ -808,11 +829,12 @@ export default {
   margin-bottom: 30px;
 
 }
+
 #navButtons {
   margin-top: 50px;
 }
 
-#jobDescription{
+#jobDescription {
   max-width: 300px;
 }
 
@@ -886,7 +908,8 @@ img {
   margin-left: auto;
   margin-right: auto;
 }
-#motivationField{
+
+#motivationField {
   max-width: 30vw;
   height: 10vw;
   margin-left: auto;
@@ -895,6 +918,9 @@ img {
   padding-left: 0;
   line-height: 1em;
 
+}
+#internshipTitle {
+  margin-bottom: 30px;
 }
 
 
@@ -923,6 +949,7 @@ img {
   float: right;
   margin-left: auto;
 }
+
 #submit-2 {
   float: right;
 }
@@ -950,10 +977,9 @@ img {
 }
 
 
-#nr{
+#nr {
   width: 30px;
 }
-
 
 
 </style>
