@@ -74,6 +74,7 @@ export default {
 .form {
   display: inline-block;
   margin: auto 98vh;
+  margin-bottom: 10vh;
   /*border: 2px solid red;*/
   /*margin-right: 100px;*/
 }
@@ -86,7 +87,7 @@ div.form {
 
 div.form label {
   text-align: right;
-  margin-top: 10px
+  margin-top: 10px;
 }
 
 div.form label:after {

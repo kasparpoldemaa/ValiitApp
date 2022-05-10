@@ -86,7 +86,7 @@
             </tbody>
           </table>
           <button id="addNewWork" type="submit" class="btn btn-default btn-xs" @click="displayNewExperience">
-            Loo uus töökogemus
+            Loo uus töö
           </button>
         </div>
 
@@ -162,7 +162,7 @@
             </tbody>
           </table>
           <button id="addNewEdu" type="submit" class="btn btn-default btn-xs" @click="displayNewEducation">
-            Loo uus haridus
+            Loo uus kool
           </button>
         </div>
 
@@ -816,11 +816,6 @@ export default {
 
 <style scoped>
 
-
-.internship {
-  margin-bottom: 20vh;
-}
-
 #companyListTable {
   width: 30vw;
   margin-left: auto;
@@ -896,15 +891,12 @@ img {
   /*border: 2px solid red;*/
 }
 
-
 .pictureAndForm {
   width: 70%;
   height: auto;
   margin: auto;
 
 }
-
-
 #submit {
   margin-top: 20px;
   margin-bottom: 20px;
@@ -931,8 +923,6 @@ img {
   margin-bottom: 30px;
 
 }
-
-
 #picture {
   float: left;
   width: 30%;
@@ -984,8 +974,6 @@ img {
   margin-left: auto;
   margin-right: auto;
 }
-
-
 #nr {
   width: 30px;
 }
@@ -999,6 +987,5 @@ img {
 .workExperience {
   margin-bottom: 30vh;
 }
-
 
 </style>
