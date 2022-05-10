@@ -47,16 +47,16 @@ export default {
 
 nav {
   padding: 30px;
-  background-color: #2c3e50;
+  background-color: #4078A9;
 }
 
 nav a {
   font-weight: bold;
-  color: #42b983;
+  color: #C6DEF2;
 }
 
 nav a.router-link-exact-active {
-  color: #42b983;
+  color: #C6DEF2;
 }
 button {
   text-align: center;

@@ -2,7 +2,7 @@
   <div>
 
     <div class="logo">
-      <img alt="BCS logo" src="../assets/Vali_IT_logo.png">
+      <img alt="Vali-it logo" src="../assets/valiit.png">
     </div>
     <br>
 
@@ -12,11 +12,14 @@
 
     </div>
 
-    <div>
-
+    <div class="block-2">
+      <br>
+      <br>
+      <br>
+      <br>
       <div class="companyandstudent">
         <div class="card" id="student">
-          <img src="../assets/IT-companyold.jpg" class="card-img-top" alt="Student picture">
+          <img src="../assets/Kickassd-Educational-Program-1024x576.jpg" class="card-img-top" alt="Student picture">
           <div class="card-body">
             <h5 class="card-title">Õpilane saab:</h5>
             <p class="card-text">
@@ -31,7 +34,7 @@
 
         <div>
           <div class="card" id="company">
-            <img src="../assets/IT-companyold.jpg" class="card-img-top" alt="Company picture">
+            <img src="../assets/companyIT.jpg" class="card-img-top" alt="Company picture">
             <div class="card-body">
               <h5 class="card-title">Ettevõte saab:</h5>
               <p class="card-text">
@@ -65,16 +68,12 @@
 
       <h3>Vali-IT koduleht</h3>
       <p><a href="http://vali-it.ee/" target="_blank" rel="noopener">Vajuta siia</a></p>
+      <br>
+      <br>
+      <br>
+      <br>
 
     </div>
-
-    <div class="fa-3x">
-      <h5>Loading New Students</h5>
-      <i class="fa-solid fa-circle-notch fa-spin"></i>
-    </div>
-    <!--    <div class="spinner-border text-primary" role="status">-->
-    <!--      <span class="visually-hidden">Loading...</span>-->
-    <!--    </div>-->
 
   </div>
 
@@ -91,6 +90,7 @@ export default {
 
 <style>
 
+
 .logo {
   margin-top: 1vh;
   margin-bottom: 1vh;
@@ -99,6 +99,12 @@ export default {
 img {
   width: 25vw;
   height: auto;
+}
+
+.block-2{
+
+  margin-bottom: 5%;
+
 }
 
 .introduction {
