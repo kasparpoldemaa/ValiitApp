@@ -46,7 +46,12 @@ body {
 input{
   margin-top: 3%;
   margin-bottom: 3%;
+
+  /*padding: 0.2em;*/
+  /*box-sizing: border-box;*/
+  /*width: 100%*/
 }
+
 
 /*form {*/
 /*  float: left;*/

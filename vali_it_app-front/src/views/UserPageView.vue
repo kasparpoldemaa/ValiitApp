@@ -4,7 +4,7 @@
     <div id="navButtons" class="btn-group" role="group" aria-label="Basic example">
       <button type="button" class="btn btn-primary btn-lg" @click="showProfileView">Minu profiil</button>
       <button type="button" class="btn btn-primary btn-lg" @click="showInternShipView">Minu praktika</button>
-      <button type="button" class="btn btn-primary btn-lg" @click="showCourseView">Näita kandideerimisi</button>
+      <button type="button" class="btn btn-primary btn-lg" @click="showCourseView">Minu kursus</button>
     </div>
 
 
@@ -228,7 +228,6 @@
       <table id="offersTable" class="table table-hover" v-if="showOffers">
         <thead>
         <tr>
-          <th scope="col"></th>
           <th scope="col">Algus kuupäev</th>
           <th scope="col">Kestvus</th>
           <th scope="col">Asukoht</th>
@@ -303,6 +302,33 @@
 
     </div>
 
+    <div class="courses" v-if="courseView">
+
+      <div class="card" v-for="experience in workExperience">
+        <!--        <div v-if="picture.base64.length > -1">-->
+        <!--          <img src="../assets/default-profile.png" class="card-img-top" alt="">-->
+        <!--        </div>-->
+        <!--        <div v-else>-->
+        <img :src="picture.base64" class="card-img-top" alt="">
+        {{experience.startDate}}
+        <!--        </div>-->
+        <div class="card-body">
+          <div class="upload-button">
+            <input type="file" @change="handleImage" accept="image/x-png,image/jpeg">
+            <button v-on:click="addPicture" type="button" class="btn btn-outline-link btn-sm m-3">Lisa pilt</button>
+            <button v-on:click="deletePicture" type="button" class="btn btn-outline-link btn-sm">Eemalda pilt
+            </button>
+          </div>
+        </div>
+        </div>
+
+
+
+
+
+
+    </div>
+
 
 
   </div>
@@ -314,6 +340,7 @@ import StudentProfile from "@/components/StudentProfile";
 export default {
   name: "UserPageView",
   components: {StudentProfile},
+
   data: function () {
     return {
       profileView: true,
@@ -764,6 +791,8 @@ export default {
 </script>
 
 <style scoped>
+
+
 #companyListTable {
   width: 30vw;
   margin-left: auto;
@@ -786,6 +815,7 @@ export default {
 #jobDescription{
   max-width: 300px;
 }
+
 #schoolName {
   max-width: 300px;
 }
@@ -831,7 +861,7 @@ div.form-group label:after {
 }
 
 img {
-
+  padding: 5px;
   max-width: 100%;
   height: auto;
   /*border: 2px solid red;*/
