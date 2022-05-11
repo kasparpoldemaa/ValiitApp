@@ -1,14 +1,16 @@
 package com.example.demo.domain.student;
 
+import com.example.demo.domain.contact.ContactService;
 import com.example.demo.domain.studentprofile.StudentProfile;
 import com.example.demo.domain.studentprofile.StudentProfileService;
 import com.example.demo.domain.user.User;
 import com.example.demo.domain.user.UserService;
-import com.example.demo.service.image.ImageResponse;
+import com.example.demo.service.profile.StudentName;
 import com.example.demo.service.register.NewUserRequest;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -26,13 +28,14 @@ public class StudentService {
     @Resource
     private UserService userService;
 
+    @Resource
+    private ContactService contactService;
 
 
     public List<StudentDto> getAvailableStudents() {
         List<Student> students = studentRepository.findByIsAvailable(true);
         return studentMapper.toDtos(students);
     }
-
 
 
     public Student findStudentByStudentId(Integer studentId) {
@@ -90,5 +93,22 @@ public class StudentService {
     }
 
 
+    public List<StudentName> getStudents(List<Integer> studentIds) {
 
+        List<Student> students = new ArrayList<>();
+
+        for (Integer studentId : studentIds) {
+            Student student = studentRepository.getById(studentId);
+            students.add(student);
+        }
+
+        List<Integer> userIds = new ArrayList<>();
+
+        for (Student student : students) {
+            Integer userId = student.getUser().getId();
+            userIds.add(userId);
+        }
+
+        return contactService.getByUserId(userIds);
+    }
 }
