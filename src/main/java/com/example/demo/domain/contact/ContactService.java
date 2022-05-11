@@ -2,6 +2,7 @@ package com.example.demo.domain.contact;
 
 import com.example.demo.domain.user.User;
 import com.example.demo.domain.user.UserService;
+import com.example.demo.service.profile.StudentName;
 import com.example.demo.service.register.NewUserRequest;
 import org.springframework.stereotype.Service;
 
@@ -69,5 +70,25 @@ public class ContactService {
             }
         }
         return contactMapper.toDtos(companyNames);
+    }
+
+    public List<StudentName> getByUserId(List<Integer> userIds) {
+
+        List<StudentName> studentNames = new ArrayList<>();
+
+        for (Integer userId : userIds) {
+            Contact contact = contactRepository.getByUserId(userId);
+            String firstName = contact.getFirstName();
+            String lastName = contact.getLastName();
+
+            StudentName studentName = new StudentName();
+            studentName.setFirstName(firstName);
+            studentName.setLastName(lastName);
+
+            studentNames.add(studentName);
+
+        }
+
+        return studentNames;
     }
 }

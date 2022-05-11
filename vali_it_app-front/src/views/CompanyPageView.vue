@@ -1,11 +1,11 @@
 <template>
-  <div>
+  <div >
 
-    <div>
+    <div v-if="showOffers">
       <h2>SISESTA PRAKTIKA PAKKUMINE :</h2>
     </div>
     <form>
-      <div class="form-group">
+      <div class="form-group" v-if="showOffers">
         <label class="label-form"></label>
         <input type="text" class="form-control" id="name" placeholder="Asukoht" v-model="offer.location">
 
@@ -29,7 +29,7 @@
 
       </div>
 
-      <div>
+      <div v-if="showOffers">
 
         Praktikakoht on tasustatud € <input type="checkbox" v-model="isPayable">
         <br>
@@ -41,7 +41,7 @@
       <br>
       <br>
 
-      <div class="xxx">
+      <div class="xxx" v-if="showOffers">
         <div>
           <div id="accordion">
             <div class="card">
@@ -60,9 +60,7 @@
               </div>
               <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
                 <div class="card-body">
-
                   <div>
-
                     <table class="table table-hover">
                       <thead>
                       <tr>
@@ -94,35 +92,46 @@
                         <td>{{ offerForm.workType }}</td>
                         <td id="wrapthisthing" style="word-wrap: break-word;">{{ offerForm.isPayable ? 'jah' : 'ei' }}</td>
                         <td>{{ offerForm.comment }}</td>
+                        <td>{{ offerForm.studentId }}</td>
                         <td>
                           <button type="button" class="btn btn-danger" @click="deleteInternshipOfferByID(offerForm.id)">
                             Kustuta
                           </button>
                         </td>
-
                         <td>
-                          <button type="button" class="btn btn-primary">
+                          <button type="button" class="btn btn-primary" @click="getStudentIds(offerForm.studentId)">
                             Huvilised <span class="badge badge-light">{{offerForm.interestedCount}}</span>
                             <span class="sr-only">how many applicants</span>
                           </button>
-
                         </td>
                       </tr>
                       </tbody>
                     </table>
-
                   </div>
                 </div>
-
               </div>
             </div>
           </div>
         </div>
+      </div>
+
+      <div v-if="showApplicants" >
+
+        <button type="button" class="btn btn-primary" @click="getAllInterestedStudents()">
+          Huviliste nimed
+        </button>
+
+        <h1>{{this.studentIds}}</h1>
+
+        <br>
+        <br>
+
+        <h2>{{this.studentNames}}</h2>
+
 
       </div>
 
     </form>
-
   </div>
 </template>
 
@@ -135,20 +144,31 @@ export default {
   data: function () {
     return {
       offer: {},
-      addOffer: false,
-      applications: false,
-      showOffers: false,
+      showOffers: true,
+      showApplicants: false,
       isPayable: false,
       offerForms: {},
       arrayLength: '',
       userId: sessionStorage.getItem('userId'),
       id: null,
       answer: '',
-
+      studentIds: {},
+      studentNames: {}
 
     }
   },
   methods: {
+
+    getStudentIds: function (studentId) {
+      this.studentIds = studentId
+      this.closeDivs()
+    },
+
+    closeDivs: function () {
+      this.showOffers = false
+      this.showApplicants = true
+
+    },
 
     refreshPage: function () {
       window.location.reload();
@@ -164,6 +184,20 @@ export default {
       ).then(response => {
         this.refreshPage()
         this.getAllOffersByUserId()
+        console.log(response.data)
+      }).catch(error => {
+        console.log(error)
+      })
+    },
+
+    getAllInterestedStudents: function () {
+      this.$http.get("/profile/list", {
+        params: {
+          studentIds: this.studentIds
+        }
+      }
+      ).then(response => {
+        this.studentNames = response.data
         console.log(response.data)
       }).catch(error => {
         console.log(error)
@@ -202,8 +236,9 @@ export default {
 
 
   mounted() {
-    this.addInternship()
+    // this.addInternship()
     this.getAllOffersByUserId()
+    // this.getAllInterestedStudents()
 
   }
 }
