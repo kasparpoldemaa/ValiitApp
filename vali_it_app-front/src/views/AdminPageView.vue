@@ -7,6 +7,11 @@
     </div>
 
     <div v-if="this.displayAllEvents">
+
+      <div v-if="showMessage" class="alert alert-success" role="alert">
+        {{ addSuccessMessage }}
+      </div>
+
       <table class="table table-hover">
         <thead id="eventTable">
         <tr>
@@ -65,8 +70,8 @@
         <label class="label-form">Esineja</label>
         <input type="text" class="form-control" placeholder="Esineja(te) nimi" v-model="eventById.presenterName">
 
-        <button class="btn btn-primary" v-if="!toggleButton" v-on:click="addNewEvent">Loo üritus</button>
-        <button class="btn btn-primary" v-if="toggleButton" v-on:click="updateEventAndResetView">Muuda</button>
+        <button class="btn btn-primary m-3" v-if="!toggleButton" v-on:click="addNewEvent">Loo üritus</button>
+        <button class="btn btn-primary m-3" v-if="toggleButton" v-on:click="updateEventAndResetView">Muuda</button>
       </div>
 
       <div>
@@ -92,15 +97,18 @@ export default {
       events: {},
       toggleButton: false,
       eventById: {},
-      eventId: null
+      eventId: null,
+      showMessage: false,
+      addSuccessMessage: ``
 
-    };
+    }
   },
   methods: {
 
     displayTableEvent: function () {
       this.tableDivDisplay = true
-      this.displayAllEvents =false
+      this.displayAllEvents = false
+      this.toggleButton = false
     },
 
     hideTableEvent: function () {
@@ -149,6 +157,7 @@ export default {
       this.updateEvent()
       this.tableDivDisplay = false
       this.displayAllEvents = true
+      this.toggleButton = false
     },
 
     getAllEvents: function () {
@@ -173,10 +182,26 @@ export default {
           }).catch(error => {
         console.log(error)
       })
+    },
+
+    deleteEventById: async function (id) {
+      await this.$http.delete("/event/delete", {
+            params: {
+              eventId: id
+            }
+          }
+      ).then(response => {
+        this.getAllEvents()
+        this.showMessage = true
+        this.addSuccessMessage = 'Üritus edukalt kustutatud.'
+        console.log(response.data)
+      }).catch(error => {
+        console.log(error)
+      })
     }
   },
-  mounted() {
-
+  mounted () {
+    this.getAllEvents()
   }
 }
 
