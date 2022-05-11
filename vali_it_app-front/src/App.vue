@@ -5,7 +5,8 @@
       <router-link to="/">Esileht</router-link> |
       <router-link to="/login">Logi sisse</router-link> |
       <router-link to="/user-page">User Page (ajutine)</router-link> |
-      <router-link to="/company-page">Company Page (ajutine)</router-link>
+      <router-link to="/company-page">Company Page (ajutine)</router-link> |
+      <router-link to="/admin">Admin (ajutine)</router-link>
       <button id="logout" type="button" class="btn btn-info" v-on:click="navigateToHomePage()">Logi välja</button>
     </nav>
     <router-view/>

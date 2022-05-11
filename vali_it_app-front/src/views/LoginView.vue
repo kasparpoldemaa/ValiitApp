@@ -1,12 +1,12 @@
 <template>
-  <div class="login">
+  <div class="login"><strong>
     <img alt="BCS_logo" src="../assets/BCS_logo.png">
-    <body>
+
     <div class="container">
       <div class="d-flex justify-content-center h-100">
         <div class="card">
           <div class="card-header">
-            <h3>Logi sisse</h3>
+            <h3><strong>Logi sisse</strong></h3>
           </div>
           <div class="card-body">
 
@@ -17,8 +17,8 @@
                 </i></span>
                 </div>
                 <input type="text" v-model="request.userName" class="form-control" placeholder="e-mail">
-
               </div>
+
               <div class="input-group form-group">
                 <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-key">
@@ -28,11 +28,12 @@
                 </div>
                 <input type="password" v-model="request.password" class="form-control" placeholder="parool">
               </div>
+
               <div class="remember">
                 <input type="checkbox"> Mäleta mind
               </div>
               <div class="form-group">
-                <input type="submit" value="Logi sisse" class="btn float-right login_btn"
+                <input type="submit" value="Logi sisse" class="btn btn-primary btn float-right btn-sm"
                        v-on:click="logIn(request.userName,request.password)">
               </div>
 
@@ -45,7 +46,7 @@
         </div>
       </div>
     </div>
-    </body>
+  </strong>
   </div>
 </template>
 
@@ -112,6 +113,15 @@ export default {
 </script>
 
 <style scoped>
+
+.login{
+  margin-bottom: 5vh;
+}
+
+.remember{
+  float: left;
+}
+
 img {
   width: 25vw;
   height: auto;
@@ -123,14 +133,5 @@ img {
 
 }
 
-.login_btn {
-  background-color: blue;
-  color: white;
-}
-
-.login_btn:hover {
-  color: white;
-  background-color: deepskyblue;
-}
 
 </style>

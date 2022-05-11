@@ -345,6 +345,32 @@
 
     <div class="courses" v-if="courseView">
 
+      <table class="table table-hover">
+        <thead id="eventTable">
+        <tr>
+          <th scope="col" >#</th>
+          <th scope="col">Kuupäev</th>
+          <th scope="col">Kellaaeg</th>
+          <th scope="col">Ürituse nimi</th>
+          <th scope="col">Ettevõtte</th>
+          <th scope="col">Koht</th>
+          <th scope="col">Esineja</th>
+
+        </tr>
+        </thead>
+        <tbody>
+        <tr v-for="(event, index) in events">
+          <th>{{ index + 1 }}</th>
+          <td>{{ event.date }}</td>
+          <td>{{ event.time }}</td>
+          <td>{{ event.eventName }}</td>
+          <td>{{ event.company }}</td>
+          <td>{{ event.zoom }}</td>
+          <td>{{ event.presenterName }}</td>
+
+        </tr>
+        </tbody>
+      </table>
 
     </div>
 
@@ -397,7 +423,8 @@ export default {
       letter: '',
       addSuccessMessage: '',
       showMessage: false,
-      applications: {}
+      applications: {},
+      events:{}
 
 
     }
@@ -431,6 +458,7 @@ export default {
           this.profileView = false
           this.internShipView = false
           this.courseView = true
+          this.getAllEvents()
         },
 
         displayNewExperience: function () {
@@ -468,6 +496,17 @@ export default {
           this.showMotivation = false
           this.showOffers = false
         },
+
+        getAllEvents: function () {
+          this.$http.get("/event/all")
+              .then(response => {
+                this.events= response.data
+                console.log(response.data)
+              }).catch(error => {
+            console.log(error)
+          })
+        },
+
 
         handleImage(event) {
           const selectedImage = event.target.files[0];
@@ -925,6 +964,10 @@ img {
 #internshipTitle {
   margin-bottom: 30px;
 
+}
+
+.internship{
+  margin-bottom: 10vh;
 }
 #picture {
   float: left;

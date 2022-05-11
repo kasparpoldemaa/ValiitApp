@@ -29,7 +29,7 @@ public class EventService {
     }
 
     public List<EventDto> getAllEvents() {
-        List<Event> events = eventRepository.findAll();
+        List<Event> events = eventRepository.findByOrderByDateAsc();
         return eventMapper.toDtos(events);
     }
 
@@ -38,4 +38,8 @@ public class EventService {
 
     }
 
+    public EventDto getEventById(Integer eventId) {
+        Event event = eventRepository.getById(eventId);
+        return eventMapper.toDto(event);
+    }
 }

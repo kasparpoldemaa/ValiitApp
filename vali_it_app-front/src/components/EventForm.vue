@@ -23,7 +23,7 @@
 
       </div>
 
-      <button class="btn btn-primary" v-on:click="addNewEvent">Submit</button>
+      <button class="btn btn-primary m-3" v-on:click="addNewEvent">Submit</button>
     </form>
 
   </div>

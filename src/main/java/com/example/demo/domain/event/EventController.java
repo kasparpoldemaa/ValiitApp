@@ -32,6 +32,12 @@ public class EventController {
         return eventService.getAllEvents();
     }
 
+    @GetMapping("/id")
+    @Operation(summary = "Kuvab event´i Id järgi")
+    public EventDto getEventById(@RequestParam Integer eventId) {
+        return eventService.getEventById(eventId);
+    }
+
     @DeleteMapping("/delete")
     @Operation(summary = "Kustuta üritus id järgi")
     public void removeEventById(@RequestParam Integer eventId) {

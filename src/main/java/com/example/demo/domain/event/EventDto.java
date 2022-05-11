@@ -11,7 +11,7 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @NoArgsConstructor
 public class EventDto implements Serializable {
-//    private final Integer id;
+    private Integer id;
     private LocalDate date;
     private String time;
     private String eventName;
