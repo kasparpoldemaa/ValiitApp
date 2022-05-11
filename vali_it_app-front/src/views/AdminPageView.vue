@@ -99,16 +99,21 @@ export default {
       eventById: {},
       eventId: null,
       showMessage: false,
-      addSuccessMessage: ``
+      addSuccessMessage: ``,
 
     }
   },
   methods: {
 
+    refreshPage: function () {
+      window.location.reload();
+    },
+
     displayTableEvent: function () {
       this.tableDivDisplay = true
       this.displayAllEvents = false
       this.toggleButton = false
+
     },
 
     hideTableEvent: function () {
@@ -142,22 +147,24 @@ export default {
       })
     },
 
+    updateEventAndResetView: function () {
+      this.updateEvent()
+      this.refreshPage()
+      this.tableDivDisplay = false
+      this.displayAllEvents = true
+      this.toggleButton = false
+    },
+
     addNewEvent: function () {
 
       this.$http.post("/event/add", this.eventById
       ).then(response => {
+        this.refreshPage()
         this.hideTableEvent()
         console.log(response.data)
       }).catch(error => {
         console.log(error)
       })
-    },
-
-    updateEventAndResetView: function () {
-      this.updateEvent()
-      this.tableDivDisplay = false
-      this.displayAllEvents = true
-      this.toggleButton = false
     },
 
     getAllEvents: function () {
@@ -200,8 +207,10 @@ export default {
       })
     }
   },
+
   mounted () {
     this.getAllEvents()
+
   }
 }
 
