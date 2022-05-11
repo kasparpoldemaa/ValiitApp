@@ -38,4 +38,8 @@ public class EventService {
 
     }
 
+    public EventDto getEventById(Integer eventId) {
+        Event event = eventRepository.getById(eventId);
+        return eventMapper.toDto(event);
+    }
 }
