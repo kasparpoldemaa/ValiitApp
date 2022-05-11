@@ -16,7 +16,8 @@
           <h2 class="card-title">{{ this.contact.firstName + ' ' + this.contact.lastName }}</h2>
           <small>About me</small>
           <p class="card-text">
-            <input disabled type="text" class="form-control" placeholder="Räägi natuke endast" v-model="profile.aboutMe">
+            <input disabled type="text" class="form-control" placeholder="Räägi natuke endast"
+                   v-model="profile.aboutMe">
           </p>
         </div>
       </div>
@@ -28,29 +29,34 @@
           <div class="form-group" id="formGroup">
             <label class="label-form">Sünniaeg</label>
             <input disabled type="date" class="form-control" placeholder="Sünniaeg" v-model="profile.dateOfBirth">
-            <label   class="label-form">Linn, kus soovid töötada</label>
+            <label class="label-form">Linn, kus soovid töötada</label>
             <input disabled type="text" class="form-control" placeholder="Linn" v-model="profile.location">
             <label class="label-form">Sinu oskused</label>
-            <input disabled type="text" class="form-control" placeholder="Kirjelda oma oskusi" v-model="profile.competence">
+            <input disabled type="text" class="form-control" placeholder="Kirjelda oma oskusi"
+                   v-model="profile.competence">
             <label class="label-form">Tugevused</label>
-            <input disabled type="text" class="form-control" placeholder="Kirjelda oma tugevusi" v-model="profile.strength">
+            <input disabled type="text" class="form-control" placeholder="Kirjelda oma tugevusi"
+                   v-model="profile.strength">
             <label class="label-form">Minust</label>
-            <input disabled type="text" class="form-control" placeholder="Räägi natuke endast" v-model="profile.aboutMe">
+            <input disabled type="text" class="form-control" placeholder="Räägi natuke endast"
+                   v-model="profile.aboutMe">
             <label class="label-form">LinkedIn</label>
-            <input disabled type="text" class="form-control" placeholder="Sinu LinkedIn aadress" v-model="profile.linkedin">
+            <input disabled type="text" class="form-control" placeholder="Sinu LinkedIn aadress"
+                   v-model="profile.linkedin">
             <label class="label-form">GitHub</label>
-            <input disabled type="text" class="form-control" placeholder="Sinu GitHub aadress" v-model="profile.githubLink">
+            <input disabled type="text" class="form-control" placeholder="Sinu GitHub aadress"
+                   v-model="profile.githubLink">
             <label class="label-form">Olen saadaval alates</label>
             <input disabled type="text" class="form-control" placeholder="Millal sooviksid praktikaga alustada?"
                    v-model="profile.availableFrom">
           </div>
-          <label class="label-form m-1" >Otsin praktikakohta</label>
+          <label class="label-form m-1">Otsin praktikakohta</label>
           <input type="checkbox" v-model="isAvailable" disabled>
         </div>
       </div>
     </div>
 
-
+    <div>{{this.studentId + ' studentId'}}</div>
 
 
     <!--    ================================WORK EXPERIENCE================================-->
@@ -126,9 +132,8 @@ export default {
       isAvailable: true,
 
 
-
       contactId: sessionStorage.getItem('contactId'),
-      studentId: sessionStorage.getItem('studentId'),
+      studentId: this.$route.query.id,
       profile: {},
       contact: {},
       picture: {},
@@ -142,8 +147,6 @@ export default {
       educationExperiences: {},
       educationExperienceId: null,
       offerForms: {},
-
-
 
 
     }
@@ -564,7 +567,7 @@ export default {
 </script>
 
 <style scoped>
-#pictureAndForm{
+#pictureAndForm {
 
 }
 

@@ -31,7 +31,7 @@
 
     <div v-if="showOffers">
 
-      <lable>Praktikakoht on tasustatud €</lable>
+      <label>Praktikakoht on tasustatud €</label>
       <input type="checkbox" v-model="isPayable">
       <br>
       <br>
