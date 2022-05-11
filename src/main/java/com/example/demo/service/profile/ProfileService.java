@@ -32,5 +32,6 @@ public class ProfileService {
     }
 
     public List<ApplicantResponse> getAllApplicants(Integer opportunityId) {
+        return null;
     }
 }

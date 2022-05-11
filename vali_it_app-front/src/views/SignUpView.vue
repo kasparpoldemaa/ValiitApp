@@ -1,92 +1,93 @@
 <template>
   <div>
 
-    <body>
-    <div class="container">
+
+    <div class="container"><strong>
       <div class="d-flex justify-content-center h-100">
         <div class="card">
           <div class="card-header">
-            <h3>Loo uus kasutaja</h3>
+            <h3><strong>Loo uus kasutaja</strong></h3>
           </div>
 
           <div class="card-body">
 
-              <div class="form-group">
-                <label for="exampleFormControlSelect1">Vali roll</label>
-                <select class="form-control" id="exampleFormControlSelect1" v-model="request.roleId">
-                  <option selected v-for="role in roles" :value="role.id">{{ role.name }}</option>
-                </select>
+            <div class="form-group">
+              <label for="exampleFormControlSelect1">Vali roll</label>
+              <select class="form-control" id="exampleFormControlSelect1" v-model="request.roleId">
+                <option selected v-for="role in roles" :value="role.id">{{ role.name }}</option>
+              </select>
+            </div>
+
+            <div class="input-group form-group">
+              <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="fas fa-user">
+                  <img class="ui-menu-icons" alt="email" src="../assets/user.png">
+                  </i></span>
               </div>
+              <input type="text" class="form-control" placeholder="Eesnimi" v-model="request.firstName">
+            </div>
 
-                <div class="input-group form-group">
-                  <div class="input-group-prepend">
+            <div class="input-group form-group">
+              <div class="input-group-prepend">
                   <span class="input-group-text"><i class="fas fa-user">
                   <img class="ui-menu-icons" alt="email" src="../assets/user.png">
-                  </i></span>
-                  </div>
-                  <input type="text" class="form-control" placeholder="Eesnimi" v-model="request.firstName">
-                </div>
 
-                <div class="input-group form-group">
-                  <div class="input-group-prepend">
-                  <span class="input-group-text"><i class="fas fa-user">
-                  <img class="ui-menu-icons" alt="email" src="../assets/user.png">
                   </i></span>
-                  </div>
-                  <input type="text" class="form-control" placeholder="Perekonnanimi" v-model="request.lastName">
-                </div>
+              </div>
+              <input type="text" class="form-control" placeholder="Perekonnanimi" v-model="request.lastName">
+            </div>
 
-              <div v-if="request.roleId === 3">
-                <div class="input-group form-group">
-                  <div class="input-group-prepend">
+            <div v-if="request.roleId === 3">
+              <div class="input-group form-group">
+                <div class="input-group-prepend">
                   <span class="input-group-text"><i class="fas fa-user">
                   <img class="ui-menu-icons" alt="email" src="../assets/business.png">
                   </i></span>
-                  </div>
-                  <input type="text" class="form-control" placeholder="Ettevõtte nimi" v-model="request.companyName">
                 </div>
+                <input type="text" class="form-control" placeholder="Ettevõtte nimi" v-model="request.companyName">
               </div>
+            </div>
 
-              <div class="input-group form-group">
-                <div class="input-group-prepend">
+            <div class="input-group form-group">
+              <div class="input-group-prepend">
                   <span class="input-group-text"><i class="fas fa-user">
                   <img class="ui-menu-icons" alt="email" src="../assets/location.png">
                   </i></span>
-                </div>
-                <input type="text" class="form-control" placeholder="Aadress" v-model="request.address">
               </div>
+              <input type="text" class="form-control" placeholder="Aadress" v-model="request.address">
+            </div>
 
-              <div class="input-group form-group">
-                <div class="input-group-prepend">
+            <div class="input-group form-group">
+              <div class="input-group-prepend">
                   <span class="input-group-text"><i class="fas fa-user">
                   <img class="ui-menu-icons" alt="email" src="../assets/email.png">
                   </i></span>
-                </div>
-                <input type="text" class="form-control" placeholder="e-mail" v-model="request.userName">
               </div>
+              <input type="text" class="form-control" placeholder="e-mail" v-model="request.userName">
+            </div>
 
-              <div class="input-group form-group">
-                <div class="input-group-prepend">
+            <div class="input-group form-group">
+              <div class="input-group-prepend">
                   <span class="input-group-text"><i class="fas fa-key">
                     <img class="ui-menu-icons" alt="key" src="../assets/key.png">
                   </i></span>
-                </div>
-                <input type="password" class="form-control" placeholder="parool" v-model="request.password">
               </div>
+              <input type="password" class="form-control" placeholder="parool" v-model="request.password">
+            </div>
 
-              <div class="input-group form-group">
-                <div class="input-group-prepend">
+            <div class="input-group form-group">
+              <div class="input-group-prepend">
                   <span class="input-group-text"><i class="fas fa-key">
                     <img class="ui-menu-icons" alt="key" src="../assets/key.png">
                   </i></span>
-                </div>
-                <input type="password" class="form-control" placeholder="parool uuesti" v-model="passwordConfirm">
               </div>
+              <input type="password" class="form-control" placeholder="parool uuesti" v-model="passwordConfirm">
+            </div>
 
-              <div class="form-group">
-                <input type="submit" value="Loo uus kasutaja" class="btn float-right login_btn"
-                       v-on:click="addNewUser()">
-              </div>
+            <div class="form-group">
+              <input type="submit" value="Loo uus kasutaja" class="btn btn-primary btn float-right btn-lg btn-sm"
+                     v-on:click="addNewUser()">
+            </div>
 
           </div>
 
@@ -95,8 +96,9 @@
           </div>
         </div>
       </div>
+    </strong>
     </div>
-    </body>
+
 
   </div>
 </template>
@@ -112,7 +114,7 @@ export default {
       passwordConfirm: null,
       roleId: 0,
       userId: 0,
-      contactId: 0 ,
+      contactId: 0,
       studentProfileId: 0,
       studentId: 0
     }
@@ -137,11 +139,11 @@ export default {
       sessionStorage.setItem('studentId', this.studentId)
     },
     navigateToUserPage: function () {
-      if (this.roleId === 1){
+      if (this.roleId === 1) {
         this.$router.push({name: 'admin'})
-      }else if (this.roleId === 2){
+      } else if (this.roleId === 2) {
         this.$router.push({name: 'user-page'})
-      }else {
+      } else {
         this.$router.push({name: 'company-page'})
       }
     },
@@ -178,18 +180,14 @@ export default {
 </script>
 
 <style scoped>
+.container{
+  margin-top: 5vh;
+  margin-bottom: 10vh;
+}
+
 .ui-menu-icons {
   width: 18px;
   height: auto;
 }
 
-.login_btn {
-  background-color: blue;
-  color: white;
-}
-
-.login_btn:hover {
-  color: white;
-  background-color: deepskyblue;
-}
 </style>

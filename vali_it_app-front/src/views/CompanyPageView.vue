@@ -1,7 +1,7 @@
 <template>
   <div >
 
-    <div v-if="showOffers">
+    <div class="top" v-if="showOffers">
       <h2>SISESTA PRAKTIKA PAKKUMINE :</h2>
     </div>
     <form>
@@ -253,6 +253,10 @@ export default {
 /*  margin-right: 100px;*/
 /*}*/
 
+.top{
+  margin-top: 6vh;
+}
+
 form {
   display: inline-block;
 
@@ -286,6 +290,10 @@ div.form-group {
 
 #wrapthisthing{
   max-width: 300vw;
+}
+
+.xxx{
+  margin-bottom: 20vh;
 }
 
 
