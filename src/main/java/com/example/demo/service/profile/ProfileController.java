@@ -27,11 +27,7 @@ public class ProfileController {
         profileService.addNewUserProfile(profileDto);
     }
 
-//    @GetMapping("/list")
-//    @Operation(summary = "Kuvab listi profiilidest, siestatud studentId listi põhjal")
-//    public List<StudentName> getListOfStudentProfiles(@RequestParam List<Integer> studentIds) {
-//        return profileService.getListOfStudentProfiles(studentIds);
-//    }
+
 
     @GetMapping("/all-applicants")
     @Operation(summary = "Kuvab studenti nime ja studentID, opportunityId järgi")

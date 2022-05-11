@@ -8,15 +8,8 @@ import java.util.List;
 public interface ContactRepository extends JpaRepository<Contact, Integer> {
 
     @Query("select c from Contact c where c.user.id = ?1")
-    List<Contact> findListByUserIds(Integer id);
-
-    @Query("select c from Contact c where c.user.id = ?1")
     Contact findByUser_Id(Integer id);
 
     @Query("select c from Contact c where c.user.id = ?1")
-    Contact getByUserId(Integer id);
-
-
-
-
+    Contact getContact(Integer id);
 }

@@ -2,17 +2,13 @@ package com.example.demo.domain.internshipapplicant;
 
 import com.example.demo.domain.contact.ContactService;
 import com.example.demo.domain.internshipopportunity.InternshipOpportunity;
-import com.example.demo.domain.internshipopportunity.InternshipOpportunityRepository;
 import com.example.demo.domain.internshipopportunity.InternshipOppurtunityService;
 import com.example.demo.domain.student.Student;
 import com.example.demo.domain.student.StudentService;
 import com.example.demo.service.applicant.ApplicantResponse;
-import com.example.demo.service.applicant.InternshipOppurtunityResponse;
-import org.hibernate.validator.constraints.Range;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import javax.persistence.criteria.CriteriaBuilder;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -60,13 +56,33 @@ public class InternshipApplicantService {
     }
 
     public List<ApplicantResponse> getApplicantApplication(Integer studentId) {
-        List<ApplicantResponse> applicantResponses = internshipApplicantMapper.toDtos(internshipApplicantRepository.findByStudentId(studentId));
-//        for (ApplicantResponse applicantResponse : applicantResponses) {
-//            internshipOppurtunityService.
-//            applicantResponse.setCompanyName(contactService.getCompanyNameByUserId(applicantResponse.getInternshipOpportunity().getUserId()));
-//        }
-        return applicantResponses;
+        return internshipApplicantMapper.toDtos(internshipApplicantRepository.findByStudentId(studentId));
     }
+
+    public List<InternshipApplicant> getApplicants(Integer opportunityId) {
+        return internshipApplicantRepository.findApplicants(opportunityId);
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 //    public InternshipOppurtunityResponse findStundetCountAndId(Integer internshipOppurtunityId) {

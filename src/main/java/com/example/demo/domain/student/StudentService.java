@@ -1,6 +1,7 @@
 package com.example.demo.domain.student;
 
 import com.example.demo.domain.contact.ContactService;
+import com.example.demo.domain.internshipapplicant.InternshipApplicant;
 import com.example.demo.domain.studentprofile.StudentProfile;
 import com.example.demo.domain.studentprofile.StudentProfileService;
 import com.example.demo.domain.user.User;
@@ -92,23 +93,4 @@ public class StudentService {
 
     }
 
-
-    public List<StudentName> getStudents(List<Integer> studentIds) {
-
-        List<Student> students = new ArrayList<>();
-
-        for (Integer studentId : studentIds) {
-            Student student = studentRepository.getById(studentId);
-            students.add(student);
-        }
-
-        List<Integer> userIds = new ArrayList<>();
-
-        for (Student student : students) {
-            Integer userId = student.getUser().getId();
-            userIds.add(userId);
-        }
-
-        return contactService.getByUserId(userIds);
-    }
 }

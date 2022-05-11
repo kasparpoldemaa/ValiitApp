@@ -10,13 +10,14 @@ public interface InternshipApplicantRepository extends JpaRepository<InternshipA
     long countByInternshipOpportunity_Id(Integer id);
 
     @Query("select i from InternshipApplicant i where i.internshipOpportunity.id = ?1")
-    List<InternshipApplicant> findByInternshipOpportunity_Id(Integer id);
+    List<InternshipApplicant> findApplicants(Integer opportunityId);
 
     @Query("select i from InternshipApplicant i where i.internshipOpportunity.id = ?1")
     List<InternshipApplicant> getOpportunityList(Integer id);
 
     @Query("select i from InternshipApplicant i where i.student.id = ?1")
     List<InternshipApplicant> findByStudentId(Integer id);
+
 
 
 
