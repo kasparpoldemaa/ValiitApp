@@ -3,6 +3,7 @@ package com.example.demo.domain.contact;
 import com.example.demo.domain.internshipopportunity.InternshipOppurtunityService;
 import com.example.demo.domain.user.User;
 import com.example.demo.domain.user.UserService;
+import com.example.demo.service.profile.ApplicantResponse;
 import com.example.demo.service.register.NewUserRequest;
 import org.springframework.stereotype.Service;
 
@@ -84,4 +85,12 @@ public class ContactService {
         return contactRepository.getContact(userId);
     }
 
+    public ApplicantResponse getStudentNameByUserId(Integer userId) {
+        Contact contact = contactRepository.findByUser_Id(userId);
+        ApplicantResponse applicantResponse = new ApplicantResponse();
+        applicantResponse.setFirstName(contact.getFirstName());
+        applicantResponse.setLastName(contact.getLastName());
+        return applicantResponse;
+    }
 }
+

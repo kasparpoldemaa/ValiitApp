@@ -35,6 +35,13 @@ public class ProfileController {
     }
 
 
+    @GetMapping("/name")
+    @Operation(summary = "Leiab õpilase nime studentId järgi")
+    public ApplicantResponse getStudentName(Integer studentId) {
+       return profileService.getStudentName(studentId);
+    }
+
+
 
 }
 
