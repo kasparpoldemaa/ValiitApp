@@ -11,11 +11,7 @@
         </div>
         <div class="card-body">
           <h2 class="card-title">{{ this.contact.firstName + ' ' + this.contact.lastName }}</h2>
-          <small>About me</small>
-          <p class="card-text">
-            <input disabled type="text" class="form-control" placeholder="Räägi natuke endast"
-                   v-model="profile.aboutMe">
-          </p>
+
         </div>
       </div>
 
