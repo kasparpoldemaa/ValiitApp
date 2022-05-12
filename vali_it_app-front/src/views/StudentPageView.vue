@@ -1,6 +1,9 @@
 <template>
   <div id="userPage">
 
+    <div >
+      <button id="backButton" type="button" class="btn btn-warning" @click="getApplicantProfile">Tagasi</button>
+    </div>
 
     <!--    ================================PROFIILIPILT================================-->
     <!--    </div>-->
@@ -138,6 +141,8 @@ export default {
       educationExperiences: {},
       educationExperienceId: null,
       offerForms: {},
+      showOffers: false,
+      showApplicants: true
 
 
     }
@@ -146,6 +151,10 @@ export default {
       {
         hideTable: function () {
           this.displayTable = false
+        },
+
+        getApplicantProfile: function (showOffers, showApplicants) {
+          this.$router.push({name:'company-page', query:{x:showOffers, y: showApplicants}})
         },
 
         showMotivationLetter: function (id) {
@@ -359,7 +368,7 @@ export default {
 #title-edu1 {
   margin-top: 50px;
   margin-bottom: 30px;
-  border: 2px solid red;
+
 
 }
 
@@ -399,7 +408,7 @@ img {
 .pictureAndForm {
   width: 70%;
   height: auto;
-  margin-top: 50px;
+  margin-top: 20px;
   margin-left: auto;
   margin-right: auto;
 
@@ -489,6 +498,13 @@ img {
 #nr {
   width: 30px;
 }
+
+#backButton {
+  float: left;
+  margin-left: 30px;
+}
+
+
 
 
 </style>
