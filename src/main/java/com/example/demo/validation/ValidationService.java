@@ -13,6 +13,7 @@ public class ValidationService {
 
     public static final String KASUTAJA_ON_JUBA_OLEMAS = "Sellise kasutajanimega kasutaja on juba olemas.";
     public static final String ANDMED_ON_VALED = "Sisestatud andmed on valed";
+    public static final String USER_HAS_ALREADY_APPLIED = "Kasutaja on juba kandideerinud sellele kuulutusele";
 
     public void userNameExists(boolean userExists, String userName) {
         if (userExists) {
@@ -24,5 +25,13 @@ public class ValidationService {
         if (user.isEmpty()) {
             throw new DataNotFoundException(ANDMED_ON_VALED, "Sisestatud kasutajanimi/parool on vale");
         }
+    }
+
+    public void hasAlreadyApplied(boolean hasApplied) {
+        if (hasApplied) {
+            throw new BusinessException(USER_HAS_ALREADY_APPLIED, "Oled juba kandideerinud!");
+        }
+
+
     }
 }

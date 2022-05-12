@@ -6,10 +6,7 @@
     <!--    </div>-->
     <div class="pictureAndForm">
       <div class="card" id="picture">
-        <div v-if="picture.base64.length < -1">
-          <img src="../assets/default-profile.png" class="card-img-top" alt="">
-        </div>
-        <div v-else>
+        <div>
           <img :src="picture.base64" class="card-img-top" alt="">
         </div>
         <div class="card-body">
@@ -153,57 +150,6 @@ export default {
   },
   methods:
       {
-        resetView: function () {
-          this.displayTable = false
-          this.showExperience = true
-          this.showWorkTable = false
-          this.showEducation = true
-          this.showEduTable = false
-        },
-
-        showProfileView: function () {
-          this.profileView = true
-          this.internShipView = false
-          this.courseView = false
-
-        },
-
-        showInternShipView: function () {
-          this.profileView = false
-          this.internShipView = true
-          this.courseView = false
-          this.showMessage = false
-          this.resetOfferView()
-        },
-
-        showCourseView: function () {
-          this.profileView = false
-          this.internShipView = false
-          this.courseView = true
-        },
-
-        displayNewExperience: function () {
-          this.showExperience = false
-          this.showWorkTable = true
-        },
-
-        displayNewEducation: function () {
-          this.showEducation = false
-          this.showEduTable = true
-        },
-
-        hideExperienceTable: function (id) {
-          this.workExperienceId = id
-          this.showExperience = false
-          this.getWorkExperienceById()
-        },
-
-        hideEducationTable: function (id) {
-          this.educationExperienceId = id
-          this.showEducation = false
-          this.getEducationExperienceById()
-        },
-
         hideTable: function () {
           this.displayTable = false
         },
@@ -263,19 +209,6 @@ export default {
           })
         },
 
-        deletePicture: function () {
-          this.$http.delete("/picture/student", {
-                params: {
-                  studentId: this.studentId
-                }
-              }
-          ).then(response => {
-            this.displayPic = false
-            console.log(response.data)
-          }).catch(error => {
-            console.log(error)
-          })
-        },
 
         getStudentProfileById: function () {
           this.$http.get("/student-profile", {
@@ -319,21 +252,6 @@ export default {
           })
         },
 
-        updateStudentProfile: function () {
-          this.$http.put("/student-profile/id", this.profile, {
-                params: {
-                  studentProfileId: this.studentProfileId
-                }
-              }
-          ).then(response => {
-            this.setIsAvailable()
-            console.log(response.data)
-            window.location.reload();
-          }).catch(error => {
-            console.log(error)
-          })
-        },
-
         getStudentWorkExperienceById: function () {
           this.$http.get("/work-experience/all", {
                 params: {
@@ -342,65 +260,6 @@ export default {
               }
           ).then(response => {
             this.workExperiences = response.data
-            console.log(response.data)
-          }).catch(error => {
-            console.log(error)
-          })
-        },
-
-        updateWorkExperienceById: async function () {
-          await this.$http.put("/work-experience/update", this.workExperience, {
-                params: {
-                  workExperienceId: this.workExperienceId
-                }
-              }
-          ).then(response => {
-            this.showExperience = true
-            window.location.reload();
-            console.log(response.data)
-          }).catch(error => {
-            console.log(error)
-          })
-        },
-
-        deleteWorkExperienceById: async function (experienceId) {
-          await this.$http.delete("/work-experience/delete", {
-                params: {
-                  workExperienceId: experienceId
-                }
-              }
-          ).then(response => {
-            this.getStudentWorkExperienceById()
-            console.log(response.data)
-          }).catch(error => {
-            console.log(error)
-          })
-        },
-
-        getWorkExperienceById: function () {
-          this.$http.get("/work-experience/id", {
-            params: {
-              workExperienceId: this.workExperienceId
-            }
-          })
-              .then(response => {
-                this.workExperience = response.data
-                console.log(response.data)
-              }).catch(error => {
-            console.log(error)
-          })
-        },
-
-        addNewWork: async function () {
-          await this.$http.post("/work-experience/add", this.workExperience, {
-                params: {
-                  studentId: this.studentId
-                }
-              }
-          ).then(response => {
-            this.showExperience = true
-            this.showWorkTable = false
-            window.location.reload();
             console.log(response.data)
           }).catch(error => {
             console.log(error)
@@ -417,80 +276,6 @@ export default {
             this.educationExperiences = response.data
             console.log(response.data)
           }).catch(error => {
-            console.log(error)
-          })
-        },
-
-        updateEducationExperienceById: function () {
-          this.$http.put("/education-experience/update", this.educationExperience, {
-                params: {
-                  educationExperienceId: this.educationExperienceId
-                }
-              }
-          ).then(response => {
-            window.location.reload();
-            console.log(response.data)
-          }).catch(error => {
-            console.log(error)
-          })
-        },
-
-        deleteEducationExperienceById: async function (educationId) {
-          await this.$http.delete("/education-experience/delete", {
-                params: {
-                  educationExperienceId: educationId
-                }
-              }
-          ).then(response => {
-            this.getStudentEducationExperienceById()
-            console.log(response.data)
-          }).catch(error => {
-            console.log(error)
-          })
-        },
-
-        addNewEducation: function () {
-          this.$http.post("/education-experience/add", this.educationExperience, {
-                params: {
-                  studentId: this.studentId
-                }
-              }
-          ).then(response => {
-            this.showEducation = true
-            this.showEduTable = false
-            window.location.reload();
-            console.log(response.data)
-          }).catch(error => {
-            console.log(error)
-          })
-        },
-
-        getEducationExperienceById: function () {
-          this.$http.get("/education-experience/id", {
-            params: {
-              educationExperienceId: this.educationExperienceId
-            }
-          })
-              .then(response => {
-                this.educationExperience = response.data
-                console.log(response.data)
-              }).catch(error => {
-            console.log(error)
-          })
-        },
-
-        getOffersById: function (id) {
-          this.$http.get("/company/all", {
-            params: {
-              userId: id
-            }
-          })
-              .then(response => {
-                this.showOffers = true
-                this.showMotivation = false
-                this.offerForms = response.data
-                console.log(response.data)
-              }).catch(error => {
             console.log(error)
           })
         },
@@ -518,23 +303,6 @@ export default {
           })
         },
 
-        addNewApplicant: function (id, letter) {
-          this.$http.post("/applicant/new", {}, {
-                params: {
-                  studentId: this.studentId,
-                  offerId: id,
-                  letter: letter
-                }
-              }
-          ).then(response => {
-            this.resetOfferView()
-            this.showMessage = true
-            this.addSuccessMessage = 'Kandideerimise ankeet on edukalt saadetud!'
-            console.log(response.data)
-          }).catch(error => {
-            console.log(error)
-          })
-        },
         getMyApplications: function () {
           this.$http.get("/applicant/student-id", {
             params: {
