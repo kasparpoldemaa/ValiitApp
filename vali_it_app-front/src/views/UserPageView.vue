@@ -2,9 +2,9 @@
   <div id="userPage">
 
     <div id="navButtons" class="btn-group" role="group" aria-label="Basic example">
-      <button type="button" class="btn btn-primary btn-lg" @click="showProfileView">Minu profiil</button>
-      <button type="button" class="btn btn-primary btn-lg" @click="showInternShipView">Minu praktika</button>
-      <button type="button" class="btn btn-primary btn-lg" @click="showCourseView">Minu kursus</button>
+      <button type="button" class="btn btn-primary btn-lg" @click="showProfileView">Profiil</button>
+      <button type="button" class="btn btn-primary btn-lg" @click="showInternShipView">Praktika</button>
+      <button type="button" class="btn btn-primary btn-lg" @click="showCourseView">Üritused</button>
     </div>
 
 
