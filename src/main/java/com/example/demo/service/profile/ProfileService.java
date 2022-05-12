@@ -60,4 +60,8 @@ public class ProfileService {
         return studentService.getProfileByStudentId(studentId);
 
     }
+
+    public ApplicantResponse getStudentName(Integer studentId) {
+        return studentService.getStudentName(studentId);
+    }
 }
