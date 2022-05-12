@@ -52,9 +52,6 @@
       </div>
     </div>
 
-    <div>{{ this.studentId + ' studentId' }}</div>
-
-
     <!--    ================================WORK EXPERIENCE================================-->
 
     <div class="workAndEducation">
@@ -228,9 +225,9 @@ export default {
         },
 
         getContactInfo: function () {
-          this.$http.get("/contact/id", {
+          this.$http.get("/profile/name", {
             params: {
-              contactId: this.contactId
+              studentId: this.studentId
             }
           })
               .then(response => {
