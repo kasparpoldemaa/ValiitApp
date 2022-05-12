@@ -2,7 +2,7 @@
   <div>
 
     <div class="adminButtons" v-if="this.displayAdminButtons">
-      <button v-on:click="displayTableEvent()" type="button" class="btn btn-primary btn-lg">Loo üritus</button>
+      <button v-on:click="displayTableEvent()" type="button" class="btn btn-primary btn-lg m-3">Loo üritus</button>
       <button v-on:click="displayTableAllEvents()" type="button" class="btn btn-primary btn-lg">Kuva üritused</button>
     </div>
 

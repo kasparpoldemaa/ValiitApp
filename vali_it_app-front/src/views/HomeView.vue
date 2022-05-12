@@ -12,10 +12,7 @@
     </div>
 
     <div class="block-2">
-      <br>
-      <br>
-      <br>
-      <br>
+
       <div class="companyandstudent">
         <div class="card" id="student">
           <img src="../assets/Kickassd-Educational-Program-1024x576.jpg" class="card-img-top" alt="Student picture">

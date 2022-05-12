@@ -11,7 +11,7 @@
     <div class="workExperience" v-if="profileView">
 
       <!--    ================================PROFIILIPILT================================-->
-      <!--    </div>-->
+
       <div class="pictureAndForm">
         <div class="card" id="picture">
           <!--        <div v-if="picture.base64.length > -1">-->
@@ -348,6 +348,7 @@
     </div>
 
     <div class="courses" v-if="courseView">
+      <h3 id="courseTitle"><strong>Kursuse üritused</strong></h3>
 
       <table class="table table-hover">
         <thead id="eventTable">
@@ -943,6 +944,10 @@ img {
   height: auto;
   margin: auto;
 
+}
+
+#courseTitle{
+  padding-bottom: 30px;
 }
 #submit {
   margin-top: 20px;

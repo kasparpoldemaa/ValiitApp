@@ -3,11 +3,11 @@
 
     <nav>
       <router-link to="/">Esileht</router-link> |
-      <router-link to="/login">Logi sisse </router-link> |
-      <router-link v-if="getRoleId() == 2" to="/user-page">User Page (ajutine)</router-link> <span v-if="getRoleId() == 2" > | </span>
-      <router-link to="/company-page">Company Page (ajutine)</router-link> |
-      <router-link to="/admin">Admin (ajutine)</router-link>
-      <button id="logout" type="button" class="btn btn-info" v-on:click="navigateToHomePage()">Logi välja</button>
+      <router-link v-if="getRoleId() == null" to="/login">Logi sisse</router-link>
+      <router-link v-if="getRoleId() == 2" to="/user-page">Kasutaja vaade</router-link>
+      <router-link v-if="getRoleId() == 3" to="/company-page">Ettevõtte vaade</router-link>
+      <router-link v-if="getRoleId() == 1" to="/admin">Admin vaade</router-link>
+      <button v-if="getRoleId() != null" id="logout" type="button" class="btn btn-info btn-sm" v-on:click="navigateToHomePage()">Logi välja</button>
     </nav>
     <router-view/>
 <!--<footer></footer>-->
@@ -47,8 +47,10 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+
   /*z-index: 1000;*/
 }
+
 
 nav {
   padding: 30px;
@@ -73,6 +75,7 @@ button {
   padding: 100px;
 }
 
+
 /*.btn-default, .btn-default:hover, .btn-default:active, .btn-default:visited {*/
 /*  background-color: #16A085 !important;*/
 /*  color: white;*/
@@ -80,7 +83,9 @@ button {
 /*}*/
 #logout {
   float: right;
-  margin-top: -10px !important;
+  margin-top: -5px !important;
+  margin-left: -200px;
+
 }
 
 </style>

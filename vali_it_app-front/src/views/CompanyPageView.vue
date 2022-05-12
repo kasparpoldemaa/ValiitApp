@@ -2,7 +2,7 @@
   <div>
 
     <div v-if="showOffers">
-      <h2>SISESTA PRAKTIKA PAKKUMINE :</h2>
+      <h3 id="companyTitle"><strong>Sisesta praktika pakkumine:</strong></h3>
     </div>
 
     <div id="inputDiv" class="form-group" v-if="showOffers">
@@ -288,6 +288,10 @@ div.form-group {
 
 #wrapthisthing {
   max-width: 300vw;
+}
+
+#companyTitle{
+  padding-top: 30px;
 }
 
 #backButton {
