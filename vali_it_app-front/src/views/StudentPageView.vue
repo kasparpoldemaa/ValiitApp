@@ -1,9 +1,6 @@
 <template>
   <div id="userPage">
 
-    <div >
-      <button id="backButton" type="button" class="btn btn-warning" @click="getApplicantProfile">Tagasi</button>
-    </div>
     <h3 id="studentTitle"> <strong> Õpilase profiil</strong></h3>
 
     <!--    ================================PROFIILIPILT================================-->
@@ -149,6 +146,10 @@ export default {
       {
         hideTable: function () {
           this.displayTable = false
+        },
+
+        pushToApplicantPage: function (opportunityId) {
+          this.$router.push({name:'applicant-list-page', query:{id:opportunityId}})
         },
 
         getApplicantProfile: function (showOffers, showApplicants) {

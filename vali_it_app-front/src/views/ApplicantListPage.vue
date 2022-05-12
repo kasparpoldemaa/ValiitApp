@@ -2,7 +2,7 @@
   <div>
 
     <div v-if="showOffers">
-      <h3 id="companyTitle"><strong>Sisesta praktika pakkumine:</strong></h3>
+      <h2>SISESTA PRAKTIKA PAKKUMINE :</h2>
     </div>
 
     <div id="inputDiv" class="form-group" v-if="showOffers">
@@ -98,7 +98,7 @@
                         </button>
                       </td>
                       <td>
-                        <button type="button" class="btn btn-primary" @click="pushToApplicantPage(offerForm.id)">
+                        <button type="button" class="btn btn-primary" @click="getAllApplicants(offerForm.id)">
                           Huvilised <span class="badge badge-light">{{ offerForm.interestedCount }}</span>
                           <span class="sr-only">how many applicants</span>
                         </button>
@@ -115,10 +115,9 @@
     </div>
 
 
-    <div v-if="showApplicants">
-      <button id="backButton" type="button" class="btn btn-warning" @click="openFirstDiv">Tagasi</button>
-    </div>
-
+    <!--    <div v-if="showApplicants">-->
+    <!--      <button id="backButton" type="button" class="btn btn-warning" @click="pushToCompanyPage">Tagasi</button>-->
+    <!--    </div>-->
 
 
     <div id="applicantTable" v-if="showApplicants">
@@ -127,6 +126,7 @@
       <table class="table">
         <thead>
         <tr>
+          <th scope="col"></th>
           <th scope="col">Eesnimi</th>
           <th scope="col">Perekonnanimi</th>
           <th scope="col"></th>
@@ -134,10 +134,15 @@
         </thead>
         <tbody v-for="applicantRespons in applicantResponse">
         <tr>
+          <td>
+                  <img class="ui-menu-icons" alt="email" src="../assets/user.png">
+                  </td>
           <td>{{ applicantRespons.firstName }}</td>
           <td>{{ applicantRespons.lastName }}</td>
           <td>
-            <button type="button" class="btn btn-primary" @click="getApplicantProfile(applicantRespons.studentId)">Profiil</button>
+            <button type="button" class="btn btn-primary" @click="getApplicantProfile(applicantRespons.studentId)">
+              Profiil
+            </button>
           </td>
         </tr>
 
@@ -160,8 +165,8 @@ export default {
   data: function () {
     return {
       offer: {},
-      showOffers: true,
-      showApplicants: false,
+      showOffers: false,
+      showApplicants: true,
       isPayable: false,
       offerForms: {},
       arrayLength: '',
@@ -169,18 +174,18 @@ export default {
       id: null,
       studentIds: {},
       applicantResponse: {},
-      opportunityId: null,
+      opportunityId: this.$route.query.id,
 
     }
   },
   methods: {
 
     getApplicantProfile: function (studentId) {
-      this.$router.push({name:'student', query:{id:studentId}})
+      this.$router.push({name: 'student', query: {id: studentId}})
     },
 
-    pushToApplicantPage: function (opportunityId) {
-      this.$router.push({name:'applicant-list-page', query:{id:opportunityId}})
+    pushToCompanyPage: function () {
+      this.$router.push({name: 'company-page'})
     },
 
     closeDivs: function () {
@@ -216,12 +221,11 @@ export default {
     getAllApplicants: function (opportunityId) {
       this.$http.get("/profile/all-applicants", {
             params: {
-              opportunityId: opportunityId
+              opportunityId: this.opportunityId
             }
           }
       ).then(response => {
-        // this.closeDivs()
-        this.pushToApplicantPage()
+        this.closeDivs()
         this.applicantResponse = response.data
         console.log(response.data)
       }).catch(error => {
@@ -260,7 +264,9 @@ export default {
   },
 
   mounted() {
+    this.getAllApplicants()
     this.getAllOffersByUserId()
+
 
   }
 }
@@ -295,10 +301,6 @@ div.form-group {
   max-width: 300vw;
 }
 
-#companyTitle{
-  padding-top: 30px;
-}
-
 #backButton {
   float: left;
   margin-bottom: 50px;
@@ -318,8 +320,13 @@ div.form-group {
 
 }
 
-.xxx{
+.xxx {
   margin-bottom: 25vh;
+}
+
+img {
+  width: 18px;
+  height: auto;
 }
 
 
