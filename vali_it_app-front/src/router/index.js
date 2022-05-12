@@ -7,6 +7,7 @@ import SignUpView from "@/views/SignUpView";
 import AdminPageView from "@/views/AdminPageView";
 import CompanyPageView from "@/views/CompanyPageView";
 import StudentPageView from "@/views/StudentPageView";
+import ApplicantListPage from "@/views/ApplicantListPage";
 
 Vue.use(VueRouter)
 
@@ -30,6 +31,11 @@ const routes = [
     path: '/company-page',
     name: 'company-page',
     component: CompanyPageView
+  },
+  {
+    path: '/applicant-list-page',
+    name: 'applicant-list-page',
+    component: ApplicantListPage
   },
   {
     path: '/signup',
