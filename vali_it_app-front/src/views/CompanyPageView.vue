@@ -31,7 +31,7 @@
 
     <div v-if="showOffers">
 
-      <label>Praktikakoht on tasustatud €</label>
+      <label>Praktikakoht on tasustatud € </label>
       <input type="checkbox" v-model="isPayable">
       <br>
       <br>
@@ -178,8 +178,8 @@ export default {
   },
   methods: {
 
-    getApplicantProfile: function (id) {
-      this.$router.push({name:'student', query:{studentId:id}})
+    getApplicantProfile: function (studentId) {
+      this.$router.push({name:'student', query:{id:studentId}})
     },
 
     closeDivs: function () {
