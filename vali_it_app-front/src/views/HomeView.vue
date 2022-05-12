@@ -144,7 +144,7 @@ img {
 }
 
 .fa-3x {
-  margin-bottom: 20vh;
+  margin-bottom: 25vh;
 }
 
 

@@ -312,6 +312,10 @@ div.form-group {
 
 }
 
+.xxx{
+  margin-bottom: 25vh;
+}
+
 
 /*input{*/
 /*  width: 80vw;*/

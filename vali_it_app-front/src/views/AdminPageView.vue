@@ -1,7 +1,7 @@
 <template>
   <div>
 
-    <div class="adminButtons">
+    <div class="adminButtons" v-if="this.displayAdminButtons">
       <button v-on:click="displayTableEvent()" type="button" class="btn btn-primary btn-lg">Loo üritus</button>
       <button v-on:click="displayTableAllEvents()" type="button" class="btn btn-primary btn-lg">Kuva üritused</button>
     </div>
@@ -12,46 +12,52 @@
         {{ addSuccessMessage }}
       </div>
 
-      <table class="table table-hover">
-        <thead id="eventTable">
-        <tr>
-          <th scope="col">#</th>
-          <th scope="col">Kuupäev</th>
-          <th scope="col">Kellaaeg</th>
-          <th scope="col">Ürituse nimi</th>
-          <th scope="col">Ettevõtte</th>
-          <th scope="col">Koht</th>
-          <th scope="col">Esineja</th>
-        </tr>
-        </thead>
+      <div class="infoTable">
+        <table class="table table-hover">
+          <thead id="eventTable">
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Kuupäev</th>
+            <th scope="col">Kellaaeg</th>
+            <th scope="col">Ürituse nimi</th>
+            <th scope="col">Ettevõtte</th>
+            <th scope="col">Koht</th>
+            <th scope="col">Esineja</th>
+          </tr>
+          </thead>
 
-        <tbody>
-        <tr v-for="(event, index) in events">
-          <th>{{ index + 1 }}</th>
-          <td>{{ event.date }}</td>
-          <td>{{ event.time }}</td>
-          <td>{{ event.eventName }}</td>
-          <td>{{ event.company }}</td>
-          <td>{{ event.zoom }}</td>
-          <td>{{ event.presenterName }}</td>
+          <tbody>
+          <tr v-for="(event, index) in events">
+            <th>{{ index + 1 }}</th>
+            <th>{{ event.date }}</th>
+            <th>{{ event.time }}</th>
+            <th>{{ event.eventName }}</th>
+            <th>{{ event.company }}</th>
+            <th>{{ event.zoom }}</th>
+            <th>{{ event.presenterName }}</th>
 
-          <td style="float: right">
-            <button type="submit" class="btn btn-primary btn-xs m-3"
-                    @click="hideAllEvents(event.id)">Muuda
-            </button>
-            <button type="submit" class="btn btn-primary btn-xs"
-                    @click="deleteEventById(event.id)">
-              Kustuta
-            </button>
-          </td>
-        </tr>
-        </tbody>
-      </table>
+            <td style="float: right">
+              <button type="submit" class="btn btn-primary btn-xs m-3"
+                      @click="hideAllEvents(event.id)">Muuda
+              </button>
+              <button type="submit" class="btn btn-primary btn-xs"
+                      @click="deleteEventById(event.id)">
+                Kustuta
+              </button>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
 
 
-    <div class="form" v-if="this.tableDivDisplay">
-      <div class="form-group">
+    <div class="eventForm" v-if="this.tableDivDisplay">
+      <div>
+        <h3 class="title-table" v-if="!toggleButton"><strong>Loo uus üritus</strong></h3>
+        <h3 class="title-table" v-if="toggleButton"><strong>Muuda üritust</strong></h3>
+      </div>
+      <div>
         <label class="label-form">Kuupäev</label>
         <input type="date" class="form-control" placeholder="Kuupäev" v-model="eventById.date">
 
@@ -72,10 +78,7 @@
 
         <button class="btn btn-primary m-3" v-if="!toggleButton" v-on:click="addNewEvent">Loo üritus</button>
         <button class="btn btn-primary m-3" v-if="toggleButton" v-on:click="updateEventAndResetView">Muuda</button>
-      </div>
-
-      <div>
-
+        <button class="btn btn-primary m-3" v-on:click="displayTableAllEvents">Tagasi</button>
       </div>
     </div>
   </div>
@@ -93,17 +96,18 @@ export default {
 
       event: {},
       tableDivDisplay: false,
-      displayAllEvents: false,
+      displayAllEvents: true,
       events: {},
       toggleButton: false,
       eventById: {},
       eventId: null,
       showMessage: false,
       addSuccessMessage: ``,
-
+      displayAdminButtons: true,
     }
   },
   methods: {
+
 
     refreshPage: function () {
       window.location.reload();
@@ -113,7 +117,7 @@ export default {
       this.tableDivDisplay = true
       this.displayAllEvents = false
       this.toggleButton = false
-
+      this.displayAdminButtons = false
     },
 
     hideTableEvent: function () {
@@ -123,7 +127,9 @@ export default {
     displayTableAllEvents: function () {
       this.displayAllEvents = true
       this.tableDivDisplay = false
+      this.displayAdminButtons = true
       this.getAllEvents()
+      this.refreshPage()
     },
 
     hideAllEvents: function (id) {
@@ -131,6 +137,7 @@ export default {
       this.tableDivDisplay = true
       this.toggleButton = true
       this.eventId = id
+      this.displayAdminButtons = false
       this.getEventById()
     },
 
@@ -141,6 +148,7 @@ export default {
             }
           }
       ).then(response => {
+
         console.log(response.data)
       }).catch(error => {
         console.log(error)
@@ -153,6 +161,7 @@ export default {
       this.tableDivDisplay = false
       this.displayAllEvents = true
       this.toggleButton = false
+      this.displayAdminButtons = true
     },
 
     addNewEvent: function () {
@@ -208,7 +217,7 @@ export default {
     }
   },
 
-  mounted () {
+  mounted() {
     this.getAllEvents()
 
   }
@@ -218,36 +227,24 @@ export default {
 
 <style scoped>
 
+.eventForm {
+  max-width: 250px;
+  margin-right: auto;
+  margin-left: auto;
+
+}
+
+.title-table {
+  margin-top: 5vh;
+}
+
 .adminButtons {
   margin-top: 5vh;
   margin-bottom: 5vh;
 }
 
-.form {
-  display: inline-block;
-  margin: auto 98vh;
-  margin-bottom: 10vh;
-  /*border: 2px solid red;*/
-  /*margin-right: 100px;*/
-}
-
-div.form {
-  display: grid;
-  grid-template-columns: max-content max-content;
-  grid-gap: 10px;
-}
-
-div.form label {
-  text-align: right;
-  margin-top: 10px;
-}
-
-div.form label:after {
-  content: ":";
-}
-
-.table table-hover {
-  margin-bottom: 5vh;
+.infoTable {
+  margin-bottom: 20vh;
 }
 
 
