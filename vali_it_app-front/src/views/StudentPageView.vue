@@ -310,7 +310,6 @@ export default {
     this.getStudentPicture()
     this.getStudentWorkExperienceById()
     this.getStudentEducationExperienceById()
-    this.getAllCompanies()
     this.getMyApplications()
   }
 
