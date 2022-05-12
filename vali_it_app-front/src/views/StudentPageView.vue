@@ -4,6 +4,7 @@
     <div >
       <button id="backButton" type="button" class="btn btn-warning" @click="getApplicantProfile">Tagasi</button>
     </div>
+    <h3 id="studentTitle"> <strong> Õpilase profiil</strong></h3>
 
     <!--    ================================PROFIILIPILT================================-->
     <!--    </div>-->
@@ -25,9 +26,9 @@
           <div class="form-group" id="formGroup">
             <label class="label-form">Sünniaeg</label>
             <input disabled type="date" class="form-control" placeholder="Sünniaeg" v-model="profile.dateOfBirth">
-            <label class="label-form">Linn, kus soovid töötada</label>
+            <label class="label-form">Linn, kus soovib töötada</label>
             <input disabled type="text" class="form-control" placeholder="Linn" v-model="profile.location">
-            <label class="label-form">Sinu oskused</label>
+            <label class="label-form">Oskused</label>
             <input disabled type="text" class="form-control" placeholder="Kirjelda oma oskusi"
                    v-model="profile.competence">
             <label class="label-form">Tugevused</label>
@@ -410,6 +411,9 @@ img {
   margin-right: auto;
 
 }
+#studentTitle{
+  margin-top: 30px;
+}
 
 
 #submit {
@@ -455,41 +459,12 @@ img {
 
 }
 
-#addNewWork {
-  float: right;
-  margin-right: 50px;
-}
-
-#submit-1 {
-  float: right;
-  margin-left: auto;
-}
-
-#submit-2 {
-  float: right;
-}
-
-#addNewEdu {
-  float: right;
-  margin-right: 50px;
-}
 
 .btn-group {
   margin-bottom: 50px;
 
 }
 
-#updateWorkExperience {
-  width: 40vw;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-#updateEducation {
-  width: 40vw;
-  margin-left: auto;
-  margin-right: auto;
-}
 
 
 #nr {

@@ -5,7 +5,6 @@
       <img alt="Vali-it logo" src="../assets/valiit.png">
     </div>
     <br>
-
     <div class="introduction">
 
       <h2> Siin kodulehel on võimalik kokku viia IT-ettevõtted ja Vali-IT ümberõppe programmis osalevad õppurid.</h2>
@@ -21,7 +20,11 @@
         <div class="card" id="student">
           <img src="../assets/Kickassd-Educational-Program-1024x576.jpg" class="card-img-top" alt="Student picture">
           <div class="card-body">
-            <h5 class="card-title">Õpilane saab:</h5>
+            <h5>
+            <strong>
+           Õpilane saab:
+            </strong>
+            </h5>
             <p class="card-text">
             <h5>
               <li>lisada enda profiilile uusima informatsiooni.</li>
@@ -36,7 +39,11 @@
           <div class="card" id="company">
             <img src="../assets/companyIT.jpg" class="card-img-top" alt="Company picture">
             <div class="card-body">
-              <h5 class="card-title">Ettevõte saab:</h5>
+              <h5 class="card-title">
+              <strong>
+             Ettevõte saab:
+              </strong>
+              </h5>
               <p class="card-text">
               <h5>
                 <li>tutvuda viimase Vali-IT lennu õpilastega ja vaadata nende profiile.</li>

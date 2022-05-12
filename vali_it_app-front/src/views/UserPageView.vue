@@ -827,6 +827,7 @@ export default {
             console.log(response.data)
           }).catch(error => {
             console.log(error)
+            alert(error.response.data.detail)
           })
         },
         getMyApplications: function () {
@@ -994,14 +995,6 @@ img {
   margin-right: 50px;
 }
 
-#submit-1 {
-  float: right;
-  margin-left: auto;
-}
-
-#submit-2 {
-  float: right;
-}
 
 #addNewEdu {
   float: right;

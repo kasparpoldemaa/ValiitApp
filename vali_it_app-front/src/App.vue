@@ -3,14 +3,14 @@
 
     <nav>
       <router-link to="/">Esileht</router-link> |
-      <router-link to="/login">Logi sisse</router-link> |
-      <router-link to="/user-page">User Page (ajutine)</router-link> |
+      <router-link to="/login">Logi sisse </router-link> |
+      <router-link v-if="getRoleId() == 2" to="/user-page">User Page (ajutine)</router-link> <span v-if="getRoleId() == 2" > | </span>
       <router-link to="/company-page">Company Page (ajutine)</router-link> |
       <router-link to="/admin">Admin (ajutine)</router-link>
       <button id="logout" type="button" class="btn btn-info" v-on:click="navigateToHomePage()">Logi välja</button>
     </nav>
     <router-view/>
-
+<!--<footer></footer>-->
   </div>
 
 </template>
@@ -21,11 +21,15 @@ export default {
 
   data: function () {
     return {
-
+    roleId: sessionStorage.getItem('roleId')
     }
 
   },
   methods: {
+
+    getRoleId: function () {
+      return sessionStorage.getItem('roleId')
+    },
 
     navigateToHomePage: function () {
       sessionStorage.clear()
@@ -50,6 +54,11 @@ nav {
   padding: 30px;
   background-color: #4078A9;
 }
+
+/*footer {*/
+/*  padding: 20px;*/
+/*  background-color: #4078A9;*/
+/*}*/
 
 nav a {
   font-weight: bold;
