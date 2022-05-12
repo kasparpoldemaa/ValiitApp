@@ -4,9 +4,9 @@
     <nav>
       <router-link to="/">Esileht</router-link> |
       <router-link v-if="getRoleId() == null" to="/login">Logi sisse</router-link>
-      <router-link v-if="getRoleId() == 2" to="/user-page">Kasutaja vaade</router-link>
-      <router-link v-if="getRoleId() == 3" to="/company-page">Ettevõtte vaade</router-link>
-      <router-link v-if="getRoleId() == 1" to="/admin">Admin vaade</router-link>
+      <router-link v-if="getRoleId() == 2" to="/user-page">Minu Konto</router-link>
+      <router-link v-if="getRoleId() == 3" to="/company-page">Minu Konto</router-link>
+      <router-link v-if="getRoleId() == 1" to="/admin">Admin</router-link>
       <button v-if="getRoleId() != null" id="logout" type="button" class="btn btn-info btn-sm" v-on:click="navigateToHomePage()">Logi välja</button>
     </nav>
     <router-view/>
