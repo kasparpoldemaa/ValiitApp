@@ -16,10 +16,9 @@ public class ProfileController {
     @Resource
     private ProfileService profileService;
 
-    @GetMapping
-    public StudentProfileDto getProfileByUserId(@RequestParam Integer userId) {
-
-        return null;
+    @GetMapping ("/id")
+    public StudentProfileDto getProfileByStudentId(@RequestParam Integer studentId) {
+        return profileService.getProfileByStudentId(studentId);
     }
 
     @PostMapping

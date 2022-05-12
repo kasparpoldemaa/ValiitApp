@@ -36,6 +36,8 @@ public class ProfileService {
 
 
 
+
+
     public List<ApplicantResponse> getAllApplicants(Integer opportunityId) {
         List<InternshipApplicant> applicants = internshipApplicantService.getApplicants(opportunityId);
         List<ApplicantResponse> responses = new ArrayList<>();
@@ -51,6 +53,11 @@ public class ProfileService {
         return responses;
 
 
+
+    }
+
+    public StudentProfileDto getProfileByStudentId(Integer studentId) {
+        return studentService.getProfileByStudentId(studentId);
 
     }
 }

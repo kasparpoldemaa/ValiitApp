@@ -53,7 +53,7 @@
       </div>
     </div>
 
-    <div>{{this.studentId + ' studentId'}}</div>
+    <div>{{ this.studentId + ' studentId' }}</div>
 
 
     <!--    ================================WORK EXPERIENCE================================-->
@@ -69,7 +69,6 @@
           <th scope="col">Ettevõtte nimi</th>
           <th scope="col">Ametinimetus</th>
           <th id="jobDescriptionHeader" scope="col">Töö kirjeldus</th>
-
         </tr>
         </thead>
         <tbody>
@@ -129,7 +128,6 @@ export default {
       isAvailable: true,
 
 
-      contactId: sessionStorage.getItem('contactId'),
       studentId: this.$route.query.id,
       profile: {},
       contact: {},
@@ -211,9 +209,9 @@ export default {
 
 
         getStudentProfileById: function () {
-          this.$http.get("/student-profile", {
+          this.$http.get("/profile/id", {
             params: {
-              studentProfileId: this.studentProfileId
+              studentId: this.studentId
             }
           })
               .then(response => {
@@ -238,19 +236,6 @@ export default {
           })
         },
 
-        setIsAvailable: function () {
-          this.$http.put("/student/id", {}, {
-                params: {
-                  studentId: this.studentId,
-                  isAvailable: this.isAvailable
-                }
-              }
-          ).then(response => {
-            console.log(response.data)
-          }).catch(error => {
-            console.log(error)
-          })
-        },
 
         getStudentWorkExperienceById: function () {
           this.$http.get("/work-experience/all", {
@@ -327,8 +312,6 @@ export default {
     this.getStudentEducationExperienceById()
     this.getAllCompanies()
     this.getMyApplications()
-
-
   }
 
 }
