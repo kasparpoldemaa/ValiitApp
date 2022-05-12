@@ -53,6 +53,11 @@ public class StudentProfileService {
         return studentProfile.getId();
     }
 
+    public StudentProfileDto getProfileByProfileId(Integer id) {
+        return studentProfileMapper.toDto(studentProfileRepository.getById(id));
+    }
+
+
 //    public void updateStudentProfile(StudentProfileDto studentProfileDto) {
 //        StudentProfile byId = studentProfileRepository.getById(studentProfileDto.getId());
 //        studentProfileMapper.updateEntity(studentProfileDto, byId);

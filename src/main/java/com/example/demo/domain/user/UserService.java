@@ -49,4 +49,6 @@ public class UserService {
     public UserDto getUserByUserId(Integer userId) {
         return userMapper.toDto(userRepository.getById(userId));
     }
+
+
 }

@@ -16,10 +16,9 @@ public class ProfileController {
     @Resource
     private ProfileService profileService;
 
-    @GetMapping
-    public StudentProfileDto getProfileByUserId(@RequestParam Integer userId) {
-
-        return null;
+    @GetMapping ("/id")
+    public StudentProfileDto getProfileByStudentId(@RequestParam Integer studentId) {
+        return profileService.getProfileByStudentId(studentId);
     }
 
     @PostMapping
@@ -33,6 +32,13 @@ public class ProfileController {
     @Operation(summary = "Kuvab studenti nime ja studentID, opportunityId järgi")
     public List<ApplicantResponse> getAllApplicants(@RequestParam Integer opportunityId) {
         return profileService.getAllApplicants(opportunityId);
+    }
+
+
+    @GetMapping("/name")
+    @Operation(summary = "Leiab õpilase nime studentId järgi")
+    public ApplicantResponse getStudentName(Integer studentId) {
+       return profileService.getStudentName(studentId);
     }
 
 

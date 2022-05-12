@@ -1,11 +1,11 @@
 package com.example.demo.domain.internshipapplicant;
 
-import com.example.demo.domain.contact.ContactService;
 import com.example.demo.domain.internshipopportunity.InternshipOpportunity;
 import com.example.demo.domain.internshipopportunity.InternshipOppurtunityService;
 import com.example.demo.domain.student.Student;
 import com.example.demo.domain.student.StudentService;
 import com.example.demo.service.applicant.ApplicantResponse;
+import com.example.demo.validation.ValidationService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -28,11 +28,13 @@ public class InternshipApplicantService {
     private InternshipOppurtunityService internshipOppurtunityService;
 
     @Resource
-    private ContactService contactService;
+    private ValidationService validationService;
 
     public ApplicantResponse addNewApplicant(Integer offerId, Integer studentId, String letter) {
         Student student = studentService.findStudentByStudentId(studentId);
         InternshipOpportunity offer = internshipOppurtunityService.getOfferById(offerId);
+        boolean hasApplied = internshipApplicantRepository.existsByOfferIdAndStudentId(offerId, studentId);
+        validationService.hasAlreadyApplied(hasApplied);
         InternshipApplicant internshipApplicant = new InternshipApplicant();
         internshipApplicant.setInternshipOpportunity(offer);
         internshipApplicant.setStudent(student);

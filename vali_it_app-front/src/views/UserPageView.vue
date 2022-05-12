@@ -65,34 +65,34 @@
             <th scope="col">Ametinimetus</th>
             <th id="jobDescriptionHeader" scope="col">Töö kirjeldus</th>
 
-          </tr>
-          </thead>
-          <tbody>
-          <tr v-for="(experience, index) in workExperiences" id="expFields" style="word-wrap: break-word">
-            <th>{{ index + 1 }}</th>
-            <td>{{ experience.startDate }}</td>
-            <td>{{ experience.endDate }}</td>
-            <td>{{ experience.companyName }}</td>
-            <td>{{ experience.position }}</td>
-            <td id="jobDescription">{{ experience.jobDescription }}</td>
-            <td style="float: right">
-              <button type="submit" class="btn btn-primary btn-xs m-3"
-                      @click="hideExperienceTable(experience.id)">Muuda
-              </button>
-              <button type="submit" class="btn btn-primary btn-xs"
-                      @click="deleteWorkExperienceById(experience.id)">
-                Kustuta
-              </button>
-            </td>
-          </tr>
-          </tbody>
-        </table>
-        <button id="addNewWork" type="submit" class="btn btn-default btn-xs" @click="displayNewExperience">
-          Loo uus töö
-        </button>
-      </div>
+            </tr>
+            </thead>
+            <tbody>
+            <tr v-for="(experience, index) in workExperiences" id="expFields" style="word-wrap: break-word">
+              <th>{{ index + 1 }}</th>
+              <td>{{ experience.startDate }}</td>
+              <td>{{ experience.endDate }}</td>
+              <td>{{ experience.companyName }}</td>
+              <td>{{ experience.position }}</td>
+              <td id="jobDescription">{{ experience.jobDescription }}</td>
+              <td style="float: right">
+                <button type="submit" class="btn btn-primary btn-xs m-3"
+                        @click="hideExperienceTable(experience.id)">Muuda
+                </button>
+                <button type="submit" class="btn btn-primary btn-xs"
+                        @click="deleteWorkExperienceById(experience.id)">
+                  Kustuta
+                </button>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+          <button id="addNewWork" type="submit" class="btn btn-default btn-xs" @click="displayNewExperience">
+            Loo uus töö
+          </button>
+        </div>
 
-      <!--    ================================LISA/UUENDA WORK EXPERIENCE================================-->
+        <!--    ================================LISA/UUENDA WORK EXPERIENCE================================-->
 
       <div class="table">
         <form>
@@ -102,33 +102,33 @@
               <label class="label-form">Alguskuupäev</label>
               <input type="date" class="form-control" placeholder="Kuupäev" v-model="workExperience.startDate">
 
-              <label class="label-form">Lõppkuupäev</label>
-              <input type="date" class="form-control" placeholder="Kuupäev" v-model="workExperience.endDate">
+                <label class="label-form">Lõppkuupäev</label>
+                <input type="date" class="form-control" placeholder="Kuupäev" v-model="workExperience.endDate">
 
-              <label class="label-form">Ettevõtte nimi</label>
-              <input type="text" class="form-control" placeholder="Ettevõtte nimi"
-                     v-model="workExperience.companyName">
+                <label class="label-form">Ettevõtte nimi</label>
+                <input type="text" class="form-control" placeholder="Ettevõtte nimi"
+                       v-model="workExperience.companyName">
 
-              <label class="label-form">Ametinimetus</label>
-              <input type="text" class="form-control" placeholder="Ametinimetus" v-model="workExperience.position">
+                <label class="label-form">Ametinimetus</label>
+                <input type="text" class="form-control" placeholder="Ametinimetus" v-model="workExperience.position">
 
-              <label class="label-form">Töö kirjeldus</label>
-              <input type="text" class="form-control" placeholder="Töö kirjeldus"
-                     v-model="workExperience.jobDescription">
+                <label class="label-form">Töö kirjeldus</label>
+                <input type="text" class="form-control" placeholder="Töö kirjeldus"
+                       v-model="workExperience.jobDescription">
+              </div>
+              <div v-if="!showWorkTable">
+                <button class="btn btn-primary m-3" v-on:click="updateWorkExperienceById()">Uuenda andmed</button>
+                <button class="btn btn-danger" v-on:click="resetView">Tühista</button>
+              </div>
+              <div v-if="showWorkTable">
+                <button class="btn btn-success m-3" v-on:click="addNewWork">Loo uus töökogemus</button>
+                <button class="btn btn-danger" v-on:click="resetView">Tühista</button>
+              </div>
             </div>
-            <div v-if="!showWorkTable">
-              <button class="btn btn-primary m-3" v-on:click="updateWorkExperienceById()">Uuenda andmed</button>
-              <button class="btn btn-danger" v-on:click="resetView">Tühista</button>
-            </div>
-            <div v-if="showWorkTable">
-              <button class="btn btn-success m-3" v-on:click="addNewWork">Loo uus töökogemus</button>
-              <button class="btn btn-danger" v-on:click="resetView">Tühista</button>
-            </div>
-          </div>
-        </form>
-      </div>
+          </form>
+        </div>
 
-      <!--    ================================EDUCATION================================-->
+        <!--    ================================EDUCATION================================-->
 
       <div class="workAndEducation" v-if="showEducation">
         <div class="titleEducation">
@@ -169,6 +169,7 @@
           Loo uus kool
         </button>
       </div>
+
 
 
       <div class="workAndEducation" id="updateEducation" v-if="!showEducation">
@@ -351,7 +352,7 @@
       <table class="table table-hover">
         <thead id="eventTable">
         <tr>
-          <th scope="col">#</th>
+          <th scope="col" >#</th>
           <th scope="col">Kuupäev</th>
           <th scope="col">Kellaaeg</th>
           <th scope="col">Ürituse nimi</th>
@@ -427,7 +428,7 @@ export default {
       addSuccessMessage: '',
       showMessage: false,
       applications: {},
-      events: {}
+      events:{}
 
 
     }
@@ -503,7 +504,7 @@ export default {
         getAllEvents: function () {
           this.$http.get("/event/all")
               .then(response => {
-                this.events = response.data
+                this.events= response.data
                 console.log(response.data)
               }).catch(error => {
             console.log(error)
@@ -564,7 +565,6 @@ export default {
               }
           ).then(response => {
             this.displayPic = false
-            window.location.reload();
             console.log(response.data)
           }).catch(error => {
             console.log(error)
@@ -943,7 +943,6 @@ img {
   margin: auto;
 
 }
-
 #submit {
   margin-top: 20px;
   margin-bottom: 20px;
@@ -971,10 +970,9 @@ img {
 
 }
 
-.internship {
+.internship{
   margin-bottom: 10vh;
 }
-
 #picture {
   float: left;
   width: 30%;

@@ -3,9 +3,11 @@ package com.example.demo.domain.student;
 import com.example.demo.domain.contact.ContactService;
 import com.example.demo.domain.internshipapplicant.InternshipApplicant;
 import com.example.demo.domain.studentprofile.StudentProfile;
+import com.example.demo.domain.studentprofile.StudentProfileDto;
 import com.example.demo.domain.studentprofile.StudentProfileService;
 import com.example.demo.domain.user.User;
 import com.example.demo.domain.user.UserService;
+import com.example.demo.service.profile.ApplicantResponse;
 import com.example.demo.service.profile.StudentName;
 import com.example.demo.service.register.NewUserRequest;
 import org.springframework.stereotype.Service;
@@ -93,4 +95,16 @@ public class StudentService {
 
     }
 
+    public StudentProfileDto getProfileByStudentId(Integer studentId) {
+       return studentProfileService.getProfileByProfileId(studentRepository.getById(studentId).getStudentProfile().getId());
+    }
+
+    public ApplicantResponse getStudentName(Integer studentId) {
+        Student student = studentRepository.getById(studentId);
+        Integer userId = student.getUser().getId();
+        ApplicantResponse applicantResponse = contactService.getStudentNameByUserId(userId);
+        applicantResponse.setStudentId(studentId);
+        applicantResponse.setProfileId(student.getStudentProfile().getId());
+        return applicantResponse;
+    }
 }
