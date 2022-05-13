@@ -14,7 +14,7 @@
           <h2 class="card-title">{{ this.contact.firstName + ' ' + this.contact.lastName }}</h2>
 
         </div>
-        <button id="showMot" type="submit" class="btn btn-primary"
+        <button v-if="showProfile" id="showMot" type="submit" class="btn btn-primary"
                 @click="showMotivationLetter()">Näita motivatsioonikirja
         </button>
       </div>
