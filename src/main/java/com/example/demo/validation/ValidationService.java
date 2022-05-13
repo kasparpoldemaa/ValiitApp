@@ -14,6 +14,7 @@ public class ValidationService {
     public static final String KASUTAJA_ON_JUBA_OLEMAS = "Sellise kasutajanimega kasutaja on juba olemas.";
     public static final String ANDMED_ON_VALED = "Sisestatud andmed on valed";
     public static final String USER_HAS_ALREADY_APPLIED = "Kasutaja on juba kandideerinud sellele kuulutusele";
+    public static final String PICTURE_NOT_ADDED = "Pilti pole lisatud";
 
     public void userNameExists(boolean userExists, String userName) {
         if (userExists) {
@@ -33,5 +34,11 @@ public class ValidationService {
         }
 
 
+    }
+
+    public void newPictureExists(boolean pictureDataExists) {
+        if (pictureDataExists) {
+            throw new DataNotFoundException(PICTURE_NOT_ADDED, "Palun vali esmalt pilt, mida lisada.");
+        }
     }
 }

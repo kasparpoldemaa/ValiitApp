@@ -1,9 +1,11 @@
 package com.example.demo.domain.internshipapplicant;
 
+import com.example.demo.domain.contact.ContactService;
 import com.example.demo.domain.internshipopportunity.InternshipOpportunity;
 import com.example.demo.domain.internshipopportunity.InternshipOppurtunityService;
 import com.example.demo.domain.student.Student;
 import com.example.demo.domain.student.StudentService;
+import com.example.demo.domain.user.User;
 import com.example.demo.service.applicant.ApplicantResponse;
 import com.example.demo.validation.ValidationService;
 import org.springframework.stereotype.Service;
@@ -29,6 +31,9 @@ public class InternshipApplicantService {
 
     @Resource
     private ValidationService validationService;
+
+    @Resource
+    private ContactService contactService;
 
     public ApplicantResponse addNewApplicant(Integer offerId, Integer studentId, String letter) {
         Student student = studentService.findStudentByStudentId(studentId);
@@ -58,7 +63,13 @@ public class InternshipApplicantService {
     }
 
     public List<ApplicantResponse> getApplicantApplications(Integer studentId) {
-        return internshipApplicantMapper.toDtos(internshipApplicantRepository.findByStudentId(studentId));
+        List<InternshipApplicant> applicants = internshipApplicantRepository.findByStudentId(studentId);
+        List<ApplicantResponse> applicantResponses = internshipApplicantMapper.toDtos(applicants);
+        for (ApplicantResponse applicantRespons : applicantResponses) {
+            Integer userId = internshipOppurtunityService.getOfferById(applicantRespons.getInternshipOpportunity().getId()).getUser().getId();
+            applicantRespons.setCompanyName(contactService.getCompanyNameByUserId(userId));
+        }
+        return applicantResponses;
     }
 
     public List<InternshipApplicant> getApplicants(Integer opportunityId) {
