@@ -15,14 +15,10 @@
       <div class="pictureAndForm">
         <div class="card" id="picture">
 
-          <h1 v-if="profileHasPicture()">Vue is awesome!</h1>
-          <h1 v-else>Oh no 😢</h1>
-
           <div v-if="profileHasPicture()">
             <img :src="picture.base64" class="card-img-top" alt="">
           </div>
           <div v-else>
-            TEST 123
             <img src="../assets/default-profile.png" class="card-img-top" alt="">
           </div>
           <div class="card-body">
