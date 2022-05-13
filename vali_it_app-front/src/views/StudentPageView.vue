@@ -14,11 +14,14 @@
           <h2 class="card-title">{{ this.contact.firstName + ' ' + this.contact.lastName }}</h2>
 
         </div>
+        <button id="showMot" type="submit" class="btn btn-primary"
+                @click="showMotivationLetter()">Näita motivatsioonikirja
+        </button>
       </div>
 
       <!--    ================================PROFIILI ANKEET================================-->
 
-      <div class="card" id="profile">
+      <div class="card" id="profile" v-if="showProfile">
         <div class="card-body" id="cardBody">
           <div class="form-group" id="formGroup">
             <label class="label-form">Sünniaeg</label>
@@ -51,16 +54,20 @@
     </div>
     <br>
     <br>
-    <div id="motivation">
+    <div id="motivation" v-if="showMotivation">
       <label><h3>Motivatsioonikiri:</h3></label>
       <br>
-      <textarea name="" id="" cols="60" rows="10" v-model="this.letter" disabled></textarea>
+      <textarea  cols="60" rows="10" v-model="this.letter" disabled></textarea>
+      <br>
+      <button type="submit" class="btn btn-primary"
+              @click="resetOfferView()">Kuva profiili
+      </button>
     </div>
 
 
     <!--    ================================WORK EXPERIENCE================================-->
 
-    <div class="workAndEducation">
+    <div class="workAndEducation" >
       <h3 id="title-work">Minu töökogemused</h3>
       <table class="table table-hover">
         <thead id="expTable">
@@ -128,10 +135,8 @@ export default {
   data: function () {
     return {
       isAvailable: true,
-
-
       studentId: this.$route.query.studentId,
-      opportunityId:this.$route.query.opportunityId,
+      opportunityId: this.$route.query.opportunityId,
       profile: {},
       contact: {},
       picture: {},
@@ -145,8 +150,8 @@ export default {
       educationExperiences: {},
       educationExperienceId: null,
       offerForms: {},
-      showOffers: false,
-      showApplicants: true,
+      showProfile: true,
+      showMotivation: false,
       letter: ''
 
 
@@ -183,14 +188,13 @@ export default {
           this.$router.push({name:'company-page', query:{x:showOffers, y: showApplicants}})
         },
 
-        showMotivationLetter: function (id) {
+        showMotivationLetter: function () {
           this.showMotivation = true
-          this.showOffers = false
-          this.getOfferById(id)
+          this.showProfile = false
         },
         resetOfferView: function () {
           this.showMotivation = false
-          this.showOffers = false
+          this.showProfile = true
         },
 
         handleImage(event) {
@@ -471,11 +475,10 @@ img {
   margin-bottom: 30px;
 }
 #motivation{
-  margin-top: -350px;
-  margin-left: 15%;
+
+  margin-left: 30%;
   margin-right: auto;
 
-  float: left;
 }
 
 #picture {
@@ -498,6 +501,11 @@ img {
 .btn-group {
   margin-bottom: 50px;
 
+}
+#showMot{
+  max-width: 300px;
+  margin-right: auto;
+  margin-left: auto;
 }
 
 
