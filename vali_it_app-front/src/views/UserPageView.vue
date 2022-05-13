@@ -24,7 +24,8 @@
           <div class="card-body">
             <div class="upload-button">
               <input type="file" @change="handleImage" accept="image/x-png,image/jpeg">
-              <button v-on:click="addPicture" type="button" class="btn btn-outline-link btn-sm m-3">Lisa pilt</button>
+              <button v-if="showAddPictureButton" v-on:click="addPicture" type="button" class="btn btn-outline-link btn-sm m-3">Lisa pilt</button>
+              <button v-if="!showAddPictureButton" disabled type="button" class="btn btn-outline-link btn-sm m-3">Lisa pilt</button>
               <button v-on:click="deletePicture" type="button" class="btn btn-outline-link btn-sm">Eemalda pilt
               </button>
             </div>
@@ -233,35 +234,37 @@
         </tr>
         </tbody>
       </table>
-
-      <!--            <h3 id="applyTitle"> Minu kandideerimised </h3>-->
-      <!--            <table class="table table-hover">-->
-      <!--              <thead>-->
-      <!--              <tr>-->
-      <!--                <th scope="col">Algus kuupäev</th>-->
-      <!--                <th scope="col">Kestvus</th>-->
-      <!--                <th scope="col">Asukoht</th>-->
-      <!--                <th scope="col">Vabad kohad</th>-->
-      <!--                <th scope="col">Kasutusel tehnoloogiad</th>-->
-      <!--                <th scope="col">Töövorm</th>-->
-      <!--                <th scope="col">Tasu</th>-->
-      <!--                <th scope="col">Lisainfo</th>-->
-      <!--              </tr>-->
-      <!--              </thead>-->
-      <!--              <tbody>-->
-      <!--              <tr v-for="application in applications">-->
-      <!--                <td>{{ application.data.startTime }}</td>-->
-      <!--                <td>{{ application.data.duration }}</td>-->
-      <!--                <td>{{ application.data.location }}</td>-->
-      <!--                <td>{{ application.data.numberOfPositions }}</td>-->
-      <!--                <td>{{ application.data.technology }}</td>-->
-      <!--                <td>{{ application.data.workType }}</td>-->
-      <!--                <td>{{ application.data.isPayable ? 'jah' : 'ei'}}</td>-->
-      <!--                <td>{{ application.data.comment }}</td>-->
-      <!--              </tr>-->
-      <!--              </tbody>-->
-      <!--            </table>-->
-
+      <div v-if="showMyApplications">
+                  <h3 id="applyTitle"> <strong>Minu kandideerimised</strong>  </h3>
+                  <table class="table table-hover">
+                    <thead>
+                    <tr>
+                      <th scope="col">Ettevõte</th>
+                      <th scope="col">Algus kuupäev</th>
+                      <th scope="col">Kestvus</th>
+                      <th scope="col">Asukoht</th>
+                      <th scope="col">Vabad kohad</th>
+                      <th scope="col">Kasutusel tehnoloogiad</th>
+                      <th scope="col">Töövorm</th>
+                      <th scope="col">Tasu</th>
+                      <th scope="col">Lisainfo</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr v-for="application in applications">
+                      <td>{{ application.companyName }}</td>
+                      <td>{{ application.internshipOpportunity.startTime }}</td>
+                      <td>{{ application.internshipOpportunity.duration }}</td>
+                      <td>{{ application.internshipOpportunity.location }}</td>
+                      <td>{{ application.internshipOpportunity.numberOfPositions }}</td>
+                      <td>{{ application.internshipOpportunity.technology }}</td>
+                      <td>{{ application.internshipOpportunity.workType }}</td>
+                      <td>{{ application.internshipOpportunity.isPayable ? 'jah' : 'ei'}}</td>
+                      <td>{{ application.internshipOpportunity.comment }}</td>
+                    </tr>
+                    </tbody>
+                  </table>
+      </div>
 
       <table id="offersTable" class="table table-hover" v-if="showOffers">
         <thead>
@@ -288,15 +291,17 @@
           <td>{{ offerForm.comment }}</td>
           <td>
             <button type="button" class="btn btn-info" @click="showMotivationLetter(offerForm.id)">Kandideeri
+
             </button>
           </td>
         </tr>
         </tbody>
-        <br>
-        <br>
-        <br>
+
       </table>
+      <button v-if="showOffers" id="backButton2" type="button" class="btn btn-danger" @click="resetOfferView">Tagasi</button>
       <div v-if="showMotivation">
+
+
         <h3><strong>Ülevaade pakkumisest </strong></h3>
 
         <table class="table table-hover" id="detailsTable">
@@ -429,7 +434,9 @@ export default {
       addSuccessMessage: '',
       showMessage: false,
       applications: {},
-      events: {}
+      events: {},
+      showAddPictureButton: false,
+      showMyApplications: true,
 
 
     }
@@ -509,6 +516,7 @@ export default {
         resetOfferView: function () {
           this.showMotivation = false
           this.showOffers = false
+          this.showMyApplications = true
         },
 
         getAllEvents: function () {
@@ -525,6 +533,7 @@ export default {
         handleImage(event) {
           const selectedImage = event.target.files[0];
           this.createBase64Image(selectedImage);
+          this.showAddPictureButton = true;
         },
 
         createBase64Image(fileObject) {
@@ -545,10 +554,11 @@ export default {
                 }
               }
           ).then(response => {
-            this.displayPic = true
+            this.showAddPictureButton = false
             this.getStudentPicture()
             console.log(response.data)
           }).catch(error => {
+            alert(error.response.data.detail)
             console.log(error)
           })
         },
@@ -562,6 +572,7 @@ export default {
               .then(response => {
                 this.picture = response.data
               }).catch(error => {
+
             console.log(error)
           })
         },
@@ -789,6 +800,7 @@ export default {
             }
           })
               .then(response => {
+                this.showMyApplications = false
                 this.showOffers = true
                 this.showMotivation = false
                 this.offerForms = response.data
@@ -847,7 +859,6 @@ export default {
           })
               .then(response => {
                 this.applications = response.data
-                console.log(response.data)
               }).catch(error => {
             console.log(error)
           })
@@ -887,6 +898,11 @@ export default {
   margin-bottom: 30px;
 }
 
+#applyTitle {
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
 #navButtons {
   margin-top: 50px;
 }
@@ -901,6 +917,12 @@ export default {
 
 #eduDescription {
   max-width: 300px;
+}
+
+#backButton2 {
+  float: right;
+  margin-right: 50px;
+
 }
 
 
