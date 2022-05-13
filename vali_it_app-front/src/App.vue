@@ -36,9 +36,13 @@ export default {
     },
 
     navigateToHomePage: function () {
-
       sessionStorage.clear()
-      this.$router.push({name: 'home'})
+
+      if (1){
+        this.$router.push({name: 'home'})
+      }else{
+        this.refreshPage()
+      }
     },
 
 
