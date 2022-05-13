@@ -92,5 +92,9 @@ public class ContactService {
         applicantResponse.setLastName(contact.getLastName());
         return applicantResponse;
     }
+
+    public Contact getContactByUserId(Integer userId) {
+        return contactRepository.findByUser_Id(userId);
+    }
 }
 

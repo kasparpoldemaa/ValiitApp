@@ -107,4 +107,8 @@ public class StudentService {
         applicantResponse.setProfileId(student.getStudentProfile().getId());
         return applicantResponse;
     }
+
+    public List<Student> getAllStudents() {
+        return studentRepository.findAll();
+    }
 }

@@ -31,6 +31,13 @@ public class ApplicantController {
         return applicantService.getApplicantMotivationLetter(internshipOpportunityId, studentId);
     }
 
+    @GetMapping("/all")
+    @Operation(summary = "Kuvab listi kõikide õpialste nimedest ja linkedIn kontost")
+
+    public List<StudentsResponse> getStudentsList() {
+        return applicantService.getStudentsList();
+    }
+
 
 //    @GetMapping("/all")
 //    @Operation(summary = "Tagastab studentite objektid ja nende ID-d, kes konkreetsele pakkumisele kandideerisid")
