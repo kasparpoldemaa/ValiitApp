@@ -1,7 +1,6 @@
 <template>
   <div id="userPage">
 
-
     <h3 id="studentTitle"> <strong> Õpilase profiil</strong></h3>
 
     <!--    ================================PROFIILIPILT================================-->
@@ -15,9 +14,7 @@
           <h2 class="card-title">{{ this.contact.firstName + ' ' + this.contact.lastName }}</h2>
 
         </div>
-
       </div>
-
 
       <!--    ================================PROFIILI ANKEET================================-->
 
@@ -132,10 +129,9 @@ export default {
     return {
       isAvailable: true,
 
-      opportunityId: 1,
-      // this.$route.query.id2,
-      studentId: 1,
-      // this.$route.query.id,
+
+      studentId: this.$route.query.studentId,
+      opportunityId:this.$route.query.opportunityId,
       profile: {},
       contact: {},
       picture: {},
@@ -157,7 +153,6 @@ export default {
     }
   },
   methods:
-
       {
         getStudentMotivationLetter: function () {
           this.$http.get("/applicant/letter", {

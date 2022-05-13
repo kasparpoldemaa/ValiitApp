@@ -1,6 +1,11 @@
 <template>
   <div>
 
+    <div id="navButtons" class="btn-group" role="group" aria-label="Basic example">
+      <button type="button" class="btn btn-primary btn-lg" @click="offersDiv">Pakkumised</button>
+      <button type="button" class="btn btn-primary btn-lg" @click="studentsDiv">Õpilased</button>
+    </div>
+
     <div v-if="showOffers">
       <h3 id="companyTitle"><strong>Sisesta praktika pakkumine:</strong></h3>
     </div>
@@ -36,6 +41,12 @@
       <br>
       <br>
       <button class="btn btn-primary" v-on:click="addInternship">Lisa uus pakkumine</button>
+
+    </div>
+
+    <div v-if="showStudents">
+
+      <h1>siin näed listi studentite nimedest ja nende linkedinkontost</h1>
 
     </div>
 
@@ -120,7 +131,6 @@
     </div>
 
 
-
     <div id="applicantTable" v-if="showApplicants">
       <h2 id="headline">KANDIDAADID </h2>
       <br>
@@ -137,7 +147,9 @@
           <td>{{ applicantRespons.firstName }}</td>
           <td>{{ applicantRespons.lastName }}</td>
           <td>
-            <button type="button" class="btn btn-primary" @click="getApplicantProfile(applicantRespons.studentId)">Profiil</button>
+            <button type="button" class="btn btn-primary" @click="getApplicantProfile(applicantRespons.studentId)">
+              Profiil
+            </button>
           </td>
         </tr>
 
@@ -162,6 +174,7 @@ export default {
       offer: {},
       showOffers: true,
       showApplicants: false,
+      showStudents: false,
       isPayable: false,
       offerForms: {},
       arrayLength: '',
@@ -176,18 +189,27 @@ export default {
   methods: {
 
     getApplicantProfile: function (studentId) {
-      this.$router.push({name:'student', query:{id:studentId}})
+      this.$router.push({name: 'student', query: {id: studentId}})
     },
 
     pushToApplicantPage: function (opportunityId) {
-      this.$router.push({name:'applicant-list-page', query:{id:opportunityId}})
+      this.$router.push({name: 'applicant-list-page', query: {opportunityId: opportunityId}})
+    },
+
+    offersDiv: function () {
+      this.showOffers = true
+      this.showStudents = false
+    },
+    studentsDiv: function () {
+      this.showOffers = false
+      this.showStudents = true
     },
 
     closeDivs: function () {
       this.showOffers = false
       this.showApplicants = true
-
     },
+
     openFirstDiv: function () {
       this.showApplicants = false
       this.showOffers = true
@@ -295,7 +317,7 @@ div.form-group {
   max-width: 300vw;
 }
 
-#companyTitle{
+#companyTitle {
   padding-top: 30px;
 }
 
@@ -318,8 +340,12 @@ div.form-group {
 
 }
 
-.xxx{
+.xxx {
   margin-bottom: 25vh;
+}
+
+#navButtons {
+  margin-top: 20px;
 }
 
 

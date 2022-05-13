@@ -1,6 +1,8 @@
 <template>
   <div>
 
+    {{ this.opportunityId }}
+
     <div v-if="showOffers">
       <h2>SISESTA PRAKTIKA PAKKUMINE :</h2>
     </div>
@@ -135,12 +137,13 @@
         <tbody v-for="applicantRespons in applicantResponse">
         <tr>
           <td>
-                  <img class="ui-menu-icons" alt="email" src="../assets/user.png">
-                  </td>
+            <img class="ui-menu-icons" alt="email" src="../assets/user.png">
+          </td>
           <td>{{ applicantRespons.firstName }}</td>
           <td>{{ applicantRespons.lastName }}</td>
           <td>
-            <button type="button" class="btn btn-primary" @click="getApplicantProfile(applicantRespons.studentId)">
+            <button type="button" class="btn btn-primary"
+                    @click="getApplicantProfile(applicantRespons.studentId, opportunityId)">
               Profiil
             </button>
           </td>
@@ -174,19 +177,16 @@ export default {
       id: null,
       studentIds: {},
       applicantResponse: {},
-      opportunityId: this.$route.query.id,
+      opportunityId: this.$route.query.opportunityId,
 
     }
   },
   methods: {
 
-    getApplicantProfile: function (studentId) {
-      this.$router.push({name: 'student', query: {id: studentId}})
+    getApplicantProfile: function (studentId, opportunityId) {
+      this.$router.push({name: 'student', query: {studentId: studentId, opportunityId: opportunityId}})
     },
 
-    pushToCompanyPage: function () {
-      this.$router.push({name: 'company-page'})
-    },
 
     closeDivs: function () {
       this.showOffers = false
