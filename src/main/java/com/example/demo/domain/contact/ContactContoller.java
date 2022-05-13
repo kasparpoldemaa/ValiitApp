@@ -26,4 +26,10 @@ public class ContactContoller {
     public List<ContactDto> getAllCompanyContacts() {
         return contactService.getAllCompanyContacts();
     }
+
+    @GetMapping("/company-name")
+    @Operation(summary = "Kuvab firma nime kasutaja ID järgi")
+    public String getCompanyName(Integer userId) {
+        return contactService.getCompanyNameByUserId(userId);
+    }
 }

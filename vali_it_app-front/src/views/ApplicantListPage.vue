@@ -1,6 +1,12 @@
 <template>
   <div>
 
+    <div id="companyName" >
+      {{companyName}}
+    </div>
+
+    <br>
+
     <div v-if="showOffers">
       <h2>SISESTA PRAKTIKA PAKKUMINE :</h2>
     </div>
@@ -176,6 +182,7 @@ export default {
       studentIds: {},
       applicantResponse: {},
       opportunityId: this.$route.query.opportunityId,
+      companyName: ''
 
     }
   },
@@ -258,12 +265,26 @@ export default {
         console.log(error)
       })
     },
+    getCompanyName: function () {
+      this.$http.get("/contact/company-name", {
+            params: {
+              userId: this.userId,
+            }
+          }
+      ).then(response => {
+        this.companyName = response.data
+        console.log(response.data)
+      }).catch(error => {
+        console.log(error)
+      })
+    },
 
   },
 
   mounted() {
     this.getAllApplicants()
     this.getAllOffersByUserId()
+    this.getCompanyName()
 
 
   }
@@ -320,6 +341,12 @@ div.form-group {
 
 .xxx {
   margin-bottom: 25vh;
+}
+
+#companyName{
+  float: right;
+  margin-right: 30px;
+  font-weight: bold;
 }
 
 img {

@@ -1,6 +1,12 @@
 <template>
   <div id="userPage">
 
+    <div id="companyName" >
+      {{companyName}}
+    </div>
+
+    <br>
+
     <h3 id="studentTitle"> <strong> Õpilase profiil</strong></h3>
 
     <!--    ================================PROFIILIPILT================================-->
@@ -137,6 +143,7 @@ export default {
       isAvailable: true,
       studentId: this.$route.query.studentId,
       opportunityId: this.$route.query.opportunityId,
+      userId: sessionStorage.getItem('userId'),
       profile: {},
       contact: {},
       picture: {},
@@ -152,7 +159,8 @@ export default {
       offerForms: {},
       showProfile: true,
       showMotivation: false,
-      letter: ''
+      letter: '',
+      companyName: ''
 
 
     }
@@ -335,7 +343,21 @@ export default {
               }).catch(error => {
             console.log(error)
           })
-        }
+        },
+
+        getCompanyName: function () {
+          this.$http.get("/contact/company-name", {
+                params: {
+                  userId: this.userId,
+                }
+              }
+          ).then(response => {
+            this.companyName = response.data
+            console.log(response.data)
+          }).catch(error => {
+            console.log(error)
+          })
+        },
 
 
       },
@@ -347,6 +369,7 @@ export default {
     this.getStudentEducationExperienceById()
     this.getMyApplications()
     this.getStudentMotivationLetter()
+    this.getCompanyName()
   }
 
 }
@@ -517,6 +540,12 @@ img {
 #backButton {
   float: left;
   margin-left: 30px;
+}
+
+#companyName{
+  float: right;
+  margin-right: 30px;
+  font-weight: bold;
 }
 
 

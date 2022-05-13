@@ -1,6 +1,12 @@
 <template>
   <div>
 
+    <div id="companyName" >
+      {{companyName}}
+    </div>
+
+    <br>
+
     <div class="logo">
       <img alt="Vali-it logo" src="../assets/valiit.png">
     </div>
@@ -87,7 +93,32 @@
 export default {
 
   data: function () {
-    return {}
+    return {
+      userId: sessionStorage.getItem('userId'),
+      companyName: ''
+    }
+  },
+
+  methods:{
+
+    getCompanyName: function () {
+      this.$http.get("/contact/company-name", {
+            params: {
+              userId: this.userId,
+            }
+          }
+      ).then(response => {
+        this.companyName = response.data
+        console.log(response.data)
+      }).catch(error => {
+        console.log(error)
+      })
+    },
+  },
+
+  mounted() {
+    this.getCompanyName()
+
   }
 }
 </script>
@@ -149,6 +180,12 @@ img {
 
 .fa-3x {
   margin-bottom: 25vh;
+}
+
+#companyName{
+  float: right;
+  margin-right: 30px;
+  font-weight: bold;
 }
 
 

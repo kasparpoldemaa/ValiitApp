@@ -1,6 +1,12 @@
 <template>
   <div>
 
+    <div id="companyName" >
+      {{companyName}}
+    </div>
+
+    <br>
+
     <div id="navButtons" class="btn-group" role="group" aria-label="Basic example">
       <button type="button" class="btn btn-primary btn-lg" @click="offersDiv">Pakkumised</button>
       <button type="button" class="btn btn-primary btn-lg" @click="getAllStudents">Õpilased</button>
@@ -206,7 +212,8 @@ export default {
       studentIds: {},
       applicantResponse: {},
       opportunityId: null,
-      allStudents: {}
+      allStudents: {},
+      companyName: ''
 
     }
   },
@@ -316,12 +323,28 @@ export default {
           }).catch(error => {
         console.log(error)
       })
-    }
+    },
+
+    getCompanyName: function () {
+      this.$http.get("/contact/company-name", {
+            params: {
+              userId: this.userId,
+            }
+          }
+      ).then(response => {
+        this.companyName = response.data
+        console.log(response.data)
+      }).catch(error => {
+        console.log(error)
+      })
+    },
+
 
   },
 
   mounted() {
     this.getAllOffersByUserId()
+    this.getCompanyName()
 
   }
 }
@@ -384,7 +407,13 @@ div.form-group {
 }
 
 #navButtons {
-  margin-top: 20px;
+  margin-top: 40px;
+}
+
+#companyName{
+  float: right;
+  margin-right: 30px;
+  font-weight: bold;
 }
 
 img {
