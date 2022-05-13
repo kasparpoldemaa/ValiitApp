@@ -3,7 +3,7 @@
 
     <div id="navButtons" class="btn-group" role="group" aria-label="Basic example">
       <button type="button" class="btn btn-primary btn-lg" @click="offersDiv">Pakkumised</button>
-      <button type="button" class="btn btn-primary btn-lg" @click="studentsDiv">Õpilased</button>
+      <button type="button" class="btn btn-primary btn-lg" @click="getAllStudents">Õpilased</button>
     </div>
 
     <div v-if="showOffers">
@@ -45,9 +45,32 @@
     </div>
 
     <div v-if="showStudents">
-
-      <h1>siin näed listi studentite nimedest ja nende linkedinkontost</h1>
-
+      <br>
+      <h2 id="xoxo">ÕPILASED </h2>
+      <br>
+      <table class="table">
+        <thead>
+        <tr>
+          <th scope="col"></th>
+          <th scope="col">Eesnimi</th>
+          <th scope="col">Perekonnanimi</th>
+          <th scope="col"> LinkedIn</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr v-if="showStudents" v-for="student in allStudents">
+          <td>
+            <img class="ui-menu-icons" alt="email" src="../assets/user.png">
+          </td>
+          <td>{{ student.firstName }}</td>
+          <td>{{ student.lastName }}</td>
+          <td>
+            <!--            <a href="" target="_blank" rel="noopener">{{ student.linkedIn }}</a>-->
+            <a class="nav-link active" href="#" @click="openInNewTab(student.linkedIn)">{{ student.linkedIn }}</a>
+          </td>
+        </tr>
+        </tbody>
+      </table>
     </div>
 
     <br>
@@ -183,10 +206,15 @@ export default {
       studentIds: {},
       applicantResponse: {},
       opportunityId: null,
+      allStudents: {}
 
     }
   },
   methods: {
+
+    openInNewTab: function (url) {
+      window.open(url, '_blank').focus();
+    },
 
     getApplicantProfile: function (studentId) {
       this.$router.push({name: 'student', query: {id: studentId}})
@@ -279,6 +307,17 @@ export default {
       })
     },
 
+    getAllStudents: function () {
+      this.$http.get("/applicant/all")
+          .then(response => {
+            this.studentsDiv()
+            this.allStudents = response.data
+            console.log(response.data)
+          }).catch(error => {
+        console.log(error)
+      })
+    }
+
   },
 
   mounted() {
@@ -346,6 +385,11 @@ div.form-group {
 
 #navButtons {
   margin-top: 20px;
+}
+
+img {
+  width: 18px;
+  height: auto;
 }
 
 

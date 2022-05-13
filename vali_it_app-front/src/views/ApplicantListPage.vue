@@ -1,8 +1,6 @@
 <template>
   <div>
 
-    {{ this.opportunityId }}
-
     <div v-if="showOffers">
       <h2>SISESTA PRAKTIKA PAKKUMINE :</h2>
     </div>
