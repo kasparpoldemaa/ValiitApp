@@ -27,16 +27,28 @@ export default {
   },
   methods: {
 
+    refreshPage: function () {
+      window.location.reload();
+    },
+
     getRoleId: function () {
       return sessionStorage.getItem('roleId')
     },
 
     navigateToHomePage: function () {
+
       sessionStorage.clear()
       this.$router.push({name: 'home'})
     },
 
+
+
   },
+
+  mounted() {
+
+
+  }
 }
 
 </script>
