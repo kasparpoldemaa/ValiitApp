@@ -21,5 +21,9 @@ public interface InternshipApplicantRepository extends JpaRepository<InternshipA
     @Query("select (count(i) > 0) from InternshipApplicant i where i.internshipOpportunity.id = ?1 and i.student.id = ?2")
     boolean existsByOfferIdAndStudentId(Integer offerId, Integer studentId);
 
+    @Query("select i from InternshipApplicant i where i.internshipOpportunity.id = ?1 and i.student.id = ?2")
+    InternshipApplicant findByInternshipOpportunityIdAndStudentId(Integer internshipOpportunityId, Integer studentId);
+
+
 
 }

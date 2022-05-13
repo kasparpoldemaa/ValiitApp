@@ -1,7 +1,5 @@
 package com.example.demo.service.applicant;
 
-import com.example.demo.domain.internshipapplicant.InternshipApplicant;
-import com.example.demo.domain.internshipapplicant.InternshipApplicantService;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,9 +20,15 @@ public class ApplicantController {
     }
 
     @GetMapping("/student-id")
-    @Operation(summary = "Leiab ühe õpilase kandideerimised")
+    @Operation(summary = "Leiab ühe õpilase kõik kandideerimised")
     public List<ApplicantResponse> getApplicantApplications(@RequestParam Integer studentId) {
         return applicantService.getApplicantApplications(studentId);
+    }
+
+    @GetMapping("/letter")
+    @Operation(summary = "Leiab õpilase motivatsioonikirja")
+    public String getApplicantMotivationLetter(@RequestParam Integer internshipOpportunityId, @RequestParam Integer studentId) {
+        return applicantService.getApplicantMotivationLetter(internshipOpportunityId, studentId);
     }
 
 

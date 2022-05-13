@@ -57,7 +57,7 @@ public class InternshipApplicantService {
         return studenIds;
     }
 
-    public List<ApplicantResponse> getApplicantApplication(Integer studentId) {
+    public List<ApplicantResponse> getApplicantApplications(Integer studentId) {
         return internshipApplicantMapper.toDtos(internshipApplicantRepository.findByStudentId(studentId));
     }
 
@@ -65,26 +65,10 @@ public class InternshipApplicantService {
         return internshipApplicantRepository.findApplicants(opportunityId);
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    public String getApplicantMotivationLetter(Integer internshipOpportunityId, Integer studentId) {
+        InternshipApplicant internshipApplicant = internshipApplicantRepository.findByInternshipOpportunityIdAndStudentId(internshipOpportunityId, studentId);
+        return internshipApplicant.getMotivationLetter();
+    }
 
 
 //    public InternshipOppurtunityResponse findStundetCountAndId(Integer internshipOppurtunityId) {

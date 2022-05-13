@@ -1,6 +1,5 @@
 package com.example.demo.service.applicant;
 
-import com.example.demo.domain.internshipapplicant.InternshipApplicant;
 import com.example.demo.domain.internshipapplicant.InternshipApplicantService;
 import org.springframework.stereotype.Service;
 
@@ -18,7 +17,11 @@ public class ApplicantService {
     }
 
     public List<ApplicantResponse> getApplicantApplications(Integer studentId) {
-        return internshipApplicantService.getApplicantApplication(studentId);
+        return internshipApplicantService.getApplicantApplications(studentId);
+    }
+
+    public String getApplicantMotivationLetter(Integer internshipOpportunityId, Integer studentId) {
+        return internshipApplicantService.getApplicantMotivationLetter(internshipOpportunityId, studentId);
     }
 
 //    public InternshipOppurtunityResponse getCountAndStudentId(Integer internshipOppurtunityId) {

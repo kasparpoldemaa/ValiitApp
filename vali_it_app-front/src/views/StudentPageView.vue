@@ -1,6 +1,7 @@
 <template>
   <div id="userPage">
 
+
     <h3 id="studentTitle"> <strong> Õpilase profiil</strong></h3>
 
     <!--    ================================PROFIILIPILT================================-->
@@ -14,7 +15,9 @@
           <h2 class="card-title">{{ this.contact.firstName + ' ' + this.contact.lastName }}</h2>
 
         </div>
+
       </div>
+
 
       <!--    ================================PROFIILI ANKEET================================-->
 
@@ -49,6 +52,14 @@
         </div>
       </div>
     </div>
+    <br>
+    <br>
+    <div id="motivation">
+      <label><h3>Motivatsioonikiri:</h3></label>
+      <br>
+      <textarea name="" id="" cols="60" rows="10" v-model="this.letter" disabled></textarea>
+    </div>
+
 
     <!--    ================================WORK EXPERIENCE================================-->
 
@@ -121,8 +132,10 @@ export default {
     return {
       isAvailable: true,
 
-
-      studentId: this.$route.query.id,
+      opportunityId: 1,
+      // this.$route.query.id2,
+      studentId: 1,
+      // this.$route.query.id,
       profile: {},
       contact: {},
       picture: {},
@@ -137,13 +150,32 @@ export default {
       educationExperienceId: null,
       offerForms: {},
       showOffers: false,
-      showApplicants: true
+      showApplicants: true,
+      letter: ''
 
 
     }
   },
   methods:
+
       {
+        getStudentMotivationLetter: function () {
+          this.$http.get("/applicant/letter", {
+            params: {
+              internshipOpportunityId: this.opportunityId,
+              studentId: this.studentId
+            }
+          })
+              .then(response => {
+                this.letter = response.data
+                console.log(response.data)
+              }).catch(error => {
+            console.log(error)
+          })
+        },
+
+
+
         hideTable: function () {
           this.displayTable = false
         },
@@ -315,6 +347,7 @@ export default {
     this.getStudentWorkExperienceById()
     this.getStudentEducationExperienceById()
     this.getMyApplications()
+    this.getStudentMotivationLetter()
   }
 
 }
@@ -442,7 +475,13 @@ img {
 #internshipTitle {
   margin-bottom: 30px;
 }
+#motivation{
+  margin-top: -350px;
+  margin-left: 15%;
+  margin-right: auto;
 
+  float: left;
+}
 
 #picture {
   float: left;
